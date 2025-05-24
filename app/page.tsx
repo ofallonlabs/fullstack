@@ -1,103 +1,194 @@
+'use client';
+
 import Image from "next/image";
+import { ArrowLongRightIcon  } from '@heroicons/react/24/outline';
+
+
+import Header from "@/ui/components/header";
+import Footer from "@/ui/components/footer";
+import Stats from "@/ui/components/stats";
+import PartnerCompanies from "@/ui/components/partner-companies";
+import FAQ from "@/ui/components/faq";
+import Link from "next/link";
+
+ 
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+   <>
+     <Header/>
+
+    <div className="min-h-[500px]">
+      <div className="mx-auto 2xl:w-11/12 lg:px-8 px-6 ">
+       
+        <div className=" py-10 text-center">
+              <div className="text-gray-800 font-semibold text-4xl lg:text-6xl">Data Science Mentorship, Simplified</div>
+              <div className="flex flex-col gap-6 items-center justify-between mt-4 ">
+                <div className="flex-none text-gray-600 w-10/12 lg:w-7/12 text-xl ">
+                  Accelerate your career in Data Science with top mentors in tech-industry across the U.S. and Canada. Discover insights, expand your skills, and unlock new opportunities.
+                </div>
+                <div className="flex-none w-full lg:w-fit px-8">
+                  <div className="grid grid-flow-row lg:grid-flow-col gap-2 text-md text-slate-500 font-light">
+                    <Link href={"/auth/register"} className="transition-all duration-200 hover:cursor-pointer order-2 md:order-1 bg-white hover:bg-slate-200 border border-slate-200 text-gray-900  px-10 py-4 lg:py-5 rounded-md text-center w-full lg:w-fit">Become a mentor</Link>
+                    <div className="transition-all duration-200 order-1 md:order-2 bg-brand-500 text-white font-semibold  px-10 py-4 lg:py-5 rounded-md text-center w-full lg:w-fit flex flex-row gap-1 items-center">
+                      Find a mentor
+                      <ArrowLongRightIcon aria-hidden="true" className="size-6 group-data-open:hidden" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>   
+
+
+        <div className="w-full md:w-10/12 lg:w-7/12 flex flex-row justify-center items-center text-center mx-auto">
+           <div className="hidden lg:block"><Image alt="" src={"/assets/images/home/home4.jpg"} width={1436} height={753} /></div>
+           <div className="lg:hidden"><Image alt="" src={"/assets/images/home/home3.jpg"} width={287} height={347} /></div>
+        </div> 
+
+
+        <PartnerCompanies/>
+
+        <div className="w-full md:w-10/12 lg:w-7/12 text-center mx-auto py-16 gap-6">
+           <div className="text-center flex flex-col gap-4">
+             <div className="text-brand-600 text-md">Features</div>
+              <div className="text-gray-800 font-bold text-4xl">Find the best mentors quickly</div>
+              <div className=" text-xl">
+                  Discover mentors from 500 fortune companies, gain personalized guidance, and take your career to the next level. Sign up for free and start your journey today.
+              </div>
+           </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        <div className="w-full md:w-10/12 lg:w-7/12 text-left mx-auto py-16 space-y-16">
+           <div className="grid grid-flow-row lg:grid-flow-col gap-16 items-stretch justify-between">
+
+              <div className="flex flex-col items-start justify-start gap-4">
+                <Image className="w-[48px] aspect-square"  alt="" src={"/assets/images/home/home8.svg"} width={56} height={56} />
+                <div className="text-gray-800 font-bold text-lg">Qualified Mentors</div>
+                <div className="text-slate-600 text-sm">Our mentors are seasoned professionals from top 500 Fortune companies who’ve been there, done that.</div>
+              </div>
+
+              <div className="flex flex-col items-start justify-start gap-4">
+                <Image className="w-[48px] aspect-square"  alt="" src={"/assets/images/home/home9.svg"} width={56} height={56} />
+                <div className="text-gray-800 font-bold text-lg">Secure Payment</div>
+                <div className="text-slate-600 text-sm">Enjoy a safe and hassle-free payment experience with our trusted system.</div>
+              </div>
+
+              <div className="flex flex-col items-start justify-start gap-4">
+                <Image className="w-[48px] aspect-square"  alt="" src={"/assets/images/home/home10.svg"} width={56} height={56} />
+                <div className="text-gray-800 font-bold text-lg">Instant Booking</div>
+                <div className="text-slate-600 text-sm">Book your mentorship sessions instantly and start making progress right away.</div>
+              </div>
+
+
+
+
+           </div>
+
+           <div className="grid grid-flow-row lg:grid-flow-col gap-16 items-stretch justify-between">
+
+
+              <div className="flex flex-col items-start justify-start gap-4">
+                <Image className="w-[48px] aspect-square"  alt="" src={"/assets/images/home/home11.svg"} width={56} height={56} />
+                <div className="text-gray-800 font-bold text-lg">Seamless Application Process</div>
+                <div className="text-slate-600 text-sm">Explore mentors for free, send applications, and receive responses within seven days.</div>
+              </div>
+
+              <div className="flex flex-col items-start justify-start gap-4">
+                <Image className="w-[48px] aspect-square"  alt="" src={"/assets/images/home/home12.svg"} width={56} height={56} />
+                <div className="text-gray-800 font-bold text-lg">Privacy Protected</div>
+                <div className="text-slate-600 text-sm">Your data is secure with top-level encryption and strict privacy measures.</div>
+              </div>
+
+              <div className="flex flex-col items-start justify-start gap-4">
+                <Image className="w-[48px] aspect-square"  alt="" src={"/assets/images/home/home13.svg"} width={56} height={56} />
+                <div className="text-gray-800 font-bold text-lg">Satisfaction Guaranteed</div>
+                <div className="text-slate-600 text-sm">Request a full refund if you’re not satisfied with the mentorship experience.</div>
+              </div>
+
+
+           </div>
+        </div>
+
+        <div className="w-full md:w-10/12 lg:w-8/12 flex flex-row justify-center items-center text-center mx-auto py-32">
+           <div className=""><Image alt="" src={"/assets/images/home/testimonials/1.png"} width={1166} height={675} /></div> 
+        </div>
+
+        <div className="w-full md:w-10/12 lg:w-7/12 text-center mx-auto py-16 gap-6">
+           <div className="text-center flex flex-col gap-4">
+             <div className="text-brand-400 text-sm rounded-2xl py-1 px-3 bg-brand-50/60 w-fit mx-auto font-bold">Features</div>
+              <div className="text-gray-800 font-bold text-4xl">Pay securely and book instantly</div>
+              <div className=" text-xl text-gray-500">
+                  Enjoy safe payments and instant booking for a seamless mentorship experience.
+              </div>
+           </div>
+        </div> 
+
+        <div className="w-full md:w-10/12 lg:w-7/12 flex flex-row justify-center items-center text-center mx-auto">
+           <div className="hidden lg:block"><Image alt="" src={"/assets/images/home/home33.jpg"} width={888} height={570} /></div>
+           <div className="lg:hidden"><Image alt="" src={"/assets/images/home/home34.jpg"} width={603} height={609} /></div>
+        </div> 
+        
+        <div className="w-full md:w-10/12 lg:w-7/12 text-left mx-auto py-16 space-y-16 border-b border-slate-200">
+           <div className="grid grid-flow-row lg:grid-flow-col gap-16 items-stretch justify-between">
+
+              <div className="flex flex-col items-center justify-center gap-4">
+                <Image className="w-[48px] aspect-square"  alt="" src={"/assets/images/home/home22.svg"} width={56} height={56} />
+                <div className="text-gray-800 font-bold text-lg">Our Vission</div>
+                <div className="text-slate-600 text-sm text-center">
+                  To be the leading mentorship platform for data science professionals, creating a space where knowledge and guidance flow freely between mentors and mentees. We envision a world where every aspiring data professional has access to the mentorship they need to succeed and excel in their careers.
+                </div>
+                <Link href={"/about"} className="text-brand-500 text-md text-center font-semibold flex flex-row items-center gap-2">
+                  <div className="hover:underline">Learn more</div>
+                  <ArrowLongRightIcon aria-hidden="true" className="size-6 group-data-open:hidden" />
+                </Link>
+              </div>
+
+              <div className="flex flex-col items-center justify-center gap-4">
+                <Image className="w-[48px] aspect-square"  alt="" src={"/assets/images/home/home21.svg"} width={56} height={56} />
+                <div className="text-gray-800 font-bold text-lg">Our Mission</div>
+                <div className="text-slate-600 text-sm text-center">
+                  To empower individuals in data careers by providing accessible, meaningful, and one-on-one mentorship opportunities. Our platform connects ambitious mentees with experienced mentors, fostering personal growth, professional development, and a strong, supportive community across the U.S. and Canada.
+                </div>
+                <Link href={"/about"} className="text-brand-500 text-md text-center font-semibold flex flex-row items-center gap-2">
+                  <div className="hover:underline">Learn more</div>
+                  <ArrowLongRightIcon aria-hidden="true" className="size-6 group-data-open:hidden" />
+                </Link>
+              </div>
+
+              <div className="flex flex-col items-center justify-center gap-4">
+                <Image className="w-[48px] aspect-square"  alt="" src={"/assets/images/home/home20.svg"} width={56} height={56} />
+                <div className="text-gray-800 font-bold text-lg">Our Goal</div>
+                <div className="text-slate-600 text-sm text-center">
+                  To seamlessly connect mentees with mentors, offering secure, fast, and reliable booking and payment options. Our platform is designed to make finding, booking, and benefiting from personalized mentorship as simple and impactful as possible for all data professionals.
+                </div>
+                <Link href={"/about"} className="text-brand-500 text-md text-center font-semibold flex flex-row items-center gap-2">
+                  <div className="hover:underline">Learn more</div>
+                  <ArrowLongRightIcon aria-hidden="true" className="size-6 group-data-open:hidden" />
+                </Link>
+              </div>
+
+
+
+
+           </div> 
+        </div>
+
+
+        <FAQ/>  
+
+
+
+        
+        <Stats/> 
+
+
+      </div>              
     </div>
-  );
+
+    <Footer/>
+
+   </>
+  )
+
 }
