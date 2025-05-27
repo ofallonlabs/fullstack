@@ -16,7 +16,7 @@ const navigation = [
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     return (
-        <header className="bg-white border-b border-b-slate-300 transition-all duration-200 sticky top-0 inset-x-0">
+        <header className="bg-white border-b border-b-slate-300 transition-all duration-200 sticky top-0 inset-x-0 z-50">
             <nav aria-label="Global" className="mx-auto  2xl:w-11/12  px-6 py-4 lg:px-8 text-sm text-slate-500 font-light">
             
                 <div className="flex flex-row items-center justify-between gap-10">

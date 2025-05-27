@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${interSans.variable} font-serif antialiased bg-white`}
+        className={`${interSans.variable} font-serif antialiased bg-white `}
       >
         {children}
       </body>

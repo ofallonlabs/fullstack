@@ -1,0 +1,246 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+
+model User {
+  id                              String   @id @default(uuid())
+  email                           String   @unique
+  password                        String  
+  role                            Role     
+  firstName                       String    
+  lastName                        String    
+  city                            String?   
+  country                         String?   
+  profileCompletionReminderSentAt DateTime?
+  avatarPath                      String?
+  isEmailVerified                 Boolean  @default(false)
+  emailVerificationToken          String?  
+
+  createdAt                       DateTime @default(now())
+  updatedAt                       DateTime @updatedAt
+
+  mentor                          Mentor?
+  mentee                          Mentee?
+  notification                    Notification[]
+}
+
+
+model Notification {
+  id        Int     @id @default(autoincrement())
+  userId    String  @unique
+  type      NotificationType  
+  content   String   
+  status    NotificationStatus @default(UNREAD)   
+  notifier  String   
+
+  timestamp DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+
+model Mentor {
+  id               Int     @id @default(autoincrement())
+  userId           String  @unique
+  tagline          String? 
+  currentJobTitle  String? 
+  aboutMe          String? 
+
+  stripeAccountId  String? 
+  verifiedStrip    Boolean @default(false)
+  verifiedCalendly Boolean @default(false)
+  calendlyCode     String? 
+  calendlyCred     Json?
+
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+  mentorServices MentorService[]
+}
+
+
+model Mentee {
+  id           Int     @id @default(autoincrement())
+  userId       String  @unique
+  externalLink String? 
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user User    @relation(fields: [userId], references: [id])
+  application      Application[]
+  menteeBackground MenteeBackground?
+  menteeGoal       MenteeGoals?
+}
+
+
+model MenteeBackground {
+  id         Int    @id @default(autoincrement())
+  menteeId   Int    @unique
+  education  Json
+  job        Json
+  skills     Json
+  tools      Json
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  mentee     Mentee @relation(fields: [menteeId], references: [id])
+}
+
+model MenteeGoals {
+  id               Int    @id @default(autoincrement())
+  menteeId         Int    @unique
+  title            String   
+  description      String?  
+  expectations     String?  
+  expectedTimeline String?  
+  meetingFrequency Int
+  focusHpw         Int
+
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  mentee          Mentee @relation(fields: [menteeId], references: [id])  
+}
+
+
+model MentorService {
+  id             Int     @id @default(autoincrement())
+  mentorId       Int
+  title          String   
+  description    String?  
+  qualifications String?  
+  productId      String?  
+  priceId        String?  
+  price          Decimal
+  type           ServiceType
+  category       ServiceCategory   
+  calendlyEvent  String?  
+  needApproval   Boolean  @default(false)
+  isArchived     Boolean  @default(false)
+  archivedAt     DateTime?
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  mentor         Mentor @relation(fields: [mentorId], references: [id])
+  application    Application[]
+}
+
+
+model Application {
+  id              Int     @id @default(autoincrement())
+  menteeId        Int
+  serviceId       Int
+  status          ServiceType   
+  requestNote     String?  
+  responseMessage String?  
+  checkoutId      String?   
+  archived        Boolean @default(false)
+  archivedAt      DateTime?
+  approvedAt      DateTime?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  mentorService   MentorService @relation(fields: [serviceId], references: [id])  
+  mentee          Mentee @relation(fields: [menteeId], references: [id])
+  mentorship      Mentorship?
+}
+
+
+model Mentorship {
+  id            Int     @id @default(autoincrement())
+  applicationId Int     @unique
+  status        MentorshipStatus  
+  progress      MentorshipProgress? 
+  type          String  
+  bookingUrl    String? 
+  archived      Boolean
+  endedAt       DateTime?
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  application   Application @relation(fields: [applicationId], references: [id])
+}
+
+
+enum Role {
+  MENTEE
+  MENTOR
+  ADMIN
+  REVIEWER
+}
+
+enum NotificationStatus {
+  READ
+  UNREAD
+  DRAFTED
+  ARCHIVED
+}
+
+enum NotificationType {
+  NewUser
+  IncompleteUser
+  NewApplication
+  RespondApplication
+  StartMentorship
+  UpdateMentorship
+}
+
+enum ServiceType {
+  SESSION
+  SUBSCRIPTION
+}
+
+enum ServiceCategory {
+  PortfolioReview
+  ProjectReview
+  InterviewPreparation
+  MockInterview
+  ResumeReview
+  AskMeAnything
+  WeeklyMeetings
+}
+
+enum ApplicationStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+  WITHDRAWN
+  DONE
+}
+
+enum MentorshipStatus {
+  PAID
+  BOOKED
+  COMPLETED
+  QUITTED
+  CANCELED
+  EXPIRED
+}
+
+enum MentorshipProgress {
+  PHASE1
+  PHASE2
+  PHASE3
+}

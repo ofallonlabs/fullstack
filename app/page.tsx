@@ -4,7 +4,8 @@ import Image from "next/image";
 import { ArrowLongRightIcon  } from '@heroicons/react/24/outline';
 
 
-import Header from "@/ui/components/header";
+// import Header from "@/ui/components/header";
+import Header from "@/ui/components/auth/header";
 import Footer from "@/ui/components/footer";
 import Stats from "@/ui/components/stats";
 import PartnerCompanies from "@/ui/components/partner-companies";
