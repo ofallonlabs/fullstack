@@ -1,13 +1,33 @@
 import { betterAuth } from "better-auth";
+import { nextCookies } from "better-auth/next-js";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import  prisma from "@/lib/db/prisma";
+import { sendEmail } from "../mailing/gmail";
  
 export const auth = betterAuth({
+    appName: "Omentors Fullstack",
     database: prismaAdapter(prisma, {
         provider: "postgresql",
     }),
     emailAndPassword: {  
-        enabled: true
+        enabled: true,
+        autoSignIn:true,
+        minPasswordLength:8,
+        maxPasswordLength:20,
+        sendResetPassword: async ({user, url}) => {
+            
+            await sendEmail({
+                to: user.email,
+                subject:"Reset your password",
+                text: `reset password link: ${url}`
+            })
+        },
+        resetPasswordTokenExpiresIn: 3600
+    },
+    account:{
+        accountLinking:{
+            enabled:true
+        }
     },
     socialProviders: {
         google: { 
@@ -35,5 +55,6 @@ export const auth = betterAuth({
                 input: true
             },
         }
-    }
+    },
+    plugins: [nextCookies()]
 });

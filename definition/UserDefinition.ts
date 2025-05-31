@@ -1,8 +1,7 @@
 import {z} from "zod";
-import { Role } from "@/generated/prisma"; 
 
 export const MentorRegisterFormSchema = z.object({
-    role: z.nativeEnum(Role,{message: "Invalid role selected"}),
+    role: z.enum(["MENTEE", "MENTOR"],{message: "Invalid role selected"}),
     email:z.string().trim().email({message:"please enter a valid email address"}),
     password:z.string().trim().min(8,{message:"password must contain at least 8 characters"}),
     firstname:z.string().trim().min(1,{message:"please enter your first name"}),
@@ -12,6 +11,10 @@ export const MentorRegisterFormSchema = z.object({
 export const MentorSigninFormSchema = z.object({
     email:z.string().trim().email({message:"please enter a valid email address"}),
     password:z.string().trim().min(1,{message:"please enter the password"})
+}); 
+
+export const ForgotPasswordFormSchema = z.object({
+    email:z.string().trim().email({message:"please enter a valid email address"})
 }); 
 
 
@@ -42,7 +45,19 @@ export type MentorSigninFormState =
     | undefined
 
 
-export type RegisterFormActionType = (prevState: MentorRegisterFormState, formData: FormData) => Promise<MentorRegisterFormState>
+export type ForgotPasswordFormState = 
+    |
+        {
+                errors?:{
+                    email?:string[]
+                },
+                message?:string
+        }
+    | undefined
 
+
+
+export type RegisterFormActionType = (prevState: MentorRegisterFormState, formData: FormData) => Promise<MentorRegisterFormState>
 export type SigninFormActionType = (prevState: MentorSigninFormState, formData: FormData) => Promise<MentorSigninFormState>
+export type ForgotPasswordFormActionType = (prevState: ForgotPasswordFormState, formData: FormData) => Promise<ForgotPasswordFormState>
 

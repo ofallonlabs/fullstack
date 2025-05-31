@@ -2,6 +2,7 @@
 
 import {useActionState} from "react";
 import { SigninFormActionType } from "@/definition/UserDefinition";
+import Link from "next/link";
 
 
 export default function Signin({action}:{action:SigninFormActionType}){
@@ -35,9 +36,9 @@ export default function Signin({action}:{action:SigninFormActionType}){
                   Password
                 </label>
                 <div className="text-sm">
-                  <a href="#" className="font-semibold text-brand-600 hover:text-brand-500">
+                  <Link href={"/auth/forgot-password"} className="hover:cursor-pointer font-semibold text-brand-600 hover:text-brand-500">
                     Forgot password?
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="mt-2">

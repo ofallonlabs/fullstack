@@ -1,7 +1,10 @@
 'use server';
 
+import { APIError } from "better-auth/api"; 
 import { MentorRegisterFormSchema, MentorRegisterFormState} from "@/definition/UserDefinition";
 import { auth } from "@/lib/auth/auth";
+import { revalidatePath } from "next/cache";
+import { redirect, RedirectType } from "next/navigation";
 
 export default async function RegisterFormAction(prevState:MentorRegisterFormState, formData: FormData){
 
@@ -44,11 +47,31 @@ export default async function RegisterFormAction(prevState:MentorRegisterFormSta
         console.log(JSON.stringify(response));
                 
     }catch(error : unknown){
-        if(error instanceof Error)  
-         return {message:`something went wrong registering-${error?.message}`};
-        else
-         return {message:`something went wrong registering`};
+
+        if(error instanceof APIError){
+
+            switch(error.status){
+
+                case "UNPROCESSABLE_ENTITY":
+                    return {message: "User already exists."}
+                case "BAD_REQUEST":
+                    return {message: "Invalid email."}
+                default:
+                    return {message: "Something went wrong creating your account"}        
+
+            }
+
+        }else if(error instanceof Error){
+            return {message:`something went wrong registering-${error?.message}`};
+        }else{
+            return {message:`something went wrong registering`};
+        }
+
     }
+
+
+    revalidatePath("/");
+    redirect("/dashboard/home",RedirectType.replace);
 
 }
 
