@@ -1,9 +1,7 @@
 'use server';
 
-import { APIError } from "better-auth/api";
 import { ForgotPasswordFormSchema, ForgotPasswordFormState} from "@/definition/UserDefinition";
 import { auth } from "@/lib/auth/auth";
-import { redirect, RedirectType } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
 export default async function ForgotPasswordFormAction(prevState:ForgotPasswordFormState, formData: FormData){
@@ -22,13 +20,15 @@ export default async function ForgotPasswordFormAction(prevState:ForgotPasswordF
         const response = await auth.api.forgetPassword({
             body: {
                 email,
-                redirectTo: `${process.env.NEXT_PUBLIC_APP_URL || ""}/login/forgot-account/forgot-password/reset-password`
+                redirectTo: `${process.env.NEXT_PUBLIC_APP_URL || ""}/auth/forgot-password/reset-password`
             },
             asResponse: true,
         });
 
 
-        console.log(JSON.stringify(response));
+        return {
+            message: "Please check you inbox. A reset password link will be sent to your email in minutes"
+        }
                 
     }catch(error : unknown){
         

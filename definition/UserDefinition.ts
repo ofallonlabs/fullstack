@@ -18,6 +18,12 @@ export const ForgotPasswordFormSchema = z.object({
 }); 
 
 
+export const ResetPasswordFormSchema = z.object({
+    password:z.string().trim().min(8,{message:"password must contain at least 8 characters"}),
+    token: z.string().trim().min(1,{message:"empty token"}),
+}); 
+
+
 export type MentorRegisterFormState = 
     |
         {
@@ -57,7 +63,20 @@ export type ForgotPasswordFormState =
 
 
 
+export type ResetPasswordFormState = 
+    |
+        {
+                errors?:{
+                    password?:string[],
+                    token?:string[],
+                },
+                message?:string
+        }
+    | undefined
+
+
+
 export type RegisterFormActionType = (prevState: MentorRegisterFormState, formData: FormData) => Promise<MentorRegisterFormState>
 export type SigninFormActionType = (prevState: MentorSigninFormState, formData: FormData) => Promise<MentorSigninFormState>
 export type ForgotPasswordFormActionType = (prevState: ForgotPasswordFormState, formData: FormData) => Promise<ForgotPasswordFormState>
-
+export type ResetPasswordFormActionType = (prevState: ResetPasswordFormState, formData: FormData) => Promise<ResetPasswordFormState>

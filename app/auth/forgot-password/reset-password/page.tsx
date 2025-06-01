@@ -1,13 +1,22 @@
 'use client';
 
 import Image from "next/image";
-
+import { useSearchParams, useRouter } from 'next/navigation'
 import Header from "@/ui/components/header";
 import Footer from "@/ui/components/footer";
-import SigninFormWrapper from "@/ui/components/forms/signin-form-wrapper";
-import Link from "next/link";
+import ResetPasswordFormWrapper from "@/ui/components/forms/reset-password-from-wrapper";
+import { useEffect } from "react";
 
 export default function Home() { 
+  const searchParams = useSearchParams()
+  const token = searchParams.get('token');
+  const router = useRouter();
+
+  useEffect(()=>{
+    if (!token) {
+      router.replace('/auth/login');
+    }
+  }, [token]);
 
   return (
    <>
@@ -19,22 +28,12 @@ export default function Home() {
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <Image className="mx-auto" alt="" src={"/assets/images/logo.svg"} width={36} height={34} />
           <h2 className="mt-4 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-            Forgot your password
+            Reset password
           </h2>
-          <h3 className="text-gray-600 text-center mt-2">
-            Enter your email to reset your password
-          </h3>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <SigninFormWrapper/>
-
-          <p className="mt-10 text-center text-sm/6 text-gray-500">
-            Don’t have an account? {' '}
-            <Link href="/auth/register" className="cursor-pointer font-semibold text-brand-600 hover:text-brand-500">
-              Sign up
-            </Link>
-          </p>
+          <ResetPasswordFormWrapper token={token || ""}/>
         </div>
       </div>      
 

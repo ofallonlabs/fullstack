@@ -30,11 +30,11 @@ export default async function SigninFormAction(prevState:MentorSigninFormState, 
 
         });
 
-        // await sendEmail({
-        //     to: "pedram_duan5@yahoo.com",
-        //     subject:"testing email functionality",
-        //     text: `test email`
-        // });
+        await sendEmail({
+            to: "pedram_duan5@yahoo.com",
+            subject:"testing email functionality",
+            text: `test email`
+        });
 
         console.log(JSON.stringify(response));
                 
