@@ -11,7 +11,6 @@ export const auth = betterAuth({
     }),
     emailAndPassword: {  
         enabled: true,
-        autoSignIn:true,
         minPasswordLength:8,
         maxPasswordLength:20,
         sendResetPassword: async ({user, url}) => {           
@@ -21,7 +20,18 @@ export const auth = betterAuth({
                 text: `reset password link: ${url}`
             })
         },
-        resetPasswordTokenExpiresIn: 3600
+        resetPasswordTokenExpiresIn: 3600,
+        requireEmailVerification: true
+    },
+    emailVerification: {
+            sendOnSignUp: true,
+            sendVerificationEmail: async ({ user, url, token }, request) => {
+                await sendEmail({
+                    to: user.email,
+                    subject: 'Verify your email address',
+                    text: `Click the link to verify your email: ${url}`
+                })
+            }
     },
     account:{
         accountLinking:{
@@ -54,6 +64,9 @@ export const auth = betterAuth({
                 input: true
             },
         }
+    },
+    advanced:{
+        cookiePrefix: "omentors-cookie"
     },
     plugins: [nextCookies()]
 });

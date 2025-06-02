@@ -1,11 +1,11 @@
 'use server';
 
-import { ResetPasswordFormSchema, ResetPasswordFormState} from "@/definition/UserDefinition";
+import { ResetPasswordFormSchema, ResetPasswordFormState, ErrorMessageType} from "@/definition/UserDefinition";
 import { auth } from "@/lib/auth/auth";
 import { redirect, RedirectType } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
-export default async function ResetPasswordFormAction(extras: {token: string}, prevState:ResetPasswordFormState, formData: FormData){
+export default async function ResetPasswordFormAction(extras: {token: string, callbackURL: string}, prevState:ResetPasswordFormState, formData: FormData){
 
     const {success, error, data} = ResetPasswordFormSchema.safeParse({
         password:formData.get("password"),
@@ -19,26 +19,39 @@ export default async function ResetPasswordFormAction(extras: {token: string}, p
     try{
         const {password, token} = data;
 
-        const response = await auth.api.resetPassword({
+        await auth.api.resetPassword({
             body: {
                 token,
                 newPassword:password
             },
-            asResponse: true,
+            asResponse: false,
         });
        
     }catch(error : unknown){
         
         if(error instanceof Error){
-            return {message:`something went wrong logging in-${error?.message}`};
+
+            return { 
+                    message:
+                    {
+                        type: ErrorMessageType.FAILURE,
+                        content: error.message
+                    }
+                }
         }else{
-            return {message:`something went wrong logging in`};
+                return { 
+                    message:
+                    {
+                        type: ErrorMessageType.FAILURE,
+                        content: 'something went wrong sending resetting password'
+                    }
+                } 
         }
          
     }
 
     revalidatePath("/");
-    redirect("/auth/login", RedirectType.replace);
+    redirect(extras.callbackURL, RedirectType.replace);
 
 }
 

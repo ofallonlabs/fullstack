@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { JSX, SVGProps } from 'react';
 
-import Header from "@/ui/components/header";
-import Footer from "@/ui/components/footer";
-import Stats from "@/ui/components/stats";
-import PartnerCompanies from "@/ui/components/partner-companies";
+import Header from "@/ui/components/common/nav/header";
+import Footer from "@/ui/components/public/footer";
+import Stats from "@/ui/components/public/stats";
+import PartnerCompanies from "@/ui/components/public/partner-companies";
 
 const navigation_footer = {
   product: [

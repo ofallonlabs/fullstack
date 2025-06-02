@@ -1,4 +1,4 @@
-import ForgotPasswordForm from "@/ui/components/forms/forgot-password-form";
+import ForgotPasswordForm from "@/ui/components/public/forms/forgot-password-form";
 import ForgotPasswordFormAction from "@/actions/auth/forgot-password-action";
 
 export default function ForgotPasswordFormWrapper(){

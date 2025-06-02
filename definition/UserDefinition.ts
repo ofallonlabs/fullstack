@@ -10,7 +10,7 @@ export const MentorRegisterFormSchema = z.object({
 
 export const MentorSigninFormSchema = z.object({
     email:z.string().trim().email({message:"please enter a valid email address"}),
-    password:z.string().trim().min(1,{message:"please enter the password"})
+    password:z.string().trim().min(8,{message:"please enter the password"})
 }); 
 
 export const ForgotPasswordFormSchema = z.object({
@@ -24,6 +24,11 @@ export const ResetPasswordFormSchema = z.object({
 }); 
 
 
+export enum ErrorMessageType {
+    SUCCESS,
+    FAILURE
+}
+
 export type MentorRegisterFormState = 
     |
         {
@@ -34,7 +39,10 @@ export type MentorRegisterFormState =
                     firstname?:string[],
                     lastname?:string[] 
                 },
-                message?:string
+                message?:{
+                    type: ErrorMessageType,
+                    content: string
+                }
         }
     | undefined
 
@@ -46,7 +54,10 @@ export type MentorSigninFormState =
                     email?:string[],
                     password?:string[]
                 },
-                message?:string
+                message?:{
+                    type: ErrorMessageType,
+                    content: string
+                }
         }
     | undefined
 
@@ -57,7 +68,10 @@ export type ForgotPasswordFormState =
                 errors?:{
                     email?:string[]
                 },
-                message?:string
+                message?:{
+                    type: ErrorMessageType,
+                    content: string
+                }
         }
     | undefined
 
@@ -70,7 +84,10 @@ export type ResetPasswordFormState =
                     password?:string[],
                     token?:string[],
                 },
-                message?:string
+                message?:{
+                    type: ErrorMessageType,
+                    content: string
+                }
         }
     | undefined
 

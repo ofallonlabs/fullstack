@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import { useSearchParams, useRouter } from 'next/navigation'
-import Header from "@/ui/components/header";
-import Footer from "@/ui/components/footer";
-import ResetPasswordFormWrapper from "@/ui/components/forms/reset-password-from-wrapper";
+import Header from "@/ui/components/common/nav/header";
+import Footer from "@/ui/components/public/footer";
+import ResetPasswordFormWrapper from "@/ui/components/public/forms/reset-password-from-wrapper";
 import { useEffect } from "react";
 
 export default function Home() { 
@@ -33,7 +33,7 @@ export default function Home() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <ResetPasswordFormWrapper token={token || ""}/>
+          <ResetPasswordFormWrapper token={token || ""} callbackURL="/auth/login"/>
         </div>
       </div>      
 

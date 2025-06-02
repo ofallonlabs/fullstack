@@ -1,8 +1,7 @@
 'use server';
 
-import { ForgotPasswordFormSchema, ForgotPasswordFormState} from "@/definition/UserDefinition";
+import { ForgotPasswordFormSchema, ForgotPasswordFormState, ErrorMessageType} from "@/definition/UserDefinition";
 import { auth } from "@/lib/auth/auth";
-import { revalidatePath } from "next/cache";
 
 export default async function ForgotPasswordFormAction(prevState:ForgotPasswordFormState, formData: FormData){
 
@@ -17,30 +16,44 @@ export default async function ForgotPasswordFormAction(prevState:ForgotPasswordF
     try{
         const {email} = data;
 
-        const response = await auth.api.forgetPassword({
+        await auth.api.forgetPassword({
             body: {
                 email,
                 redirectTo: `${process.env.NEXT_PUBLIC_APP_URL || ""}/auth/forgot-password/reset-password`
             },
-            asResponse: true,
+            asResponse: false,
         });
 
-
         return {
-            message: "Please check you inbox. A reset password link will be sent to your email in minutes"
+            message: 
+                {
+                    type: ErrorMessageType.SUCCESS,
+                    content: "Please check you inbox. A reset password link will be sent to your email in minutes"
+                }
         }
                 
     }catch(error : unknown){
         
         if(error instanceof Error){
-            return {message:`something went wrong logging in-${error?.message}`};
+
+            return { 
+                    message:
+                    {
+                        type: ErrorMessageType.FAILURE,
+                        content: error.message
+                    }
+                }
         }else{
-            return {message:`something went wrong logging in`};
+                return { 
+                    message:
+                    {
+                        type: ErrorMessageType.FAILURE,
+                        content: 'something went wrong sending reset password link'
+                    }
+                } 
         }
          
     }
-
-    revalidatePath("/");
 
 }
 

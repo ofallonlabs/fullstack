@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 
-import Header from "@/ui/components/header";
-import Footer from "@/ui/components/footer";
-import ForgotPasswordFormWrapper from "@/ui/components/forms/forgot-password-form-wrapper";
+import Header from "@/ui/components/common/nav/header";
+import Footer from "@/ui/components/public/footer";
+import ForgotPasswordFormWrapper from "@/ui/components/public/forms/forgot-password-form-wrapper";
 import Link from "next/link";
 
 export default function Home() { 

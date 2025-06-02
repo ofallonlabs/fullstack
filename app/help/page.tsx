@@ -1,9 +1,9 @@
 'use client';
 
-import Header from "@/ui/components/header";
-import Footer from "@/ui/components/footer";
-import NewsLetter from "@/ui/components/newsletter"; 
-import FAQ from "@/ui/components/faq";
+import Header from "@/ui/components/common/nav/header";
+import Footer from "@/ui/components/public/footer";
+import NewsLetter from "@/ui/components/public/newsletter"; 
+import FAQ from "@/ui/components/public/faq";
 
 
 export default function Home() { 

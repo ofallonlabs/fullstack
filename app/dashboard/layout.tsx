@@ -2,16 +2,22 @@
 
 import Image from "next/image";
 import { useState } from 'react';
+import Link from "next/link";
+
 import { Dialog, DialogBackdrop, DialogPanel, TransitionChild } from '@headlessui/react';
 import {
   Bars3Icon,
   XMarkIcon
 } from '@heroicons/react/24/outline';
 import { ApplicationsIcon, HomeIcon, MentorShipsIcon, NotificationsIcon, ServicesIcon, SettingsIcon, SupportIcon, LogoutIcon } from "@/ui/svgs";
-import Link from "next/link";
+
+import { classNames } from "@/utils/Utils";
+
 import NotificationFlyout from "@/ui/elements/notification-flyout";
 import AvatarFlayout from "@/ui/elements/avatar-flyout";
-import Header from "@/ui/components/auth/header";
+import Header from "@/ui/components/common/nav/auth/header";
+
+import BottomSheet from "@/ui/components/dashboard/bottom-sheet";
 
 
 const navigation = [
@@ -22,15 +28,22 @@ const navigation = [
   { name: 'Notifications', href: '#', icon: NotificationsIcon, current: false },
 ]
 
+const bottomSheetNavigation = [
+  { name: 'Home', href: '#', icon: HomeIcon , current: true },
+  { name: 'Mentorships', href: '#', icon: MentorShipsIcon, current: false },
+  { name: 'Application', href: '#', icon: ApplicationsIcon, current: false },
+  { name: 'Services', href: '#', icon: ServicesIcon, current: false },
+  { name: 'Settings', href: '#', icon: SettingsIcon, current: false },
+]
+
+
 const navigation_bottom = [
   { name: 'Support', href: '#', icon: SupportIcon , current: false },
   { name: 'Settings', href: '#', icon: SettingsIcon, current: false },
 ]
 
  
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
+ 
 
 export default function DashboardLayout({
   children,
@@ -255,40 +268,7 @@ export default function DashboardLayout({
          
         </main>
 
-         <div className="sticky bottom-0 inset-x-0 bg-white shadow z-50">
-            <div className=" grid grid-cols-5 border-t border-t-gray-200 h-fit w-full sm:hidden">
-                  <div className="col-span-1 py-2 border-t-[2px] border-t-brand-500 mx-2">
-                      <div className="flex flex-col gap-1.5 items-center justify-between">
-                        <HomeIcon style="text-brand-600"/>
-                        <div className="text-center text-xs font-bold text-brand-600">Home</div>
-                      </div>
-                  </div>
-                  <div className="col-span-1 py-2  mx-2">
-                      <div className="flex flex-col gap-1.5 items-center justify-between">
-                        <MentorShipsIcon style="text-gray-800"/>
-                        <div className="text-center text-xs font-bold text-gray-800">Mentorships</div>
-                      </div>
-                  </div>
-                  <div className="col-span-1 py-2  mx-2">
-                      <div className="flex flex-col gap-1.5 items-center justify-between">
-                        <ApplicationsIcon style="text-gray-800"/>
-                        <div className="text-center text-xs font-bold text-gray-800">Applications</div>
-                      </div>
-                  </div>
-                  <div className="col-span-1 py-2  mx-2">
-                      <div className="flex flex-col gap-1.5 items-center justify-between">
-                        <ServicesIcon style="text-gray-800"/>
-                        <div className="text-center text-xs font-bold text-gray-800">Services</div>
-                      </div>
-                  </div>
-                  <div className="col-span-1 py-2  mx-2">
-                      <div className="flex flex-col gap-1.5 items-center justify-between">
-                        <SettingsIcon style="text-gray-800"/>
-                        <div className="text-center text-xs font-bold text-gray-800">Settings</div>
-                      </div>
-                  </div>                                                      
-            </div>
-         </div>
+         <BottomSheet navigation={bottomSheetNavigation}/>
 
       </div>
     </>

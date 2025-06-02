@@ -1,12 +1,15 @@
 'use client';
 
-import {useActionState} from "react";
-import { SigninFormActionType } from "@/definition/UserDefinition";
+import { useActionState } from "react";
+import { SigninFormActionType, ErrorMessageType } from "@/definition/UserDefinition";
+import FormButton from "@/ui/components/common/button/form-button";
+import SimpleMessage, { MessageState } from "@/ui/components/common/message-box/simple-message";
 import Link from "next/link";
 
 
 export default function Signin({action}:{action:SigninFormActionType}){
      const [state, dispatch] = useActionState(action,undefined);
+     
     return (
        <form action={dispatch} className="space-y-6">
             <div>
@@ -59,12 +62,25 @@ export default function Signin({action}:{action:SigninFormActionType}){
             </div>
 
             <div>
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-brand-500 px-3 py-1.5 text-sm/6 font-semibold hover:cursor-pointer text-white shadow-xs hover:bg-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
-              >
-                Sign in
-              </button>
+              <SimpleMessage
+                message={state?.message?.content || "Something went wrong signing in"}
+                state={
+                  state?.message?.type === ErrorMessageType.SUCCESS ? MessageState.SUCCESS
+                  : state?.message?.type === ErrorMessageType.FAILURE ? MessageState.FAILURE
+                  : MessageState.NONE
+                }
+              />          
+            </div>
+
+            <div>
+
+              <FormButton 
+                title = {{ idle:"Sign in", pending:"Authenticating..." }} 
+                style = {{ 
+                  idle: "flex w-full justify-center rounded-md bg-brand-500 px-3 py-1.5 text-sm/6 font-semibold hover:cursor-pointer text-white shadow-xs hover:bg-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600", 
+                  pending: "flex w-full justify-center rounded-md bg-brand-100 border border-brand-500 px-3 py-1.5 text-sm/6 font-semibold hover:cursor-not-allowed text-brand-500 animate-pulse duration-300" 
+                }}
+              />
 
               <a
                     href="#"
@@ -89,9 +105,9 @@ export default function Signin({action}:{action:SigninFormActionType}){
                       />
                     </svg>
                     <span className="text-sm/6 font-semibold">Sign in with Google</span>
-                  </a>
+              </a>
             </div>
-            <div className="text-xs mt-1 text-red-500 px-2">{state?.message}</div>
+            
           </form>
     );
 }

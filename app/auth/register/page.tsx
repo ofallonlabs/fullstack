@@ -3,9 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import Header from "@/ui/components/header";
-import Footer from "@/ui/components/footer";
-import RegisterFormWrapper from "@/ui/components/forms/register-form-wrapper";
+import Header from "@/ui/components/common/nav/header";
+import Footer from "@/ui/components/public/footer";
+import RegisterFormWrapper from "@/ui/components/public/forms/register-form-wrapper";
  
 
 export default function Home() { 
@@ -31,7 +31,7 @@ export default function Home() {
             <div className="mt-10">
               <div>
                 
-                <RegisterFormWrapper />
+                <RegisterFormWrapper callbackURL={"/auth/login"}/>
 
                 <div className="text-sm text-center text-gray-600 space-x-1 mt-8">
                     <span>Already a user? </span>

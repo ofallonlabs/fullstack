@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 
-import Header from "@/ui/components/header";
-import Footer from "@/ui/components/footer";
-import SigninFormWrapper from "@/ui/components/forms/signin-form-wrapper";
+import Header from "@/ui/components/common/nav/header";
+import Footer from "@/ui/components/public/footer";
+import SigninFormWrapper from "@/ui/components/public/forms/signin-form-wrapper";
 
 export default function Home() { 
 
@@ -26,7 +26,7 @@ export default function Home() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <SigninFormWrapper/>
+          <SigninFormWrapper callbackURL="/dashboard/home"/>
 
           <p className="mt-10 text-center text-sm/6 text-gray-500">
             Don’t have an account? {' '}

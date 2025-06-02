@@ -1,20 +1,12 @@
 'use server';
 
 import { APIError } from "better-auth/api"; 
-import { MentorRegisterFormSchema, MentorRegisterFormState} from "@/definition/UserDefinition";
+import { MentorRegisterFormSchema, MentorRegisterFormState, ErrorMessageType} from "@/definition/UserDefinition";
 import { auth } from "@/lib/auth/auth";
-import { revalidatePath } from "next/cache";
-import { redirect, RedirectType } from "next/navigation";
+import { sendEmail } from "@/lib/mailing/gmail";
 
-export default async function RegisterFormAction(prevState:MentorRegisterFormState, formData: FormData){
+export default async function RegisterFormAction(extras: {callbackURL : string}, prevState:MentorRegisterFormState, formData: FormData){
 
-    console.log({
-        email:formData.get("email"),
-        password:formData.get("password"),
-        role:formData.get("role"),
-        firstname:formData.get("firstname"),
-        lastname:formData.get("lastname"),
-    });
 
     const {success, error, data} = MentorRegisterFormSchema.safeParse({
         email:formData.get("email"),
@@ -31,7 +23,7 @@ export default async function RegisterFormAction(prevState:MentorRegisterFormSta
     try{
         const {email,password, firstname, lastname, role} = data;
 
-        const response = await auth.api.signUpEmail({
+        await auth.api.signUpEmail({
             body: {
                 email,
                 password,
@@ -39,39 +31,58 @@ export default async function RegisterFormAction(prevState:MentorRegisterFormSta
                 lastName:lastname,
                 name:`${firstname} ${lastname}`,
                 role:role,
-                callbackURL: "/dashboard/home"
+                callbackURL: extras.callbackURL
             },
-            asResponse: true 
+            asResponse: false 
         });
 
-        console.log(JSON.stringify(response));
-                
+        await sendEmail({
+            to:"pedram_duan5@yahoo.com",
+            subject:"A new user just registered",
+            text:`${firstname} ${lastname} just registered. Account Email: ${email}`
+        });
+
+        return {
+            message: 
+                {
+                    type: ErrorMessageType.SUCCESS,
+                    content: "Please check you inbox. An email verification link will be sent to your email in minutes"
+                }
+        }
+
+ 
     }catch(error : unknown){
 
         if(error instanceof APIError){
 
-            switch(error.status){
-
-                case "UNPROCESSABLE_ENTITY":
-                    return {message: "User already exists."}
-                case "BAD_REQUEST":
-                    return {message: "Invalid email."}
-                default:
-                    return {message: "Something went wrong creating your account"}        
-
+            return { 
+                message:
+                {
+                    type: ErrorMessageType.FAILURE,
+                    content: error.message
+                }
             }
 
         }else if(error instanceof Error){
-            return {message:`something went wrong registering-${error?.message}`};
+            return { 
+                message:
+                {
+                    type: ErrorMessageType.FAILURE,
+                    content: error.message
+                }
+            }
         }else{
-            return {message:`something went wrong registering`};
+            return { 
+                message:
+                {
+                    type: ErrorMessageType.FAILURE,
+                    content: 'something went wrong craeting your account'
+                }
+            } 
         }
 
     }
 
-
-    revalidatePath("/");
-    redirect("/dashboard/home",RedirectType.replace);
 
 }
 

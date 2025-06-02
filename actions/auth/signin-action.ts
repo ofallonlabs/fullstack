@@ -1,13 +1,12 @@
 'use server';
 
 import { APIError } from "better-auth/api";
-import { MentorSigninFormSchema, MentorSigninFormState} from "@/definition/UserDefinition";
+import { MentorSigninFormSchema, MentorSigninFormState, ErrorMessageType} from "@/definition/UserDefinition";
 import { auth } from "@/lib/auth/auth";
 import { redirect, RedirectType } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { sendEmail } from "@/lib/mailing/gmail";
 
-export default async function SigninFormAction(prevState:MentorSigninFormState, formData: FormData){
+export default async function SigninFormAction(extras: {callbackURL : string}, prevState:MentorSigninFormState, formData: FormData){
 
     const {success, error, data} = MentorSigninFormSchema.safeParse({
         email:formData.get("email"),
@@ -21,49 +20,51 @@ export default async function SigninFormAction(prevState:MentorSigninFormState, 
     try{
         const {email,password} = data;
 
-        const response = await auth.api.signInEmail({
+        await auth.api.signInEmail({
             body: {
                 email,
                 password
             },
-            asResponse: true,
+            asResponse: false,
 
         });
 
-        await sendEmail({
-            to: "pedram_duan5@yahoo.com",
-            subject:"testing email functionality",
-            text: `test email`
-        });
-
-        console.log(JSON.stringify(response));
                 
     }catch(error : unknown){
         
         if(error instanceof APIError){
 
-            switch(error.status){
-
-                case "UNAUTHORIZED":
-                    return {message: "User not found."}
-                case "BAD_REQUEST":
-                    return {message: "Invalid email."}
-                default:
-                    return {message: "Something went wrong logging in"}        
-
+            return { 
+                message:
+                {
+                    type: ErrorMessageType.FAILURE,
+                    content: error.message
+                }
             }
 
         }else if(error instanceof Error){
-            return {message:`something went wrong logging in-${error?.message}`};
+            return { 
+                message:
+                {
+                    type: ErrorMessageType.FAILURE,
+                    content: error.message
+                }
+            }
         }else{
-            return {message:`something went wrong logging in`};
+            return { 
+                message:
+                {
+                    type: ErrorMessageType.FAILURE,
+                    content: 'something went wrong logging in'
+                }
+            } 
         }
          
  
     }
 
     revalidatePath("/");
-    redirect("/dashboard/home",RedirectType.replace);
+    redirect(extras.callbackURL,RedirectType.replace);
 
 }
 

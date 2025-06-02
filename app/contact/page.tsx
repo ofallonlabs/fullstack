@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import { ChevronDownIcon } from '@heroicons/react/16/solid';
-import Header from "@/ui/components/header";
-import Footer from "@/ui/components/footer";
+import Header from "@/ui/components/common/nav/header";
+import Footer from "@/ui/components/public/footer";
 
 const mentormentee = [
   { id: 'mentee', title: 'Mentee' },
