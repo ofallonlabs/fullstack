@@ -20,7 +20,7 @@ export default function Home() {
              <div className="text-brand-600 text-md">Current as of 6 Jan 2025</div>
               <div className="text-gray-800 font-bold text-4xl lg:text-5xl">Terms of Service</div>
               <div className="text-base lg:text-xl text-gray-600 text-balance">
-                  Welcome to O'Mentors! These Terms of Service ("Terms") govern your use of the O'Mentors platform, including our website and services. By accessing or using O'Mentors, you agree to comply with and be bound by these Terms. If you do not agree to these Terms, please do not use our services.
+                  Welcome to O&apos;Mentors! These Terms of Service (&quot;Terms&quot;) govern your use of the O&apos;Mentors platform, including our website and services. By accessing or using O&apos;Mentors, you agree to comply with and be bound by these Terms. If you do not agree to these Terms, please do not use our services.
               </div>
            </div>
         </div>
@@ -30,10 +30,10 @@ export default function Home() {
 
             <div className="text-left space-y-4 lg:space-y-8">
                 <div className="text-xl lg:text-3xl font-bold text-gray-800">
-                    Overview of O’Mentors
+                    Overview of O&apos;Mentors
                 </div>
                 <div className="text-base lg:text-lg text-gray-600">
-                    You must be at least 18 years old to use O'Mentors. By accessing or using our platform, you confirm that you are at least 18 years old and capable of entering into a legally binding agreement.
+                    You must be at least 18 years old to use O&apos;Mentors. By accessing or using our platform, you confirm that you are at least 18 years old and capable of entering into a legally binding agreement.
                 </div> 
 
             </div>
@@ -43,7 +43,7 @@ export default function Home() {
                     Eligibility
                 </div>
                 <div className="text-base lg:text-lg text-gray-600">
-                    O'Mentors is a platform that connects mentees with mentors in the fields of Data Science, Machine Learning, Program Management, and People Leadership for personalized, 1-on-1 mentoring sessions.
+                    O&apos;Mentors is a platform that connects mentees with mentors in the fields of Data Science, Machine Learning, Program Management, and People Leadership for personalized, 1-on-1 mentoring sessions.
                 </div> 
 
             </div>
@@ -53,7 +53,7 @@ export default function Home() {
                     Account Registration
                 </div>
                 <div className="text-base lg:text-lg text-gray-600">
-                    To use O'Mentors, you must create an account. You agree to provide accurate, current, and complete information during the registration process and to update it as necessary. You are responsible for maintaining the confidentiality of your account login details and for all activities under your account.
+                    To use O&apos;Mentors, you must create an account. You agree to provide accurate, current, and complete information during the registration process and to update it as necessary. You are responsible for maintaining the confidentiality of your account login details and for all activities under your account.
                 </div> 
             </div>
 
@@ -79,7 +79,7 @@ export default function Home() {
                 </div>
 
                <div className="text-base lg:text-lg text-gray-600">
-                    You agree to use O'Mentors only for lawful purposes and in compliance with these Terms. You must not use the platform to:
+                    You agree to use O&apos;Mentors only for lawful purposes and in compliance with these Terms. You must not use the platform to:
                 </div>
 
                 <div className="text-base lg:text-lg text-gray-600 px-4">
@@ -106,7 +106,7 @@ export default function Home() {
                     Payment and Fees
                 </div>
                 <div className="text-base lg:text-lg text-gray-600">
-                   O'Mentors charges a fee for mentoring services. Mentees will be required to pay after an application has been accepted by a mentor. The fees may vary depending on the mentor’s services. Payments will be processed through secure payment gateways.
+                   O&apos;Mentors charges a fee for mentoring services. Mentees will be required to pay after an application has been accepted by a mentor. The fees may vary depending on the mentor’s services. Payments will be processed through secure payment gateways.
                 </div>
                 <div className="text-base lg:text-lg text-gray-600">
                     Mentors will receive payment after successful mentoring sessions and will be subject to a commission or fee as outlined on the platform.
@@ -123,7 +123,7 @@ export default function Home() {
                 <div className="text-base lg:text-lg text-gray-600 px-4">
                     <ul className="list-disc list-outside">
                         <li>
-                            <b>For Mentees:</b> You may request a full refund if a session has not been booked within 30 days of payment. Refund requests must be made through the platform's support system.
+                            <b>For Mentees:</b> You may request a full refund if a session has not been booked within 30 days of payment. Refund requests must be made through the platform&apos;s support system.
                         </li>
 
                         <li>
@@ -133,7 +133,7 @@ export default function Home() {
                 </div>
 
                <div className="text-base lg:text-lg text-gray-600">
-                    Refunds will be processed at the discretion of O'Mentors based on the circumstances and platform policies.
+                    Refunds will be processed at the discretion of O&apos;Mentors based on the circumstances and platform policies.
                 </div> 
             </div>
 
@@ -156,7 +156,7 @@ export default function Home() {
                 </div>
                 
                <div className="text-base lg:text-lg text-gray-600">
-                    We may suspend or terminate your account at our sole discretion if we believe you have violated these Terms. Upon termination, you will lose access to O'Mentors, but any fees owed will remain due.
+                    We may suspend or terminate your account at our sole discretion if we believe you have violated these Terms. Upon termination, you will lose access to O&apos;Mentors, but any fees owed will remain due.
                 </div> 
 
                 <div className="text-base lg:text-lg text-gray-600">
@@ -172,7 +172,7 @@ export default function Home() {
                 </div>
                 
                <div className="text-base lg:text-lg text-gray-600">
-                   O'Mentors provides a platform for mentorship, but we do not guarantee the quality or effectiveness of mentoring sessions. Mentors are independent contractors and are not employees of O'Mentors.
+                   O&apos;Mentors provides a platform for mentorship, but we do not guarantee the quality or effectiveness of mentoring sessions. Mentors are independent contractors and are not employees of O&apos;Mentors.
                 </div> 
 
                 <div className="text-base lg:text-lg text-gray-600">
@@ -192,7 +192,7 @@ export default function Home() {
                 </div>
 
                 <div className="text-base lg:text-lg text-gray-600">
-                    To the maximum extent permitted by law, O'Mentors’ liability will be limited to the amount you have paid for services through the platform.
+                    To the maximum extent permitted by law, O&apos;Mentors’ liability will be limited to the amount you have paid for services through the platform.
                 </div>
             </div>
 
@@ -203,7 +203,7 @@ export default function Home() {
                     Intellectual Property
                 </div>
                 <div className="text-base lg:text-lg text-gray-600">
-                   All content, features, and functionality on O'Mentors, including text, images, graphics, and logos, are the property of O'Mentors and are protected by copyright laws. You may not reproduce, distribute, or modify the content without prior written consent.
+                   All content, features, and functionality on O&apos;Mentors, including text, images, graphics, and logos, are the property of O&apos;Mentors and are protected by copyright laws. You may not reproduce, distribute, or modify the content without prior written consent.
                 </div>
             </div>   
 
@@ -213,7 +213,7 @@ export default function Home() {
                     Privacy
                 </div>
                 <div className="text-base lg:text-lg text-gray-600">
-                   Your use of O'Mentors is also governed by our Privacy Policy, which explains how we collect, use, and protect your personal information. Please review our Privacy Policy carefully.
+                   Your use of O&apos;Mentors is also governed by our Privacy Policy, which explains how we collect, use, and protect your personal information. Please review our Privacy Policy carefully.
                 </div>
             </div> 
 
@@ -249,7 +249,7 @@ export default function Home() {
                    <div>Website: www.omentors.com</div>
                 </div>
                 <div className="text-base lg:text-lg text-gray-600">
-                   By using O'Mentors, you acknowledge that you have read, understood, and agreed to these Terms of Service.
+                   By using O&apos;Mentors, you acknowledge that you have read, understood, and agreed to these Terms of Service.
                 </div>
             </div> 
 

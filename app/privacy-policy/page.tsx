@@ -21,7 +21,7 @@ export default function Home() {
              <div className="text-brand-600 text-md">Current as of 6 Jan 2025</div>
               <div className="text-gray-800 font-bold text-4xl lg:text-5xl">Privacy Policy</div>
               <div className=" text-base lg:text-xl text-gray-600 text-balance">
-                  At O'Mentors, your privacy is important to us. This Privacy Policy outlines how we collect, use, and protect your personal information when you use our platform. By accessing or using O'Mentors, you agree to the terms of this Privacy Policy.
+                  At O&apos;Mentors, your privacy is important to us. This Privacy Policy outlines how we collect, use, and protect your personal information when you use our platform. By accessing or using O&apos;Mentors, you agree to the terms of this Privacy Policy.
               </div>
            </div>
         </div>
@@ -92,7 +92,7 @@ export default function Home() {
                         </li>
 
                         <li>
-                            <b>Legal Requirements:</b>  We may disclose your information to comply with legal obligations, enforce our terms, or protect the rights, safety, or property of O'Mentors or others.
+                            <b>Legal Requirements:</b>  We may disclose your information to comply with legal obligations, enforce our terms, or protect the rights, safety, or property of O&apos;Mentors or others.
                         </li>
                     </ul>
                 </div>
@@ -145,10 +145,10 @@ export default function Home() {
 
            <div className="text-left space-y-4 lg:space-y-8">
                 <div className="text-xl lg:text-3xl font-bold text-gray-800">
-                    Children’s Privacy
+                    Children&apos;s Privacy
                 </div>
                 <div className="text-base lg:text-lg text-gray-600">
-                   O'Mentors is not intended for children under the age of 13. We do not knowingly collect personal information from children. If we become aware that a child under 13 has provided us with personal information, we will take steps to remove such data.
+                   O&apos;Mentors is not intended for children under the age of 13. We do not knowingly collect personal information from children. If we become aware that a child under 13 has provided us with personal information, we will take steps to remove such data.
                 </div>
             </div> 
 

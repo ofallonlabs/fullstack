@@ -2,17 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import { ChevronDownIcon } from '@heroicons/react/16/solid';
 import Header from "@/ui/components/common/nav/header";
 import Footer from "@/ui/components/public/footer";
 
-const mentormentee = [
-  { id: 'mentee', title: 'Mentee' },
-  { id: 'mentor', title: 'Mentor' }
-]
-
-
+ 
 export default function Home() { 
 
   return (
@@ -29,7 +23,7 @@ export default function Home() {
                     Get in touch
                 </h2>
                 <h3 className="text-gray-600 text-left mt-2 lg:mt-8 text-xl">
-                   Whether you have questions, feedback, or need assistance, the O'Mentors team is here to help. Our team will get back to you within 24-48 hours. Together, let’s make your mentorship journey smooth and impactful!
+                   Whether you have questions, feedback, or need assistance, the O&apos;Mentors team is here to help. Our team will get back to you within 24-48 hours. Together, let’s make your mentorship journey smooth and impactful!
                 </h3>
             </div>
 

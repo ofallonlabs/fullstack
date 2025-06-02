@@ -16,7 +16,7 @@ export default function Home() {
     if (!token) {
       router.replace('/auth/login');
     }
-  }, [token]);
+  }, [token, router]);
 
   return (
    <>

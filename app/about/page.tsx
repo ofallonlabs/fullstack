@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
 import Image from "next/image";
-import { JSX, SVGProps } from 'react';
+import { JSX, SVGProps } from "react";
 
 import Header from "@/ui/components/common/nav/header";
 import Footer from "@/ui/components/public/footer";
@@ -94,15 +94,15 @@ export default function Home() {
 
                <div className="flex flex-col gap-4 text-black text-base text-left text-balance">
                     <div>
-                        Welcome to O'Mentors, the premier platform for connecting aspiring professionals with top mentors in the field of Data Science. Our mission is simple: to bridge the gap between ambition and expertise.
+                        Welcome to O&apos;Mentors, the premier platform for connecting aspiring professionals with top mentors in the field of Data Science. Our mission is simple: to bridge the gap between ambition and expertise.
                     </div>
 
                     <div>
-                        Whether you're a recent graduate, a career changer, or an experienced professional aiming for the next level, we provide tailored mentorship that aligns with your career goals. With a focus on 1-on-1 mentoring, we ensure that every mentee receives personalized guidance, actionable advice, and industry insights to accelerate their career.
+                        Whether you&apos;re a recent graduate, a career changer, or an experienced professional aiming for the next level, we provide tailored mentorship that aligns with your career goals. With a focus on 1-on-1 mentoring, we ensure that every mentee receives personalized guidance, actionable advice, and industry insights to accelerate their career.
                     </div>
 
                     <div className="flex flex-col gap-4">
-                        <div>At O'Mentors, we specialize in the following areas:</div>
+                        <div>At O&apos;Mentors, we specialize in the following areas:</div>
                         <div className="px-8">
                             <ul className="list-disc">
                                 <li>Data Science</li>
@@ -142,7 +142,7 @@ export default function Home() {
              <div className="flex flex-col gap-8">
                <div className="text-left flex flex-col items-start ">
                  <div className="text-brand-500 font-semibold text-md">Empowering connections, transforming careers</div>
-                 <div className="text-black font-semibold text-3xl lg:text-5xl">O'Mentors Story</div>
+                 <div className="text-black font-semibold text-3xl lg:text-5xl">O&apos;Mentors Story</div>
                </div>
 
                 <div className="lg:hidden">
@@ -151,15 +151,15 @@ export default function Home() {
 
                <div className="flex flex-col gap-4 text-black text-base text-left text-balance">
                     <div>
-                        O’Mentors was founded by Saeed Mirshekari, inspired by his journey through challenges and his passion for mentorship. With over two years of 1-on-1 mentoring experience, he witnessed firsthand the transformative impact of personalized guidance and sought to create a platform that connects mentees with top mentors to achieve their career goals.
+                        O&apos;Mentors was founded by Saeed Mirshekari, inspired by his journey through challenges and his passion for mentorship. With over two years of 1-on-1 mentoring experience, he witnessed firsthand the transformative impact of personalized guidance and sought to create a platform that connects mentees with top mentors to achieve their career goals.
                     </div>
 
                     <div>
-                       The concept of O’Mentors emerged during a pivotal period in Saeed’s life. In 2015, after leaving a postdoc in Brazil, he returned to the USA, facing significant personal and professional challenges. Despite feeling isolated and lacking access to resources and connections, he persevered through the transition into industry.
+                       The concept of O&apos;Mentors emerged during a pivotal period in Saeed&apos;s life. In 2015, after leaving a postdoc in Brazil, he returned to the USA, facing significant personal and professional challenges. Despite feeling isolated and lacking access to resources and connections, he persevered through the transition into industry.
                     </div>
 
                     <div>
-                         Motivated by his experiences, Saeed envisioned O’Mentors as a platform to help others navigate similar transitions more easily, especially those from academia or with limited industry networks. Today, O’Mentors stands as a professional and impactful solution, bridging the gap between ambition and opportunity.
+                         Motivated by his experiences, Saeed envisioned O&apos;Mentors as a platform to help others navigate similar transitions more easily, especially those from academia or with limited industry networks. Today, O’Mentors stands as a professional and impactful solution, bridging the gap between ambition and opportunity.
                     </div>
 
  
@@ -194,11 +194,11 @@ export default function Home() {
 
                <div className="flex flex-col gap-4 text-black text-base text-left text-balance">
                     <div>
-                        O'Mentors brings value by connecting you with top industry experts who provide personalized, one-on-one guidance tailored to your unique career goals.
+                        O&apos;Mentors brings value by connecting you with top industry experts who provide personalized, one-on-one guidance tailored to your unique career goals.
                     </div>
 
                     <div>
-                        Whether you're transitioning into Data Science or looking to advance, our platform offers a flexible, secure, and efficient way to gain insights, build skills, and accelerate your professional growth.
+                        Whether you&apos;re transitioning into Data Science or looking to advance, our platform offers a flexible, secure, and efficient way to gain insights, build skills, and accelerate your professional growth.
                     </div>
                     <div className="flex-none w-full md:w-fit mt-8">
                         <div className="grid grid-flow-row md:grid-flow-col gap-2 text-md text-slate-500 font-light">
@@ -313,7 +313,7 @@ export default function Home() {
         <div className="bg-brand-50/30 w-full md:w-11/12 lg:w-9/12 text-center mx-auto py-8">
             <div className="text-center flex flex-col gap-4">
                 <div className="text-brand-600 text-md">Our values</div>
-                <div className="text-gray-800 font-bold text-4xl">How we work at O’Mentors</div>
+                <div className="text-gray-800 font-bold text-4xl">How we work at O&apos;Mentors</div>
                 <div className=" text-xl text-gray-600 text-balance">
                   Our shared values keep us connected and guide us as one team.
                 </div>
@@ -347,9 +347,9 @@ export default function Home() {
 
                 <div className="flex flex-col items-center justify-center gap-4">
                     <Image className="w-[48px] aspect-square"  alt="" src={"/assets/images/about/hire4.svg"} width={48} height={48} />
-                    <div className="text-gray-800 font-bold text-xl">Don't #!&$ the customer</div>
+                    <div className="text-gray-800 font-bold text-xl">Don&apos;t #!&$ the customer</div>
                     <div className="text-gray-600 text-base text-center text-balance">
-                       Understand customers' stated and unstated needs. Make them wildly successful.
+                       Understand customers&apos; stated and unstated needs. Make them wildly successful.
                     </div> 
                 </div>
             
