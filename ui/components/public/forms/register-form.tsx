@@ -132,11 +132,12 @@ export default function RegisterForm({action}:{action:RegisterFormActionType}){
             <div className="flex items-center justify-between">
               <div className="flex gap-3">
                 <div className="flex h-6 shrink-0 items-center">
-                  <div className="group grid size-4 grid-cols-1">
+                  <div className="group grid size-4 grid-cols-1">                  
                     <input
-                      id="remember-me"
-                      name="remember-me"
+                      id="agreedto"
+                      name="agreedto"
                       type="checkbox"
+                      defaultChecked={false}
                       className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-brand-600 checked:bg-brand-600 indeterminate:border-brand-600 indeterminate:bg-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
                     />
                     <svg
@@ -161,8 +162,8 @@ export default function RegisterForm({action}:{action:RegisterFormActionType}){
                     </svg>
                   </div>
                 </div>
-                <label htmlFor="remember-me" className="block text-sm/6 text-gray-900 space-x-1">
-                  <span>I agree with</span>          
+                <label htmlFor="agreedto" className="block text-sm/6 text-gray-900 space-x-1">
+                  <span>I agree to</span>          
                   <Link className="text-gray-400 font-semibold hover:underline" href={"/privacy-policy"}>privacy policy</Link>
                   <span>and</span> 
                   <Link className="text-gray-400 font-semibold hover:underline" href={"/terms-of-service"}>terms of services</Link>  

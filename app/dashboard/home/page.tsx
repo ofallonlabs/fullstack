@@ -18,7 +18,7 @@ export default async function Home() {
 
   return (
     <div className="relative transition-all duration-300 scroll-smooth">
-       <nav className="sticky top-0 inset-x-0 bg-white flex overflow-x-auto border-b border-white/10 py-4">
+       <nav className="sticky top-[65px] sm:top-[60px] lg:top-0 inset-x-0 bg-white flex overflow-x-auto border-b border-white/10 py-4 -z-0">
                 <ul
                   role="list"
                   className="flex min-w-full flex-none gap-x-6 px-4 text-sm/6 font-semibold text-gray-400 sm:px-6 lg:px-8"

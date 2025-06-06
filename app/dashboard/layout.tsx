@@ -18,7 +18,7 @@ import AvatarFlayout from "@/ui/elements/avatar-flyout";
 import Header from "@/ui/components/common/nav/auth/header";
 
 import BottomSheet from "@/ui/components/dashboard/bottom-sheet";
-
+import SignoutButton from "@/ui/elements/signout-button";
 
 const navigation = [
   { name: 'Home', href: '#', icon: HomeIcon , current: true },
@@ -55,7 +55,7 @@ export default function DashboardLayout({
   return (
     <>
       <div className="relative">
-        <div className="sticky top-0 inset-x-0 sm:hidden">
+        <div className="sticky top-0 inset-x-0 z-50 sm:hidden">
           <Header/>        
         </div>
 
@@ -146,11 +146,14 @@ export default function DashboardLayout({
                       <div className="font-semibold text-gray-800  text-sm line-clamp-1 w-[180px]">Saeed Mirshekari</div>
                       <div className="font-normal text-gray-600  text-xs line-clamp-1 w-[180px]">Email Address</div>
                     </div>
-                    <Link href={"/auth/logout"} className="flex-none w-fit hover:bg-slate-300/30 rounded-full hover:cursor-pointer p-2 transition-colors duration-200">
-                      <LogoutIcon
-                        style={classNames('size-6 shrink-0')}
-                      />
-                    </Link>
+                    <div className="flex-none w-fit hover:bg-slate-300/30 rounded-full hover:cursor-pointer p-2 transition-colors duration-200">
+                      <SignoutButton>
+                        <LogoutIcon
+                            style={classNames('size-6 shrink-0')}
+                        />
+                      </SignoutButton>                    
+                    </div> 
+
                   </div>
                 </li>
                   </ul>
@@ -231,11 +234,13 @@ export default function DashboardLayout({
                       <div className="font-semibold text-gray-800  text-sm line-clamp-1 w-[180px]">Saeed Mirshekari</div>
                       <div className="font-normal text-gray-600  text-xs line-clamp-1 w-[180px]">Email Address</div>
                     </div>
-                    <Link href={"/auth/logout"} className="flex-none w-fit hover:bg-slate-300/30 rounded-full hover:cursor-pointer p-2 transition-colors duration-200">
-                      <LogoutIcon
-                        style={classNames('size-6 shrink-0')}
-                      />
-                    </Link>
+                    <div className="flex-none w-fit hover:bg-slate-300/30 rounded-full hover:cursor-pointer p-2 transition-colors duration-200">
+                      <SignoutButton>
+                        <LogoutIcon
+                            style={classNames('size-6 shrink-0')}
+                        />
+                      </SignoutButton>                    
+                    </div> 
                   </div>
                 </li>
               </ul>

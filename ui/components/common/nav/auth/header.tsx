@@ -26,7 +26,7 @@ export default function Header() {
 
                     <div className="flex flex-row flex-1 w-full lg:flex-none lg:w-fit justify-between items-center">
                         <Image alt="" src={"/logo_full.svg"} width={184} height={35} />
-                        <div className="lg:hidden flex flex-row items-center gap-6">
+                        <div className="lg:hidden flex flex-row items-center gap-6 z-50">
                             <Link href={"/contact"}>
                                 <svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M11.97 22c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10z"></path>

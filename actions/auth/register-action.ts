@@ -7,6 +7,16 @@ import { sendEmail } from "@/lib/mailing/gmail";
 
 export default async function RegisterFormAction(extras: {callbackURL : string}, prevState:MentorRegisterFormState, formData: FormData){
 
+    if(!formData.get("agreedto") || formData.get("agreedto") == null  || formData.get("agreedto") !== "on"){
+        return {
+            message: 
+                {
+                    type: ErrorMessageType.FAILURE,
+                    content: "To register, you must agree to OMentors terms."
+                }
+        }
+    }
+
 
     const {success, error, data} = MentorRegisterFormSchema.safeParse({
         email:formData.get("email"),
