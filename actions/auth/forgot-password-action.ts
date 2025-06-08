@@ -1,4 +1,4 @@
-'use server';
+"use server";
 
 import { ForgotPasswordFormSchema, ForgotPasswordFormState, ErrorMessageType} from "@/definition/UserDefinition";
 import { auth } from "@/lib/auth/auth";

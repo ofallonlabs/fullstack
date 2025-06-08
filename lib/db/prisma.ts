@@ -9,6 +9,7 @@ if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 export default prisma;
 
 
+
 // import { PrismaClient } from '@prisma/client';
 // import { Pool } from '@neondatabase/serverless';
 
@@ -41,3 +42,8 @@ export default prisma;
 // if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
 // export default prisma;
+
+
+
+
+

@@ -3,7 +3,6 @@
 import Header from "@/ui/components/common/nav/header";
 import Footer from "@/ui/components/public/footer";
 
-
 export default function Home() { 
 
   return (
@@ -255,7 +254,6 @@ export default function Home() {
 
         </div>
     
-      
       </div>        
 
     </div>
