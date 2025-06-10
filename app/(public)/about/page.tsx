@@ -3,8 +3,6 @@
 import Image from "next/image";
 import { JSX, SVGProps } from "react";
 
-import Header from "@/ui/components/common/nav/header";
-import Footer from "@/ui/components/public/footer";
 import Stats from "@/ui/components/public/stats";
 import PartnerCompanies from "@/ui/components/public/partner-companies";
 
@@ -55,7 +53,7 @@ export default function Home() {
 
   return (
    <>
-    <Header/>
+ 
 
     <div className="min-h-[500px]">
 
@@ -416,8 +414,7 @@ export default function Home() {
 
     </div>
 
-    <Footer/>
-
+ 
    </>
   )
 

@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import { useSearchParams, useRouter } from 'next/navigation'
-import Header from "@/ui/components/common/nav/header";
-import Footer from "@/ui/components/public/footer";
 import ResetPasswordFormWrapper from "@/ui/components/public/forms/reset-password-from-wrapper";
 import { useEffect } from "react";
 
@@ -20,7 +18,7 @@ export default function ResetPasswordPage() {
 
   return (
    <>
-    <Header/>
+
 
     <div className="min-h-[500px] py-12">
 
@@ -39,7 +37,6 @@ export default function ResetPasswordPage() {
 
     </div>
 
-    <Footer/>
 
    </>
   )

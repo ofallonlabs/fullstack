@@ -2,12 +2,9 @@
 import Image from "next/image";
 import { useState } from 'react'
 import { Dialog, DialogPanel} from '@headlessui/react'
-import { Bars3Icon, XMarkIcon, BellIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { motion } from 'motion/react'
 import Link from "next/link";
-
-import NotificationFlyout from "@/ui/elements/notification-flyout";
-import AvatarFlayout from "@/ui/elements/avatar-flyout";
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -16,7 +13,7 @@ const navigation = [
   { name: 'Help', href: '/help' },
 ]
 
-export default function Header() {
+export default function Header({ children }: { children: React.ReactNode }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     return (
         <header className="bg-white border-b border-b-slate-300 transition-all duration-200 sticky top-0 inset-x-0 z-50">
@@ -33,8 +30,7 @@ export default function Header() {
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 16.5a4.5 4.5 0 100-9 4.5 4.5 0 000 9zM4.9 4.93l3.54 3.53M4.9 19.07l3.54-3.53M19.05 19.07l-3.54-3.53M19.05 4.93l-3.54 3.53"></path>
                                 </svg>
                             </Link>
-                            <NotificationFlyout/>
-                            <AvatarFlayout/>
+                            {children}
                             <button
                                 type="button"
                                 onClick={() => setMobileMenuOpen(true)}
@@ -67,8 +63,7 @@ export default function Header() {
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 16.5a4.5 4.5 0 100-9 4.5 4.5 0 000 9zM4.9 4.93l3.54 3.53M4.9 19.07l3.54-3.53M19.05 19.07l-3.54-3.53M19.05 4.93l-3.54 3.53"></path>
                             </svg>
                         </Link>
-                        <NotificationFlyout/>
-                        <AvatarFlayout/>
+                        {children}
                     </div>
 
                 </div>
@@ -98,8 +93,7 @@ export default function Header() {
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 16.5a4.5 4.5 0 100-9 4.5 4.5 0 000 9zM4.9 4.93l3.54 3.53M4.9 19.07l3.54-3.53M19.05 19.07l-3.54-3.53M19.05 4.93l-3.54 3.53"></path>
                                 </svg>
                             </Link>
-                            <NotificationFlyout/>
-                            <AvatarFlayout/>
+                            {children}
                             <button
                                 type="button"
                                 onClick={() => setMobileMenuOpen(false)}

@@ -1,6 +1,6 @@
-import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
-import { BellIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import { ChartPieIcon } from '@heroicons/react/24/outline'
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
+import { BellIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
+import { ChartPieIcon } from '@heroicons/react/24/outline';
 
 const solutions = [
   { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
@@ -10,7 +10,9 @@ const callsToAction = [
   { name: 'Watch demo', href: '#', icon: PlayCircleIcon }
 ]
 
-export default function NotificationFlyout() {
+
+export default async function NotificationFlyout() {
+
   return (
     <Popover className="relative">
       <PopoverButton className="flex flex-row items-center justify-center">
@@ -29,13 +31,13 @@ export default function NotificationFlyout() {
               <div key={item.name} className="w-fit group relative flex gap-x-4 rounded-lg p-1 hover:bg-gray-50">
                 <div className="flex size-9 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                   <item.icon aria-hidden="true" className="size-6 text-gray-600 group-hover:text-indigo-600" />
-                </div>
+                 </div>
                 <div>
-                  <a href={item.href} className="font-normal text-gray-900 text-sm">
+                  <a href={item.href} className="font-normal text-gray-900 text-sm line-clamp-1">
                     {item.name}
                     <span className="absolute inset-0" />
                   </a>
-                  <p className=" text-gray-600 text-xs">{item.description}</p>
+                  <p className=" text-gray-600 text-xs line-clamp-1">{item.description}</p>
                 </div>
               </div>
             ))}
@@ -45,10 +47,10 @@ export default function NotificationFlyout() {
               <a
                 key={item.name}
                 href={item.href}
-                className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100"
+                className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100 line-clamp-1"
               >
                 <item.icon aria-hidden="true" className="size-5 flex-none text-gray-400" />
-                {item.name}
+                  {item.name}
               </a>
             ))}
           </div>

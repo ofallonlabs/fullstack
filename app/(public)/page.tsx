@@ -1,24 +1,14 @@
-'use client';
-
 import Image from "next/image";
 import { ArrowLongRightIcon  } from '@heroicons/react/24/outline';
-
-
-import Header from "@/ui/components/common/nav/header";
-import Footer from "@/ui/components/public/footer";
 import Stats from "@/ui/components/public/stats";
 import PartnerCompanies from "@/ui/components/public/partner-companies";
 import FAQ from "@/ui/components/public/faq";
 import Link from "next/link";
-
  
-
 export default function Home() {
 
   return (
    <>
-     <Header/>
-
       <div className="min-h-[500px]">
         <div className="mx-auto 2xl:w-11/12 lg:px-8 px-6 ">
         
@@ -185,9 +175,6 @@ export default function Home() {
 
         </div>              
       </div>
-
-    <Footer/>
-
    </>
   )
 

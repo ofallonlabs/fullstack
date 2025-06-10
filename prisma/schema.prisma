@@ -197,7 +197,7 @@ model Application {
   id              Int     @id @default(autoincrement())
   menteeId        Int
   serviceId       Int
-  status          ServiceType   
+  status          ApplicationStatus   
   requestNote     String?  
   responseMessage String?  
   checkoutId      String?   

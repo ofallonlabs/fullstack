@@ -3,8 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import Header from "@/ui/components/common/nav/header";
-import Footer from "@/ui/components/public/footer";
+
 import RegisterFormWrapper from "@/ui/components/public/forms/register-form-wrapper";
  
 
@@ -12,7 +11,7 @@ export default function Home() {
 
   return (
    <>
-    <Header/>
+
 
     <div className="min-h-[500px] w-10/12 mx-auto py-12">
 
@@ -50,7 +49,6 @@ export default function Home() {
 
     </div>
 
-    <Footer/>
 
    </>
   )

@@ -1,18 +1,19 @@
+"use client";
+
+import { ApplicationsIcon, HomeIcon, MentorShipsIcon, ServicesIcon, SettingsIcon } from "@/ui/svgs";
 import Link from "next/link";
-import { JSX } from "react";
 import { classNames } from "@/utils/Utils";
 
-export type BottomSheetNavigation = {
-    name: string;
-    href: string;
-    icon: ({ style }: {
-        style?: string;
-    }) => JSX.Element;
-    current: boolean;
-}
 
+const navigation = [
+  { name: 'Home', href: '#', icon: HomeIcon , current: true },
+  { name: 'Mentorships', href: '#', icon: MentorShipsIcon, current: false },
+  { name: 'Application', href: '#', icon: ApplicationsIcon, current: false },
+  { name: 'Services', href: '#', icon: ServicesIcon, current: false },
+  { name: 'Settings', href: '#', icon: SettingsIcon, current: false },
+]
 
-export default function BottomSheet({navigation}: {navigation: BottomSheetNavigation[]}){
+export default function BottomSheet(){
     return (
                 <div className="sticky bottom-0 inset-x-0 bg-white shadow z-50">
                     <div className=" grid grid-cols-5 border-t border-t-gray-200 h-fit w-full sm:hidden">
