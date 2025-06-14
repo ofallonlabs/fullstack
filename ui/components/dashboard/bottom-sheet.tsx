@@ -3,17 +3,32 @@
 import { ApplicationsIcon, HomeIcon, MentorShipsIcon, ServicesIcon, SettingsIcon } from "@/ui/svgs";
 import Link from "next/link";
 import { classNames } from "@/utils/Utils";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 
-const navigation = [
-  { name: 'Home', href: '#', icon: HomeIcon , current: true },
-  { name: 'Mentorships', href: '#', icon: MentorShipsIcon, current: false },
-  { name: 'Application', href: '#', icon: ApplicationsIcon, current: false },
-  { name: 'Services', href: '#', icon: ServicesIcon, current: false },
-  { name: 'Settings', href: '#', icon: SettingsIcon, current: false },
+const bottomsheet_navigation_data = [
+  { name: 'Home', href: 'home', icon: HomeIcon , current: false },
+  { name: 'Mentorships', href: 'mentorships', icon: MentorShipsIcon, current: false },
+  { name: 'Application', href: 'applications', icon: ApplicationsIcon, current: false },
+  { name: 'Services', href: 'services', icon: ServicesIcon, current: false },
+  { name: 'Settings', href: 'settings', icon: SettingsIcon, current: false },
 ]
 
+
 export default function BottomSheet(){
+  const [navigation, setNavigationBottomSheet] = useState(bottomsheet_navigation_data);
+  const pathName = usePathname();
+
+  useEffect(()=>{
+    
+    setNavigationBottomSheet((cur) => {
+      return cur.map((navItem)=>{
+        return {...navItem, current: pathName.toLowerCase().includes(navItem.href.toLowerCase())}
+      })
+    }) 
+
+  },[pathName, setNavigationBottomSheet])    
     return (
                 <div className="sticky bottom-0 inset-x-0 bg-white shadow z-50">
                     <div className=" grid grid-cols-5 border-t border-t-gray-200 h-fit w-full sm:hidden">

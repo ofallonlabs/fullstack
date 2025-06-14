@@ -2,6 +2,7 @@ import { JSX } from "react";
 import { classNames } from "@/utils/Utils";
 import Image from "next/image";
 import ProfileNavItem from "@/ui/components/dashboard/profile-navitem";
+import Link from "next/link";
 
 export type TopHeaderNavigationType = {
     name: string;
@@ -27,7 +28,7 @@ export default function DashboardTopHeader({navigation, navigationBottom}: {navi
                   <ul role="list" className="-mx-2 space-y-1">
                     {navigation.map((item) => (
                       <li key={item.name}>
-                        <a
+                        <Link
                           href={item.href}
                           className={classNames(
                             item.current
@@ -42,7 +43,7 @@ export default function DashboardTopHeader({navigation, navigationBottom}: {navi
                             )}/>
                           
                           {item.name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -53,7 +54,7 @@ export default function DashboardTopHeader({navigation, navigationBottom}: {navi
                   <ul role="list" className="-mx-2 space-y-1 p-6">
                     {navigationBottom.map((item) => (
                       <li key={item.name}>
-                        <a
+                        <Link
                           href={item.href}
                           className={classNames(
                             item.current
@@ -68,7 +69,7 @@ export default function DashboardTopHeader({navigation, navigationBottom}: {navi
                             )}/>
                           
                           {item.name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>

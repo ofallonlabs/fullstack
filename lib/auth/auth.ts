@@ -10,6 +10,10 @@ export const auth = betterAuth({
     database: prismaAdapter(prisma, {
         provider: "postgresql",
     }),
+    cookieCache: {
+        enabled: true,
+         maxAge: 5 * 60
+    },
     emailAndPassword: {  
         enabled: true,
         minPasswordLength:8,

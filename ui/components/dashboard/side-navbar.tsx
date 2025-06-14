@@ -2,6 +2,7 @@ import { JSX } from "react";
 import { classNames } from "@/utils/Utils";
 import Image from "next/image";
 import ProfileNavItem from "@/ui/components/dashboard/profile-navitem";
+import Link from "next/link";
 
 export type SideBarNavigationType = {
     name: string;
@@ -24,7 +25,7 @@ export default function SideNavbar({navigation, navigationBottom}: {navigation: 
                       <ul role="list" className="-mx-2 space-y-1">
                         {navigation.map((item) => (
                           <li key={item.name}>
-                            <a
+                            <Link
                               href={item.href}
                               className={classNames(
                                 item.current
@@ -40,7 +41,7 @@ export default function SideNavbar({navigation, navigationBottom}: {navigation: 
                                 )}
                               />
                               {item.name}
-                            </a>
+                            </Link>
                           </li>
                         ))}
                       </ul>
@@ -50,7 +51,7 @@ export default function SideNavbar({navigation, navigationBottom}: {navigation: 
                   <ul role="list" className="-mx-2 space-y-1 p-6">
                     {navigationBottom.map((item) => (
                       <li key={item.name}>
-                        <a
+                        <Link
                           href={item.href}
                           className={classNames(
                             item.current
@@ -65,7 +66,7 @@ export default function SideNavbar({navigation, navigationBottom}: {navigation: 
                             )}/>
                           
                           {item.name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>

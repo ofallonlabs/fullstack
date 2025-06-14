@@ -32,7 +32,7 @@ export default function ServiceCard(){
            <div className="font-semibold text-gray-800 text-base md:text-lg">The name of the service</div>
            <div className="font-normal text-gray-600 text-sm md:text-base space-x-2">
                <span>by</span>
-               <Link href="/profile/#/#" className="text-brand-500">The name of the mentor</Link>
+               <span className="text-brand-500">The name of the mentor</span>
            </div>
            <div className="text-gray-700 md:text-sm lg:text-base text-left mt-6 hidden md:block">
                <p className="overflow-hidden text-ellipsis md:text-clip h-[100px] line-clamp-3">

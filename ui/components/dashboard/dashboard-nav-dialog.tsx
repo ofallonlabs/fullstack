@@ -1,25 +1,29 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from "next/link";
 import { Dialog, DialogBackdrop, DialogPanel, TransitionChild } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { ApplicationsIcon, HomeIcon, MentorShipsIcon, NotificationsIcon, ServicesIcon, SettingsIcon, SupportIcon } from "@/ui/svgs";
 import SideNavbar from "@/ui/components/dashboard/side-navbar";
 import DashboardTopHeader from "@/ui/components/dashboard/top-header";
+import { usePathname } from 'next/navigation';
 
-const navigation = [
-  { name: 'Home', href: '#', icon: HomeIcon , current: true },
-  { name: 'Mentorships', href: '#', icon: MentorShipsIcon, current: false },
-  { name: 'Application', href: '#', icon: ApplicationsIcon, current: false },
-  { name: 'Services', href: '#', icon: ServicesIcon, current: false },
-  { name: 'Notifications', href: '#', icon: NotificationsIcon, current: false },
+const navigation_data = [
+  { name: 'Home', href: 'home', icon: HomeIcon , current: false },
+  { name: 'Mentorships', href: 'mentorships', icon: MentorShipsIcon, current: false },
+  { name: 'Application', href: 'applications', icon: ApplicationsIcon, current: false },
+  { name: 'Services', href: 'services', icon: ServicesIcon, current: false },
+  { name: 'Notifications', href: 'notifications', icon: NotificationsIcon, current: false },
 ]
 
-const navigation_bottom = [
-  { name: 'Support', href: '#', icon: SupportIcon , current: false },
-  { name: 'Settings', href: '#', icon: SettingsIcon, current: false },
+const navigation_bottom_data = [
+  { name: 'Support', href: 'support', icon: SupportIcon , current: false },
+  { name: 'Settings', href: 'settings', icon: SettingsIcon, current: false },
 ]
+
+
+
 
 export default function DashboardNavDialogLayout({
   children,
@@ -27,6 +31,27 @@ export default function DashboardNavDialogLayout({
   children: React.ReactNode
 }){
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [navigation, setNavigation] = useState(navigation_data);
+  const [navigation_bottom, setNavigationBottom] = useState(navigation_bottom_data);
+  const pathName = usePathname();
+
+  useEffect(()=>{
+
+    setNavigationBottom((cur) => {
+      return cur.map((navItem)=>{
+        return {...navItem, current: pathName.toLowerCase().includes(navItem.href.toLowerCase())}
+      })
+    });
+
+    setNavigation((cur) => {
+      return cur.map((navItem)=>{
+        return {...navItem, current: pathName.toLowerCase().includes(navItem.href.toLowerCase())}
+      })
+    });
+    
+
+  },[pathName, setNavigation, setNavigationBottom])
+
 
   return (
     <>
