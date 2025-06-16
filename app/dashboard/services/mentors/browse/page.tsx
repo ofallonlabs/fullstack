@@ -1,12 +1,27 @@
 import Link from 'next/link';
-
-const tabNavs = [
-  { name: 'My Services', href: '/dashboard/services', current: false },
-  { name: 'All Services', href: '/dashboard/services/browse', current: false },
-  { name: 'All Mentors', href: '/dashboard/services/mentors/browse', current: true },  
-]
+import { auth } from '@/lib/auth/auth';
+import { headers } from 'next/headers';
 
 export default async function AllMentors(){
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  if (!session) {
+    return <div>Not authenticated</div>;
+  }
+
+  const user = session.user;
+  if(!user) return null;
+
+  const tabNavs = [
+    { name: 'All Services', href: '/dashboard/services/browse', current: false },
+    { name: 'All Mentors', href: '/dashboard/services/mentors/browse', current: true },  
+  ]
+
+  if(user.role == "MENTOR"){
+    tabNavs.unshift({ name: 'My Services', href: '/dashboard/services', current: false });
+  }
+
 
     return (
         <div className="relative space-y-10 mb-32">

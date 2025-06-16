@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { classNames } from "@/utils/Utils";
-import { usePathname } from 'next/navigation';
 
 const stats = [
     { name: 'Total Applications', value: '0', change: '+0%', changeType: 'positive' },
@@ -28,17 +27,6 @@ const tabNavs = [
 
 export default function MentorHome({userFirstName}:{userFirstName:string}){
   const [tabs, updateTabs] = useState(tabNavs);
-  const pathName = usePathname();
-
-  useEffect(()=>{
-    
-    updateTabs((cur) => {
-      return cur.map((navItem)=>{
-        return {...navItem, current: pathName.toLowerCase().includes(navItem.href.toLowerCase())}
-      })
-    }) 
-
-  },[pathName, updateTabs])  
 
     return (
         <div className="relative space-y-10 mb-32">

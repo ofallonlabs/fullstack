@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { classNames } from "@/utils/Utils";
-import { usePathname } from 'next/navigation';
 
 
 const stats = [
@@ -27,17 +26,7 @@ const tabNavs = [
 
 export default function MenteeHome({userFirstName}:{userFirstName:string}){
   const [tabs, updateTabs] = useState(tabNavs);
-  const pathName = usePathname();
 
-  useEffect(()=>{
-    
-    updateTabs((cur) => {
-      return cur.map((navItem)=>{
-        return {...navItem, current: pathName.toLowerCase().includes(navItem.href.toLowerCase())}
-      })
-    }) 
-
-  },[pathName, updateTabs])  
 
 
     return (

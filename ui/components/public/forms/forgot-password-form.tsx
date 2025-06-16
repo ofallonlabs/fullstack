@@ -6,7 +6,7 @@ import FormButton from "@/ui/components/common/button/form-button";
 import SimpleMessage, { MessageState } from "@/ui/components/common/message-box/simple-message";
 
 export default function ForgotPasswordForm({action}:{action:ForgotPasswordFormActionType}){
-     const [state, dispatch] = useActionState(action,undefined);
+    const [state, dispatch] = useActionState(action,undefined);
     return (
        <form action={dispatch} className="space-y-6">
             <div>

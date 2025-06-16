@@ -10,16 +10,16 @@ import DashboardTopHeader from "@/ui/components/dashboard/top-header";
 import { usePathname } from 'next/navigation';
 
 const navigation_data = [
-  { name: 'Home', href: 'home', icon: HomeIcon , current: false },
-  { name: 'Mentorships', href: 'mentorships', icon: MentorShipsIcon, current: false },
-  { name: 'Application', href: 'applications', icon: ApplicationsIcon, current: false },
-  { name: 'Services', href: 'services', icon: ServicesIcon, current: false },
-  { name: 'Notifications', href: 'notifications', icon: NotificationsIcon, current: false },
+  { name: 'Home', href: '/dashboard/home', icon: HomeIcon , current: false },
+  { name: 'Mentorships', href: '/dashboard/mentorships', icon: MentorShipsIcon, current: false },
+  { name: 'Applications', href: '/dashboard/applications', icon: ApplicationsIcon, current: false },
+  { name: 'Services', href: '/dashboard/services', icon: ServicesIcon, current: false },
+  { name: 'Notifications', href: '/dashboard/notifications', icon: NotificationsIcon, current: false },
 ]
 
 const navigation_bottom_data = [
-  { name: 'Support', href: 'support', icon: SupportIcon , current: false },
-  { name: 'Settings', href: 'settings', icon: SettingsIcon, current: false },
+  { name: 'Support', href: '/dashboard/support', icon: SupportIcon , current: false },
+  { name: 'Settings', href: '/dashboard/settings', icon: SettingsIcon, current: false },
 ]
 
 

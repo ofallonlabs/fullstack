@@ -1,9 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react';
-import { ChevronDownIcon } from '@heroicons/react/16/solid';
+import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+
+import PersonalInformationFormWrapper from '@/ui/components/dashboard/forms/mentee/wrappers/personal-information-form-wrapper';
+import ProfileFormWrapper from '@/ui/components/dashboard/forms/mentee/wrappers/profile-form-wrapper';
 
 const secondaryNavigation = [
   { name: 'Personal Information', href: '#personalinformation', current: true },
@@ -16,7 +17,7 @@ const secondaryNavigation = [
 ]
 
 const educations = [
-  { HDL: 'Bsc', FOS: 'Information of Technology', GRADYEAR: '2015', GRADINSTITUDE: 'Shiraz State University'},
+  { HDL: 'Bsc', FOS: 'Information of Technology', GRADYEAR: '2015', GRADInstitute: 'Shiraz State University'},
 ]
 
 const jobExperience = [
@@ -48,17 +49,7 @@ const goals = [
 
 export default function MenteeSettings() {
   const [tabs, updateTabs] = useState(secondaryNavigation);
-  const pathName = usePathname();
 
-  useEffect(()=>{
-    
-    updateTabs((cur) => {
-      return cur.map((navItem)=>{
-        return {...navItem, current: pathName.toLowerCase().includes(navItem.href.toLowerCase())}
-      })
-    }) 
-
-  },[pathName, updateTabs])  
 
   return (
     <>
@@ -112,66 +103,12 @@ export default function MenteeSettings() {
                   <p className="mt-1 text-sm/6 text-gray-600">Update your photo and personal details.</p>
                 </div>
 
-                <form className="md:col-span-2">
-                  <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
-                    <div className="col-span-full flex items-center gap-x-8">
-                      <img
-                        alt=""
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        className="size-24 flex-none rounded-lg bg-gray-800 object-cover"
-                      />
-                      <div>
-                        <button
-                          type="button"
-                          className="rounded-md bg-black/10 px-3 py-2 text-sm font-semibold text-black shadow-xs hover:bg-black/20"
-                        >
-                          Change avatar
-                        </button>
-                        <p className="mt-2 text-xs/5 text-gray-600">JPG, GIF or PNG. 1MB max.</p>
-                      </div>
-                    </div>
+                <div className="md:col-span-2">
 
-                    <div className="sm:col-span-3">
-                      <label htmlFor="first-name" className="block text-sm/6 font-medium text-black">
-                        First name
-                      </label>
-                      <div className="mt-2">
-                        <input
-                          id="first-name"
-                          name="first-name"
-                          type="text"
-                          autoComplete="given-name"
-                          className="block w-full rounded-md bg-black/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-500 sm:text-sm/6"
-                        />
-                      </div>
-                    </div>
+                  <PersonalInformationFormWrapper />
+                  
+                </div>
 
-                    <div className="sm:col-span-3">
-                      <label htmlFor="last-name" className="block text-sm/6 font-medium text-black">
-                        Last name
-                      </label>
-                      <div className="mt-2">
-                        <input
-                          id="last-name"
-                          name="last-name"
-                          type="text"
-                          autoComplete="family-name"
-                          className="block w-full rounded-md bg-black/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-500 sm:text-sm/6"
-                        />
-                      </div>
-                    </div>
- 
-                  </div>
-
-                  <div className="mt-8 flex">
-                    <button
-                      type="submit"
-                      className="rounded-md bg-brand-500 px-3 py-2 text-sm font-semibold text-black shadow-xs hover:bg-brand-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
-                    >
-                      Save
-                    </button>
-                  </div>
-                </form>
               </div>
 
               <div id="profile" className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
@@ -179,99 +116,12 @@ export default function MenteeSettings() {
                   <h2 className="text-base/7 font-semibold text-black">Profile</h2>
                   <p className="mt-1 text-sm/6 text-gray-600">Update your portfolio and bio.</p>
                 </div>
+                <div className="md:col-span-2">
 
-                <form className="md:col-span-2">
-                  <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
+                  <ProfileFormWrapper />
 
-                    <div className="sm:col-span-6">
-                      <label htmlFor="website" className="block text-sm/6 font-medium text-black">
-                        Website
-                      </label>
-                      <div className="mt-2">
-                        <input
-                          id="website"
-                          name="website"
-                          type="text"
-                          className="block w-full rounded-md bg-black/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-500 sm:text-sm/6"
-                        />
-                      </div>
-                    </div>
+                </div>
 
-                    <div className="sm:col-span-3">
-                      <label htmlFor="tagline" className="block text-sm/6 font-medium text-black">
-                        Tagline
-                      </label>
-                      <div className="mt-2">
-                        <input
-                          id="tagline"
-                          name="tagline"
-                          type="text"
-                          className="block w-full rounded-md bg-black/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-500 sm:text-sm/6"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="sm:col-span-3">
-                      <label htmlFor="currentjob" className="block text-sm/6 font-medium text-black">
-                        Current Job Title
-                      </label>
-                      <div className="mt-2">
-                        <input
-                          id="currentjob"
-                          name="currentjob"
-                          type="text"
-                          className="block w-full rounded-md bg-black/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-500 sm:text-sm/6"
-                        />
-                      </div>
-                    </div>
-
-
-                    <div className="sm:col-span-6">
-                      <label htmlFor="bio" className="block text-sm/6 font-medium text-black">
-                        Bio
-                      </label>
-                      <div className="mt-2">
-                        <textarea
-                          id="bio"
-                          name="bio"
-                          rows={4}
-                          className="block w-full rounded-md bg-black/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-500 sm:text-sm/6"
-                        />
-                      </div>
-                    </div>
-
-
-                    <div className="col-span-full">
-                      <label htmlFor="country" className="block text-sm/6 font-medium text-black">
-                        Country
-                      </label>
-                      <div className="mt-2 grid grid-cols-1">
-                        <select
-                          id="country"
-                          name="country"
-                          className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-black/5 py-1.5 pr-8 pl-3 text-base text-black outline-1 -outline-offset-1 outline-white/10 *:bg-gray-100 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-500 sm:text-sm/6"
-                        >
-                          <option>USA</option>
-                          <option>Canada</option>
-                        </select>
-                        <ChevronDownIcon
-                          aria-hidden="true"
-                          className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-600 sm:size-4"
-                        />
-                      </div>
-                    </div>
-
-                  </div>
-
-                  <div className="mt-8 flex">
-                    <button
-                      type="submit"
-                      className="rounded-md bg-brand-500 px-3 py-2 text-sm font-semibold text-black shadow-xs hover:bg-brand-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
-                    >
-                      Save
-                    </button>
-                  </div>
-                </form>
               </div>
 
               <div className="w-full bg-slate-100 divide-y divide-y-2 divide-slate-200">
@@ -311,7 +161,7 @@ export default function MenteeSettings() {
                                   scope="col"
                                   className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
                               >
-                                  Graduation Institude
+                                  Graduation Institute
                               </th>
                               </tr>
                           </thead>
@@ -326,7 +176,7 @@ export default function MenteeSettings() {
                                       <dd className="mt-1 truncate text-xs  text-gray-900 w-fit py-0.5">{education.FOS}</dd>
                                       <dt className="sr-only sm:hidden">Graduation Year</dt>
                                       <dd className="mt-1 truncate text-xs text-gray-500 sm:hidden">{education.GRADYEAR}</dd>
-                                      <dd className="mt-1 truncate text-xs text-gray-500 sm:hidden">{education.GRADINSTITUDE}</dd>
+                                      <dd className="mt-1 truncate text-xs text-gray-500 sm:hidden">{education.GRADInstitute}</dd>
                                   </dl>
                                   </td>
                                   <td className="hidden px-3 py-4 truncate text-xs lg:table-cell">
@@ -339,7 +189,7 @@ export default function MenteeSettings() {
                                   </td>
                                   <td className="hidden px-3 py-4 truncate text-sm text-gray-500 sm:table-cell">
                                       <div className="flex flex-col gap-1">
-                                           <div className=" text-sm text-gray-900 w-fit px-2 py-0.5">{education.GRADINSTITUDE}</div>
+                                           <div className=" text-sm text-gray-900 w-fit px-2 py-0.5">{education.GRADInstitute}</div>
                                       </div>
                                   </td>                                  
                               </tr>
@@ -369,7 +219,7 @@ export default function MenteeSettings() {
                           <thead className="">
                               <tr>
                               <th scope="col" className="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-4">
-                                  Exployment Status
+                                  Employment Status
                               </th>
                               <th
                                   scope="col"
@@ -392,7 +242,7 @@ export default function MenteeSettings() {
                                   <td className="w-full max-w-0 py-4 pr-3 pl-4 text-xs lg:text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-4">
                                   {experience.status}
                                   <dl className="font-normal lg:hidden">
-                                      <dt className="sr-only">Exployment Status</dt>
+                                      <dt className="sr-only">Employment Status</dt>
                                       <dd className="mt-1 truncate text-xs  text-gray-900 w-fit py-0.5">{experience.title}</dd>
                                       <dt className="sr-only sm:hidden">Job Title</dt>
                                       <dd className="mt-1 truncate text-xs text-gray-500 sm:hidden">{experience.employer}</dd>

@@ -28,7 +28,7 @@ export default function Home() {
           <SigninFormWrapper callbackURL="/dashboard/home"/>
 
           <p className="mt-10 text-center text-sm/6 text-gray-500">
-            Don’t have an account? {' '}
+            Don`t have an account? {' '}
             <a href="/auth/register" className="font-semibold text-brand-600 hover:text-brand-500">
               Sign up
             </a>
