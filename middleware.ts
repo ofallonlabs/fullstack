@@ -19,11 +19,28 @@ export async function middleware(request: NextRequest) {
 		if (!session) {
 			return NextResponse.redirect(new URL("/auth/login", request.url));
 		}
+
 		if (request.nextUrl.pathname.endsWith('/dashboard/services')) {
 			if(session.user.role === "MENTEE"){
 				return NextResponse.redirect(new URL("/dashboard/services/browse", request.url));		
 			}				
 		}
+
+		if (request.nextUrl.pathname.endsWith('/dashboard/services/new') || 
+			   request.nextUrl.pathname.startsWith('/dashboard/services/edit')) {
+
+			if(session.user.role === "MENTEE"){
+				return NextResponse.redirect(new URL("/dashboard/services/browse", request.url));		
+			}	
+
+		}		
+
+		if (request.nextUrl.pathname.startsWith('/dashboard/settings/information')) {
+			if(session.user.role === "MENTOR"){
+				return NextResponse.redirect(new URL("/dashboard/settings", request.url));		
+			}				
+		}
+
 	}else if (request.nextUrl.pathname.startsWith('/auth')) {
 		if (session) {
 			return NextResponse.redirect(new URL("/dashboard/home", request.url));

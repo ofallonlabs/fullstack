@@ -7,9 +7,6 @@ import { revalidatePath } from "next/cache";
 export default async function profileFormAction(prevState: MenteeProfileFormState, formData: FormData) {
     const {success, error, data} = MenteeProfileFormSchema.safeParse({
         website: formData.get("website"),
-        tagline: formData.get("tagline"),
-        currentjob: formData.get("currentjob"),
-        bio: formData.get("bio"),
         country: formData.get("country")
     });
 

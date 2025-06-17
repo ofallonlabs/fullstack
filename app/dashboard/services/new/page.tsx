@@ -1,10 +1,6 @@
-import SkillsFormWrapper from "@/ui/components/dashboard/forms/mentee/wrappers/skills-form-wrapper";
+import ServiceFormWrapper from "@/ui/components/dashboard/forms/mentor/wrappers/service-form-wrapper";
 
-export default async function SkillsPage({ params }: { params: Promise<{ id: string }> } ){
-    const { id } = await params;
-
-    if(!id) return null;
-
+export default function NewServicePage(){
     return (
 
         <div className="relative mb-32 divide-y-4 divide-brand-100">
@@ -12,14 +8,14 @@ export default async function SkillsPage({ params }: { params: Promise<{ id: str
 
                 <div className="text-left px-2 md:px-4 mb-4">
                     <div className="text-gray-800  font-bold text-xl xl:text-3xl flex flex-row gap-1 items-center justify-start">
-                        <div>{"Mentee Information"}</div>
+                        <div>{"Create"}</div>
                     </div> 
                 </div>
  
             </div>
             <div className="bg-white">
                 <div className="py-8 px-2 md:px-4 md:w-9/12 lg:w-8/12 xl:w-7/12">
-                    <SkillsFormWrapper method="EDIT" id={id}  />
+                    <ServiceFormWrapper method="ADD" />
                 </div>
 
             </div>

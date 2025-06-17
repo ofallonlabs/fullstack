@@ -1,4 +1,6 @@
-import { PrismaClient } from '@/generated/prisma/client';
+import { PrismaClient, Prisma, ServiceType, ServiceCategory } from '@/generated/prisma/client';
+
+export { Prisma, ServiceType, ServiceCategory };
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient }
 

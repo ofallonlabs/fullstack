@@ -38,6 +38,7 @@ model User {
   lastName                        String    
   city                            String?   
   country                         String?   
+  externalURL                     String?   
   profileCompletionReminderSentAt DateTime?
   image                           String?
   emailVerified                   Boolean  @default(false)
@@ -117,6 +118,7 @@ model Mentor {
   currentJobTitle  String? 
   aboutMe          String? 
 
+  bookingURL      String?
   stripeAccountId  String? 
   verifiedStrip    Boolean @default(false)
   verifiedCalendly Boolean @default(false)
@@ -134,7 +136,6 @@ model Mentor {
 model Mentee {
   id           Int     @id @default(autoincrement())
   userId       String  @unique
-  externalLink String? 
 
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
