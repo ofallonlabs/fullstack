@@ -118,7 +118,7 @@ model Mentor {
   currentJobTitle  String? 
   aboutMe          String? 
 
-  bookingURL      String?
+  bookingURL       String?
   stripeAccountId  String? 
   verifiedStrip    Boolean @default(false)
   verifiedCalendly Boolean @default(false)

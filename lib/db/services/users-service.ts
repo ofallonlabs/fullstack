@@ -3,7 +3,16 @@ import prisma from "@/lib/db/prisma";
 import { printError } from "@/utils/Utils";
 
 
-type UpdateUserInformationType  = {firstName?: string, lastName?: string, image?: string, country?: string, externalURL?: string};
+
+type CraeteUserInformationType = {
+  name: string  
+  firstName: string    
+  lastName: string    
+  country: string   
+  externalURL?: string   
+  image?: string    
+}
+
 
 async function getUserInformation(id: string){
 
@@ -27,7 +36,7 @@ async function getUserInformation(id: string){
 
 }
 
-async function updateUserInformation(id: string, data: UpdateUserInformationType){
+async function updateUserInformation(id: string, data: Partial<CraeteUserInformationType>){
 
     let updatedUser = null;    
 

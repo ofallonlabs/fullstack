@@ -2,25 +2,27 @@ import "server-only";
 import prisma, { Prisma } from "@/lib/db/prisma";
 import { printError } from "@/utils/Utils";
 
-type MenteeEducationType = {
+export type MenteeEducationType = {
     highestEducationalLevel: string,
     fieldOfStudy: string,
-    graduationYear: string,
+    graduationYear: number,
     graduationInstitute: string
 }
 
-type MenteeJobExperience = {
+export type MenteeJobExperience = {
     employementStatus: boolean,
     title?: string,
     employer?: string
 }
 
-type MenteeSkills = {
+export type MenteeSkills = {
+    id:number,
     name: string,
     rating: number
 }
 
-type MenteeTools = {
+export type MenteeTools = {
+    id:number,    
     name: string,
     rating: number
 }
@@ -40,7 +42,7 @@ async function getMenteeBackground(menteeId: number){
 
     }catch(e: unknown){
 
-        printError("MenteeBackground - getUserInformation",e);
+        printError("MenteeBackground - getMenteeBackground",e);
 
     }
 
@@ -187,7 +189,6 @@ async function upsertTools(menteeId: number, toolssData: MenteeTools[]){
 
 
 }
-
 
 
 export {

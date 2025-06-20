@@ -60,7 +60,7 @@ async function getMenteeGoal(menteeId: number, goalId: number){
 
 }
 
-async function createMenteeGoal(menteeId: number, data: AddMenteeGoalType){
+async function createMenteeGoal(data: AddMenteeGoalType){
 
     let newMenteeGoal = null;    
 

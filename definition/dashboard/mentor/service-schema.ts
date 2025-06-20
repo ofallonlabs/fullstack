@@ -1,25 +1,11 @@
 import { z } from "zod/v4";
+import { ServiceCategory, ServiceType } from "@/lib/db/prisma";
 
 export enum ErrorMessageType {
     SUCCESS,
     FAILURE
 }
 
-enum ServiceType {
-  SESSION,
-  SUBSCRIPTION
-}
-
-
-enum ServiceCategory {
-  PortfolioReview,
-  ProjectReview,
-  InterviewPreparation,
-  MockInterview,
-  ResumeReview,
-  AskMeAnything,
-  WeeklyMeetings,
-}
 
 export const addServiceFormSchema = z.object({
 
@@ -51,8 +37,7 @@ export const addServiceFormSchema = z.object({
 
     category: z.enum(ServiceCategory, { error : 'Invalid service category' }),
 
-    link : z.url({protocol: /^https?$/, hostname: z.regexes.domain, error: "Invalid URL path"})
-               .optional(),
+    link : z.url({protocol: /^https?$/, hostname: z.regexes.domain, error: "Invalid URL path"}),
 
     needApproval: z.boolean().default(false),
                
