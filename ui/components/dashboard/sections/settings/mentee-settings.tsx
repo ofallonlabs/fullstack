@@ -1,10 +1,10 @@
-'use client'
-
-import { useState } from 'react';
+import NavTab from '@/ui/components/dashboard/tabs/nav-tab';
 import Link from 'next/link';
 
 import PersonalInformationFormWrapper from '@/ui/components/dashboard/forms/mentee/wrappers/personal-information-form-wrapper';
 import ProfileFormWrapper from '@/ui/components/dashboard/forms/mentee/wrappers/profile-form-wrapper';
+
+import { getMenteeBackground } from '@/lib/db/services/mentee-background-service';
 
 const secondaryNavigation = [
   { name: 'Personal Information', href: '#personalinformation', current: true },
@@ -32,7 +32,6 @@ const tools = [
   { title: 'Tool #1', rating: '5'},
 ]
 
-
 const goals = [
   {
     title:  'GTitle',
@@ -47,9 +46,9 @@ const goals = [
 ]
 
 
-export default function MenteeSettings() {
-  const [tabs, updateTabs] = useState(secondaryNavigation);
+export default async function MenteeSettings({menteeId} : {menteeId: number}) {
 
+  const menteeBackground = await getMenteeBackground(menteeId);
 
   return (
     <>
@@ -65,32 +64,7 @@ export default function MenteeSettings() {
                     </div> 
                 </div>
 
-                <header className="border-b border-brand-500">
-                  <nav className="flex overflow-x-auto py-4">
-                    <ul
-                      role="list"
-                      className="flex min-w-full flex-none gap-x-6 px-4 text-sm/6 font-semibold text-gray-600 "
-                    >
-                      {tabs.map((item) => (
-                        <li key={item.name}>
-                          <a 
-                            href={item.href} 
-                            onClick={()=>{
-                                updateTabs((cur) => {
-                                    return cur.map((tb)=>{
-                                      if(item.href == tb.href) return {...tb, current:true}
-                                      else return {...tb, current:false};
-                                    });
-                                })
-                            }} 
-                            className={item.current ? 'text-brand-400' : ''}>
-                            {item.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </nav>
-                </header>
+                <NavTab navItems={secondaryNavigation}/>
 
               </div> 
 
@@ -479,7 +453,7 @@ export default function MenteeSettings() {
 
               </div>
 
-              <div id="security" className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
+              <div id="security" className="hidden grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
                 <div>
                   <h2 className="text-base/7 font-semibold text-black">Security</h2>
                   <p className="mt-1 text-sm/6 text-gray-600">Update your password to keep your account secure.</p>
@@ -544,7 +518,7 @@ export default function MenteeSettings() {
                 </form>
               </div>
  
-              <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
+              <div className="hidden grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
                 <div>
                   <h2 className="text-base/7 font-semibold text-black">Delete account</h2>
                   <p className="mt-1 text-sm/6 text-red-600">

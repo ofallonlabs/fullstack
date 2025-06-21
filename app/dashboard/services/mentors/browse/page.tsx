@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import { auth } from '@/lib/auth/auth';
 import { headers } from 'next/headers';
+import LinkTab from '@/ui/components/dashboard/tabs/link-tab';
 
 export default async function AllMentors(){
   const session = await auth.api.getSession({
@@ -34,23 +34,7 @@ export default async function AllMentors(){
                     </div> 
                 </div>
 
-                <header className="border-b border-brand-500">
-                  <nav className="flex overflow-x-auto py-4">
-                    <ul
-                      role="list"
-                      className="flex min-w-full flex-none gap-x-6 px-4 text-sm/6 font-semibold text-gray-600 "
-                    >
-                      {tabNavs.map((item) => (
-                        <li key={item.name}>
-                          <Link href={item.href}
-                           className={item.current ? 'text-brand-400' : ''}>
-                            {item.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </nav>
-                </header>
+                <LinkTab navItems={tabNavs} />
 
               </div> 
 

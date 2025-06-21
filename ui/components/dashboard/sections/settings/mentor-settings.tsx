@@ -1,7 +1,6 @@
-'use client'
-
-import { useState } from 'react';
-import { Description, Field, Label, Switch } from '@headlessui/react';
+import NavTab from '@/ui/components/dashboard/tabs/nav-tab';
+import ConnectToggleInput from '@/ui/components/dashboard/forms/mentor/connect-toggle';
+import { ConnectType } from '@/actions/common/connect-action';
 
 const secondaryNavigation = [
   { name: 'Personal Information', href: '#personalinformation', current: true },
@@ -14,11 +13,8 @@ const secondaryNavigation = [
 import PersonalInformationFormWrapper from '@/ui/components/dashboard/forms/mentor/wrappers/personal-information-form-wrapper';
 import ProfileFormWrapper from '@/ui/components/dashboard/forms/mentor/wrappers/profile-form-wrapper';
 
-export default function MentorSettings() {
-  const [paymentEnabled, setPaymentEnabled] = useState(false);
-  const [bookingEnabled, setBookingEnabled] = useState(false);
-  const [tabs, updateTabs] = useState(secondaryNavigation);
 
+export default function MentorSettings({mentorId}:{mentorId:number}) {
 
   return (
     <>
@@ -34,32 +30,8 @@ export default function MentorSettings() {
                     </div> 
                 </div>
 
-                <header className="border-b border-brand-500">
-                  <nav className="flex overflow-x-auto py-4">
-                    <ul
-                      role="list"
-                      className="flex min-w-full flex-none gap-x-6 px-4 text-sm/6 font-semibold text-gray-600 "
-                    >
-                      {tabs.map((item) => (
-                        <li key={item.name}>
-                          <a 
-                            href={item.href} 
-                            onClick={()=>{
-                                updateTabs((cur) => {
-                                    return cur.map((tb)=>{
-                                      if(item.href == tb.href) return {...tb, current:true}
-                                      else return {...tb, current:false};
-                                    });
-                                })
-                            }} 
-                            className={item.current ? 'text-brand-400' : ''}>
-                            {item.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </nav>
-                </header>
+               <NavTab navItems={secondaryNavigation}/>
+
 
               </div> 
 
@@ -94,26 +66,9 @@ export default function MentorSettings() {
                 </div>
 
                 <div className="md:col-span-2 bg-slate-100 px-2 py-4 rounded">
-                  <Field className="flex items-center justify-between">
-                    <span className="flex grow flex-col">
-                      <Label as="span" passive className="text-sm/6 font-medium text-gray-900">
-                        Connect to Stripe
-                      </Label>
-                      <Description as="span" className="text-sm text-gray-500">
-                        Connect your account to Stripe for easy payment
-                      </Description>
-                    </span>
-                    <Switch
-                      checked={paymentEnabled}
-                      onChange={setPaymentEnabled}
-                      className="group relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:outline-hidden data-checked:bg-indigo-600"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="pointer-events-none inline-block size-5 transform rounded-full bg-white ring-0 shadow-sm transition duration-200 ease-in-out group-data-checked:translate-x-5"
-                      />
-                    </Switch>
-                  </Field>
+                  
+                  <ConnectToggleInput title={"Connect to Stripe"} desc={"Connect your account to Stripe for easy payment"} isConnected={false} connectType={ConnectType.STRIPE} />
+               
                 </div>
 
               </div>
@@ -126,32 +81,13 @@ export default function MentorSettings() {
                 </div>
 
                 <div className="md:col-span-2 bg-slate-100 px-2 py-4 rounded">
-                  <Field className="flex items-center justify-between">
-                    <span className="flex grow flex-col">
-                      <Label as="span" passive className="text-sm/6 font-medium text-gray-900">
-                        Connect to Calendly
-                      </Label>
-                      <Description as="span" className="text-sm text-gray-500">
-                        Connect your account to Calendly for easy scheduing
-                      </Description>
-                    </span>
-                    <Switch
-                      checked={bookingEnabled}
-                      onChange={setBookingEnabled}
-                      className="group relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:outline-hidden data-checked:bg-indigo-600"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="pointer-events-none inline-block size-5 transform rounded-full bg-white ring-0 shadow-sm transition duration-200 ease-in-out group-data-checked:translate-x-5"
-                      />
-                    </Switch>
-                  </Field>
+                  <ConnectToggleInput title={"Connect to Calendly"} desc={"Connect your account to Calendly for easy scheduing"} isConnected={false} connectType={ConnectType.STRIPE} />
                 </div>
 
               </div>
 
 
-              <div id='security' className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
+              <div id='security' className="hidden grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
                 <div>
                   <h2 className="text-base/7 font-semibold text-black">Security</h2>
                   <p className="mt-1 text-sm/6 text-gray-600">Update your password to keep your account secure.</p>
@@ -216,7 +152,7 @@ export default function MentorSettings() {
                 </form>
               </div>
  
-              <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
+              <div className="hidden grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
                 <div>
                   <h2 className="text-base/7 font-semibold text-black">Delete account</h2>
                   <p className="mt-1 text-sm/6 text-red-600">

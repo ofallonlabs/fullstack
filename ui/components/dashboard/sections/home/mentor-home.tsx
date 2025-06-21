@@ -1,6 +1,4 @@
-"use client";
-
-import { useState } from 'react';
+import NavTab from '@/ui/components/dashboard/tabs/nav-tab';
 import { classNames } from "@/utils/Utils";
 
 const stats = [
@@ -26,7 +24,6 @@ const tabNavs = [
 
 
 export default function MentorHome({userFirstName}:{userFirstName:string}){
-  const [tabs, updateTabs] = useState(tabNavs);
 
     return (
         <div className="relative space-y-10 mb-32">
@@ -39,31 +36,7 @@ export default function MentorHome({userFirstName}:{userFirstName:string}){
                     </div> 
                 </div>
 
-                <header className="border-b border-brand-500">
-                  <nav className="flex overflow-x-auto py-4">
-                    <ul
-                      role="list"
-                      className="flex min-w-full flex-none gap-x-6 px-4 text-sm/6 font-semibold text-gray-600 "
-                    >
-                      {tabs.map((item) => (
-                        <li key={item.name}>
-                          <a href={item.href}
-                            onClick={()=>{
-                                updateTabs((cur) => {
-                                    return cur.map((tb)=>{
-                                      if(item.href == tb.href) return {...tb, current:true}
-                                      else return {...tb, current:false};
-                                    });
-                                })
-                            }} 
-                           className={item.current ? 'text-brand-400' : ''}>
-                            {item.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </nav>
-                </header>
+                <NavTab navItems={tabNavs}/>
 
               </div> 
 
