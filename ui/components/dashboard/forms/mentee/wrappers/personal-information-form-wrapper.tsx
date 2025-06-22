@@ -1,6 +1,12 @@
 import PersonalInformationForm from "@/ui/components/dashboard/forms/mentee/personal-information-form";
 import personalInformationFormAction from "@/actions/dashboard/mentee/personal-information-form-action";
+import { getUserInformation } from "@/lib/db/services/users-service";
 
-export default function PersonalInformationFormWrapper(){
-     return <PersonalInformationForm action={personalInformationFormAction}/>;
+export default async function PersonalInformationFormWrapper({userId} : {userId: string}){
+
+     const userInformation = await getUserInformation(userId);
+
+     if(!userInformation) return null;
+
+     return <PersonalInformationForm action={personalInformationFormAction} data={ { firstName: userInformation.firstName, lastName: userInformation.lastName, avatar: userInformation.image || "#" } }/>;
 }

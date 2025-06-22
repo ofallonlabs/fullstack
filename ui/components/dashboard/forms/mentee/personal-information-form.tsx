@@ -5,7 +5,7 @@ import { MenteePersonalInformationFormActionType, ErrorMessageType } from "@/def
 import FormButton from "@/ui/components/common/button/form-button";
 import SimpleMessage, { MessageState } from "@/ui/components/common/message-box/simple-message";
 
-export default function PersonalInformationForm({action}:{action:MenteePersonalInformationFormActionType}){
+export default function PersonalInformationForm({action, data}:{action:MenteePersonalInformationFormActionType, data: {firstName: string, lastName: string, avatar: string}}){
     const [state, dispatch] = useActionState(action ,undefined);  
     return (
         <>
@@ -16,30 +16,36 @@ export default function PersonalInformationForm({action}:{action:MenteePersonalI
                     <div className="col-span-full flex items-center gap-x-8">
                       <img
                         alt=""
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src={data.avatar}
                         className="size-24 flex-none rounded-lg bg-gray-800 object-cover"
                       />
-                      <div>
-                        <button
-                          type="button"
-                          disabled
-                          className="rounded-md bg-black/10 px-3 py-2 text-sm font-semibold text-black shadow-xs hover:bg-black/20"
-                        >
-                          Change avatar
-                        </button>
-                        <p className="mt-2 text-xs/5 text-gray-600">JPG, GIF or PNG. 1MB max.</p>
+                      <div className="flex flex-col gap-1">
+
+                        <div className="flex flex-col">
+                          <button
+                            type="button"
+                            disabled
+                            className="rounded-md bg-black/10 px-3 py-2 text-sm font-semibold text-black shadow-xs hover:bg-black/20"
+                          >
+                            Change avatar
+                          </button>
+                          <p className="mt-2 text-xs/5 text-gray-600">JPG, GIF or PNG. 1MB max.</p>
+                        </div>
+
+                        {state?.errors && (
+                            <div className="text-red-500 text-xs mt-0.5 w-full text-left">
+                              {
+                                  state.errors?.map((err, idx)=>{
+                                      if(err.target === "avatar")
+                                          return <div key={`avatar-error-${idx}`}>{err.message}</div>
+                                      else return null;    
+                                  })
+                              }
+                            </div>
+                        )}  
+
                       </div>
-                      {state?.errors && (
-                          <div className="text-red-500 text-xs mt-0.5 w-full text-left">
-                            {
-                                state.errors?.map((err, idx)=>{
-                                    if(err.target === "avatar")
-                                        return <div key={`avatar-error-${idx}`}>{err.message}</div>
-                                    else return null;    
-                                })
-                            }
-                          </div>
-                      )}                      
+                    
                     </div>
 
                     <div className="sm:col-span-3">
@@ -51,6 +57,7 @@ export default function PersonalInformationForm({action}:{action:MenteePersonalI
                           id="first-name"
                           name="firstname"
                           type="text"
+                          defaultValue={data.firstName || ""}                          
                           autoComplete="given-name"
                           className="block w-full rounded-md bg-black/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-500 sm:text-sm/6"
                         />
@@ -77,6 +84,7 @@ export default function PersonalInformationForm({action}:{action:MenteePersonalI
                           id="last-name"
                           name="lastname"
                           type="text"
+                          defaultValue={data.lastName || ""}                          
                           autoComplete="family-name"
                           className="block w-full rounded-md bg-black/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-500 sm:text-sm/6"
                         />

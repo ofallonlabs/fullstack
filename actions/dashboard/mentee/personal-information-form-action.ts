@@ -16,11 +16,20 @@ export default async function personalInformationFormAction(prevState: MenteePer
         return { message: {type: ErrorMessageType.FAILURE,content: "You are not allowed to perfomed this action"} };
     }    
    
-    const {success, error, data} = MenteePersonalInformationFormSchema.safeParse({
-        avatar: formData.get("avatar"),
+    let dataToValidate : {firstname: FormDataEntryValue | null, lastname: FormDataEntryValue | null, avatar?: FormDataEntryValue | null} = {
         firstname: formData.get("firstname"),
-        lastname: formData.get("lastname")
-    });
+        lastname: formData.get("lastname")        
+    }
+
+    if(formData.get("avatar")){
+        dataToValidate = {
+            avatar: formData.get("avatar"),
+            ...dataToValidate           
+        }
+    }
+    
+
+    const {success, error, data} = MenteePersonalInformationFormSchema.safeParse(dataToValidate);
 
     if(!success){
         return { 
@@ -38,6 +47,19 @@ export default async function personalInformationFormAction(prevState: MenteePer
     
     await updateUserInformation(session.user.id, avatar ? {firstName: firstname, lastName: lastname, image: avatar, name: `${firstname} ${lastname}`} : {firstName: firstname, lastName: lastname, name: `${firstname} ${lastname}`});
 
+    
+    // try{
+    
+    //     await auth.api.updateUser({body:{
+    //     firstName: firstname,
+    //     lastName: lastname,
+    //     name: `${firstname} ${lastname}`
+    //     }});
+
+    // }catch(e:unknown){
+    //      if(e instanceof Error)
+    //      return { message: {type: ErrorMessageType.FAILURE,content: `--${e.message}`} };
+    // }
 
     revalidatePath(`/`);
     return { message: {type: ErrorMessageType.SUCCESS,content: "Updated Successfully"} };

@@ -46,9 +46,11 @@ const goals = [
 ]
 
 
-export default async function MenteeSettings({menteeId} : {menteeId: number}) {
+export default async function MenteeSettings({userId, menteeId} : {userId: string, menteeId: number}) {
 
   const menteeBackground = await getMenteeBackground(menteeId);
+
+  console.log("----------", menteeBackground || "NOTHING HERE");
 
   return (
     <>
@@ -79,7 +81,7 @@ export default async function MenteeSettings({menteeId} : {menteeId: number}) {
 
                 <div className="md:col-span-2">
 
-                  <PersonalInformationFormWrapper />
+                  <PersonalInformationFormWrapper userId={userId} />
                   
                 </div>
 
@@ -92,7 +94,7 @@ export default async function MenteeSettings({menteeId} : {menteeId: number}) {
                 </div>
                 <div className="md:col-span-2">
 
-                  <ProfileFormWrapper />
+                  <ProfileFormWrapper userId={userId} />
 
                 </div>
 

@@ -1,6 +1,7 @@
 "use client";
 import { Description, Field, Label, Switch } from '@headlessui/react';
-import ToggleConnectAction, { ConnectType } from '@/actions/common/connect-action';
+import  { toggleConnectAction } from '@/actions/common/connect-action';
+import { ConnectType } from '@/definition/dashboard/common/common-types';
 import { useTransition } from 'react';
 
 export default function ConnectToggleInput({isConnected, title, desc, connectType}: {isConnected:boolean, title: string, desc: string, connectType: ConnectType}){
@@ -8,9 +9,11 @@ export default function ConnectToggleInput({isConnected, title, desc, connectTyp
     const [pending, transition] = useTransition();
 
     const handleCallback = () => {
-        transition(async () =>{
-            await ToggleConnectAction({type: connectType})
-        })
+
+      // transition(async () =>{
+      //     await toggleConnectAction({type: connectType});
+      // });
+
     }
     
     return (

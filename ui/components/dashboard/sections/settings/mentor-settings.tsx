@@ -1,6 +1,6 @@
 import NavTab from '@/ui/components/dashboard/tabs/nav-tab';
 import ConnectToggleInput from '@/ui/components/dashboard/forms/mentor/connect-toggle';
-import { ConnectType } from '@/actions/common/connect-action';
+import { ConnectType } from '@/definition/dashboard/common/common-types';
 
 const secondaryNavigation = [
   { name: 'Personal Information', href: '#personalinformation', current: true },
@@ -14,7 +14,7 @@ import PersonalInformationFormWrapper from '@/ui/components/dashboard/forms/ment
 import ProfileFormWrapper from '@/ui/components/dashboard/forms/mentor/wrappers/profile-form-wrapper';
 
 
-export default function MentorSettings({mentorId}:{mentorId:number}) {
+export default function MentorSettings({userId, mentorId} : {userId: string, mentorId: number}) {
 
   return (
     <>
@@ -44,7 +44,7 @@ export default function MentorSettings({mentorId}:{mentorId:number}) {
                   <p className="mt-1 text-sm/6 text-gray-600">Update your photo and personal details.</p>
                 </div>
 
-                <PersonalInformationFormWrapper />
+                <PersonalInformationFormWrapper userId={userId} />
 
               </div>
 

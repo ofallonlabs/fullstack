@@ -1,16 +1,9 @@
 "use server";
 
-export enum ConnectType {
-    STRIPE,
-    CALENDLY
-}
+import { ToggleConnectType } from "@/definition/dashboard/common/common-types";
 
-export type ToggleConnectType = {
-    type : ConnectType
-}
+export async function toggleConnectAction(connectType: ToggleConnectType){
 
-export type ToggleConnectActionType = (connectType: ToggleConnectType) => Promise<void>
-
-export default async function ToggleConnectAction(connectType: ToggleConnectType){
+    console.log("");
 
 }

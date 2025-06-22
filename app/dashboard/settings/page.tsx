@@ -25,10 +25,11 @@ export default async function Settings() {
   }
 
   if(!targetId) return null;
+ 
 
   return (
     <div>
-      {user && user.role === "MENTOR" ?  <MentorSettings mentorId={targetId} /> : <MenteeSettings menteeId={targetId} />}
+      {user && user.role === "MENTOR" ?  <MentorSettings mentorId={targetId} userId={user.id} /> : <MenteeSettings menteeId={targetId} userId={user.id} />}
     </div>
   );
 }

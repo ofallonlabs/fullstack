@@ -6,7 +6,7 @@ import FormButton from "@/ui/components/common/button/form-button";
 import SimpleMessage, { MessageState } from "@/ui/components/common/message-box/simple-message";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
-export default function ProfileForm({action}:{action:MenteeProfileFormActionType}){
+export default function ProfileForm({action, data}:{action:MenteeProfileFormActionType, data : {country: string, website: string}}){
     const [state, dispatch] = useActionState(action ,undefined);  
     return (
         <>
@@ -23,6 +23,7 @@ export default function ProfileForm({action}:{action:MenteeProfileFormActionType
                                 id="website"
                                 name="website"
                                 type="text"
+                                defaultValue={data.country}
                                 className="block w-full rounded-md bg-black/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-500 sm:text-sm/6"
                             />
                         </div>
@@ -47,10 +48,11 @@ export default function ProfileForm({action}:{action:MenteeProfileFormActionType
                         <select
                             id="country"
                             name="country"
+                            defaultValue={data.country || "USA"}
                             className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-black/5 py-1.5 pr-8 pl-3 text-base text-black outline-1 -outline-offset-1 outline-white/10 *:bg-gray-100 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-500 sm:text-sm/6"
                         >
-                            <option>USA</option>
-                            <option>Canada</option>
+                            <option value="USA">USA</option>
+                            <option value="CANADA">Canada</option>
                         </select>
                         <ChevronDownIcon
                             aria-hidden="true"
