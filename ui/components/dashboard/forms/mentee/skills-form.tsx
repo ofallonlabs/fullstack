@@ -4,8 +4,9 @@ import {useActionState} from "react";
 import { SkillsFormActionType, ErrorMessageType } from "@/definition/dashboard/mentee/skills-schema";
 import FormButton from "@/ui/components/common/button/form-button";
 import SimpleMessage, { MessageState } from "@/ui/components/common/message-box/simple-message";
+import { MenteeSkills } from "@/lib/db/services/mentee-background-service";
 
-export default function SkillsForm({action}:{action:SkillsFormActionType}){
+export default function SkillsForm({action, formData}:{action:SkillsFormActionType, formData: Partial<MenteeSkills> | undefined}){
     const [state, dispatch] = useActionState(action ,undefined);  
     return (
         <>
@@ -26,6 +27,7 @@ export default function SkillsForm({action}:{action:SkillsFormActionType}){
                                 id="title"
                                 name="title"
                                 type="text"
+                                defaultValue={formData ? formData?.name : undefined}
                                 autoComplete="title"
                                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                 />
@@ -55,6 +57,7 @@ export default function SkillsForm({action}:{action:SkillsFormActionType}){
                                     max={5}
                                     min={1}
                                     autoComplete="rating"
+                                    defaultValue={formData ? formData?.rating : undefined}                                    
                                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                 />
                             </div>

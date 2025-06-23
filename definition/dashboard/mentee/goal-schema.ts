@@ -5,6 +5,17 @@ export enum ErrorMessageType {
     FAILURE
 }
 
+
+export type GoalDataType = {
+    id?:number,
+    title:string,
+    description:string,
+    exr: string,
+    ext: string,
+    exmwmpm: number,
+    mattwot: number
+}
+
 export const MenteeGoalFormSchema = z.object({
 
     title: z.string({ 

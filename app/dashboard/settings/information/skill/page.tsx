@@ -1,6 +1,23 @@
 import SkillsFormWrapper from "@/ui/components/dashboard/forms/mentee/wrappers/skills-form-wrapper";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth/auth";
+import { getMentee } from "@/lib/db/services/mentee-service";
 
-export default function SkillsPage(){
+export default async function SkillsPage(){
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
+    if (!session) {
+        return <div>Not authenticated</div>;
+    }
+
+    const user = session.user;
+    if(!user || user.role == "MENTOR") return null;
+
+    let targetId : number | undefined = (await getMentee(user.id))?.id;
+
+    if(!targetId) return null;
+
     return (
 
         <div className="relative mb-32 divide-y-4 divide-brand-100">
@@ -15,7 +32,7 @@ export default function SkillsPage(){
             </div>
             <div className="bg-white">
                 <div className="py-8 px-2 md:px-4 md:w-9/12 lg:w-8/12 xl:w-7/12">
-                    <SkillsFormWrapper method="ADD" />
+                    <SkillsFormWrapper formType={{method:"ADD"}} menteeId={targetId} />
                 </div>
 
             </div>

@@ -28,13 +28,13 @@ export default async function educationFormAction(prevState: MenteeEducationForm
     const {success, error, data} = MenteeEducationFormSchema.safeParse({
         hdl: formData.get("hdl"),
         fos: formData.get("fos"),
-        gradyear: formData.get("gradyear"),
+        gradyear: Number(formData.get("gradyear")),
         gradinstitute: formData.get("gradinstitute"),
     });
 
     if(!success){
         return { 
-                error:
+                errors:
                     error?.issues?.map((zerror)=>{
                         return {
                             target: zerror.path.length > 0 ? zerror?.path?.[0].toString() : 'root',

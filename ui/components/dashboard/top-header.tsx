@@ -1,7 +1,6 @@
 import { JSX } from "react";
 import { classNames } from "@/utils/Utils";
 import Image from "next/image";
-import ProfileNavItem from "@/ui/components/dashboard/profile-navitem";
 import Link from "next/link";
 
 export type TopHeaderNavigationType = {
@@ -13,7 +12,7 @@ export type TopHeaderNavigationType = {
     current: boolean;
 }
 
-export default function DashboardTopHeader({navigation, navigationBottom}: {navigation: TopHeaderNavigationType[], navigationBottom: TopHeaderNavigationType[]}){
+export default function DashboardTopHeader({children ,navigation, navigationBottom}: {children: React.ReactNode, navigation: TopHeaderNavigationType[], navigationBottom: TopHeaderNavigationType[]}){
     return (
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
 
@@ -74,7 +73,7 @@ export default function DashboardTopHeader({navigation, navigationBottom}: {navi
                     ))}
                   </ul>
 
-                  <ProfileNavItem/>
+                  {children}
 
                 </li>
               </ul>

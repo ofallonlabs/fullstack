@@ -28,12 +28,12 @@ export default async function skillsFormAction(extras: ExtraType , prevState: Sk
     
     const {success, error, data} = SkillsFormSchema.safeParse({
         name: formData.get("name"),
-        rating: formData.get("rating")
+        rating: Number(formData.get("rating"))
     });
 
     if(!success){
         return { 
-                error:
+                errors:
                     error?.issues?.map((zerror)=>{
                         return {
                             target: zerror.path.length > 0 ? zerror?.path?.[0].toString() : 'root',

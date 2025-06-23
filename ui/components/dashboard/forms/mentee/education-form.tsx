@@ -4,8 +4,9 @@ import {useActionState} from "react";
 import { MenteeEducationFormActionType, ErrorMessageType } from "@/definition/dashboard/mentee/education-schema";
 import FormButton from "@/ui/components/common/button/form-button";
 import SimpleMessage, { MessageState } from "@/ui/components/common/message-box/simple-message";
+import { MenteeEducationType } from "@/lib/db/services/mentee-background-service";
 
-export default function EducationForm({action}:{action:MenteeEducationFormActionType}){
+export default function EducationForm({action, formData}:{action:MenteeEducationFormActionType, formData: Partial<MenteeEducationType> | undefined}){
     const [state, dispatch] = useActionState(action ,undefined);  
     return (
         <>
@@ -26,6 +27,7 @@ export default function EducationForm({action}:{action:MenteeEducationFormAction
                                 id="hdl"
                                 name="hdl"
                                 type="text"
+                                defaultValue={formData ? formData.highestEducationalLevel : undefined}
                                 autoComplete="hdl"
                                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                 />
@@ -53,6 +55,7 @@ export default function EducationForm({action}:{action:MenteeEducationFormAction
                                 name="fos"
                                 type="text"
                                 autoComplete="fos"
+                                defaultValue={formData ? formData.fieldOfStudy : undefined}
                                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                 />
                             </div>
@@ -78,6 +81,7 @@ export default function EducationForm({action}:{action:MenteeEducationFormAction
                                     id="gradyear"
                                     name="gradyear"
                                     type="number"
+                                    defaultValue={formData ? formData.graduationYear : undefined}
                                     autoComplete="gradyear"
                                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                 />
@@ -104,6 +108,7 @@ export default function EducationForm({action}:{action:MenteeEducationFormAction
                                     id="gradinstitute"
                                     name="gradinstitute"
                                     type="text"
+                                    defaultValue={formData ? formData.graduationInstitute : undefined}
                                     autoComplete="gradinstitute"
                                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                 />

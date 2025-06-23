@@ -47,21 +47,29 @@ export default async function personalInformationFormAction(prevState: MenteePer
     
     await updateUserInformation(session.user.id, avatar ? {firstName: firstname, lastName: lastname, image: avatar, name: `${firstname} ${lastname}`} : {firstName: firstname, lastName: lastname, name: `${firstname} ${lastname}`});
 
+     
     
     // try{
     
-    //     await auth.api.updateUser({body:{
-    //     firstName: firstname,
-    //     lastName: lastname,
-    //     name: `${firstname} ${lastname}`
-    //     }});
+    //     await auth.api.updateUser(
+    //         {
+    //             body:
+    //             {
+    //                 firstName: firstname,
+    //                 lastName: lastname,
+    //                 name: `${firstname} ${lastname}`
+    //             },
+    //             headers: await headers()
+    //         }
+    //     );
 
     // }catch(e:unknown){
     //      if(e instanceof Error)
-    //      return { message: {type: ErrorMessageType.FAILURE,content: `--${e.message}`} };
+    //      return { message: {type: ErrorMessageType.FAILURE,content: `${e.message}`} };
     // }
 
-    revalidatePath(`/`);
+    revalidatePath(`/`); 
+    
     return { message: {type: ErrorMessageType.SUCCESS,content: "Updated Successfully"} };
 }
 

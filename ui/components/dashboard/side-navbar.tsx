@@ -1,7 +1,6 @@
 import { JSX } from "react";
 import { classNames } from "@/utils/Utils";
 import Image from "next/image";
-import ProfileNavItem from "@/ui/components/dashboard/profile-navitem";
 import Link from "next/link";
 
 export type SideBarNavigationType = {
@@ -13,7 +12,7 @@ export type SideBarNavigationType = {
     current: boolean;
 }
 
-export default function SideNavbar({navigation, navigationBottom}: {navigation: SideBarNavigationType[], navigationBottom: SideBarNavigationType[]}){
+export default function SideNavbar({children, navigation, navigationBottom}: {children: React.ReactNode, navigation: SideBarNavigationType[], navigationBottom: SideBarNavigationType[]}){
     return (
               <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2">
                 <div className="flex h-16 shrink-0 items-center">
@@ -71,7 +70,7 @@ export default function SideNavbar({navigation, navigationBottom}: {navigation: 
                     ))}
                   </ul>
 
-                  <ProfileNavItem/>
+                  {children}
 
                 </li>
                   </ul>

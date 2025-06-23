@@ -29,13 +29,13 @@ export default async function goalFormAction(extras: ExtraType , prevState: Ment
         description: formData.get("description"),
         exr: formData.get("exr"),
         ext: formData.get("ext"),
-        exmwmpm: formData.get("exmwmpm"),
-        mattwot: formData.get("mattwot")    
+        exmwmpm: Number(formData.get("exmwmpm")),
+        mattwot: Number(formData.get("mattwot"))    
     });
 
     if(!success){
         return { 
-                error:
+                errors:
                     error?.issues?.map((zerror)=>{
                         return {
                             target: zerror.path.length > 0 ? zerror?.path?.[0].toString() : 'root',

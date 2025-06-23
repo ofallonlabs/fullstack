@@ -1,21 +1,23 @@
-'use client';
-
-import { useSession } from "@/lib/auth/auth-client";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth/auth";
 import Image from "next/image";
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import SignoutButton from "@/ui/elements/signout-button";
 
 const userNavigation = [
-  { name: 'Settings', href: '#', wrapped:false },
+  { name: 'Settings', href: '/dashboard/settings', wrapped:false },
   { name: 'Sign out', href: '#', wrapped:true },
 ]
 
-export default function AvatarFlayout() {
-  const { data } = useSession();
-  const avatarURL = data?.user?.image || null;
+export default async function AvatarFlayout() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });    
+  const avatarURL = session?.user?.image || null;
+ 
       
   return (
-   <Menu as="div" className="relative ml-3 z-50">
+   <Menu as="div" className="relative mx-3 z-50">
         <div>
             <MenuButton className="relative flex max-w-xs items-center rounded-full bg-brand-600 text-sm text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand-600 focus:outline-hidden">               
                 {

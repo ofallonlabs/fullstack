@@ -3,6 +3,7 @@ import AvatarFlayout from "@/ui/elements/avatar-flyout";
 import Header from "@/ui/components/common/nav/auth/header";
 import BottomSheet from "@/ui/components/dashboard/bottom-sheet";
 import DashboardNavDialogLayout from '@/ui/components/dashboard/dashboard-nav-dialog';
+import ProfileNavItem from "@/ui/components/dashboard/profile-navitem";
 
 export default function DashboardLayout({
   children,
@@ -22,7 +23,7 @@ export default function DashboardLayout({
           </Header>       
         </div>
 
-        <DashboardNavDialogLayout>
+        <DashboardNavDialogLayout profile={<ProfileNavItem/>}>
            <>
               <NotificationFlyout/>
               <AvatarFlayout/>

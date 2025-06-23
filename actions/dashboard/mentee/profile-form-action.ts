@@ -14,14 +14,23 @@ export default async function profileFormAction(prevState: MenteeProfileFormStat
         return { message: {type: ErrorMessageType.FAILURE,content: "You are not allowed to perfomed this action"} };
     }
 
-    const {success, error, data} = MenteeProfileFormSchema.safeParse({
-        website: formData.get("website"),
-        country: formData.get("country")
-    });
+    let dataToValidate : {country: FormDataEntryValue | null, website?: FormDataEntryValue | null} = {
+        country: formData.get("country")        
+    }
 
+    if(formData.get("website")){
+        dataToValidate = {
+            website: formData.get("website"),
+            ...dataToValidate           
+        }
+    }
+
+    const {success, error, data} = MenteeProfileFormSchema.safeParse(dataToValidate);
+ 
+ 
     if(!success){
         return { 
-                error:
+                errors:
                     error?.issues?.map((zerror)=>{
                         return {
                             target: zerror.path.length > 0 ? zerror?.path?.[0].toString() : 'root',

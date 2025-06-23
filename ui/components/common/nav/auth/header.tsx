@@ -17,13 +17,13 @@ export default function Header({ children }: { children: React.ReactNode }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     return (
         <header className="bg-white border-b border-b-slate-300 transition-all duration-200 sticky top-0 inset-x-0 z-50">
-            <nav aria-label="Global" className="mx-auto  2xl:w-11/12  px-6 py-4 lg:px-8 text-sm text-slate-500 font-light">
+            <nav aria-label="Global" className="mx-auto  2xl:w-11/12 px-2 md:px-6 py-4 lg:px-8 text-sm text-slate-500 font-light">
             
                 <div className="flex flex-row items-center justify-between gap-10">
 
                     <div className="flex flex-row flex-1 w-full lg:flex-none lg:w-fit justify-between items-center">
                         <Image alt="" src={"/logo_full.svg"} width={184} height={35} />
-                        <div className="lg:hidden flex flex-row items-center gap-6 z-50">
+                        <div className="lg:hidden flex flex-row items-center gap-2 md:gap-4 lg:gap-6 z-50">
                             <Link href={"/contact"}>
                                 <svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M11.97 22c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10z"></path>
@@ -56,7 +56,7 @@ export default function Header({ children }: { children: React.ReactNode }) {
                         </ul>
                     </div>
 
-                    <div className="hidden lg:flex flex-row items-center gap-6">
+                    <div className="hidden lg:flex flex-row items-center gap-2 md:gap-4 lg:gap-6">
                         <Link href={"/contact"}>
                             <svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M11.97 22c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10z"></path>
@@ -79,32 +79,32 @@ export default function Header({ children }: { children: React.ReactNode }) {
 
                 <div className="pt-4 bg-white">           
 
-                    <div className="flex items-center justify-between  px-6">
-                    <div className="flex flex-1 items-center justify-between">
-                        
-                        <a href="#" className="-m-1.5 p-1.5">
-                            <span className="sr-only">Your Company</span>
-                            <Image alt="" src={"/logo_full.svg"} width={184} height={35} />
-                        </a>
-                        <div className="lg:hidden flex flex-row items-center gap-6 text-gray-600">
-                            <Link href={"/contact"}>
-                                <svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M11.97 22c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10z"></path>
-                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 16.5a4.5 4.5 0 100-9 4.5 4.5 0 000 9zM4.9 4.93l3.54 3.53M4.9 19.07l3.54-3.53M19.05 19.07l-3.54-3.53M19.05 4.93l-3.54 3.53"></path>
-                                </svg>
-                            </Link>
-                            {children}
-                            <button
-                                type="button"
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="-m-2.5 rounded-md p-2 text-gray-700 hover:rounded-md hover:bg-blue-300/15 hover:cursor-pointer transition-all duration-200"
-                                >
-                                <span className="sr-only">Close menu</span>
-                                <XMarkIcon aria-hidden="true" className="size-6" />
-                            </button>
-                        </div>
+                    <div className="flex items-center justify-between px-2 md:px-4 lg:px-6">
+                        <div className="flex flex-1 items-center justify-between">
+                            
+                            <a href="#" className="-m-1.5 p-1.5">
+                                <span className="sr-only">Your Company</span>
+                                <Image alt="" src={"/logo_full.svg"} width={184} height={35} />
+                            </a>
+                            <div className="lg:hidden flex flex-row items-center gap-2 md:gap-4 lg:gap-6 text-gray-600">
+                                <Link href={"/contact"}>
+                                    <svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M11.97 22c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10z"></path>
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 16.5a4.5 4.5 0 100-9 4.5 4.5 0 000 9zM4.9 4.93l3.54 3.53M4.9 19.07l3.54-3.53M19.05 19.07l-3.54-3.53M19.05 4.93l-3.54 3.53"></path>
+                                    </svg>
+                                </Link>
+                                {children}
+                                <button
+                                    type="button"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="-m-2.5 rounded-md p-2 text-gray-700 hover:rounded-md hover:bg-blue-300/15 hover:cursor-pointer transition-all duration-200"
+                                    >
+                                    <span className="sr-only">Close menu</span>
+                                    <XMarkIcon aria-hidden="true" className="size-6" />
+                                </button>
+                            </div>
 
-                    </div>
+                        </div>
                     </div>
                     <div className="mt-6 space-y-3 px-11 pb-8 border-b border-b-gray-300 shadow">
                     {navigation.map((item) => (

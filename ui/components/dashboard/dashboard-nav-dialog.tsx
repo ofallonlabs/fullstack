@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { JSX, useEffect, useState } from 'react';
 import Link from "next/link";
 import { Dialog, DialogBackdrop, DialogPanel, TransitionChild } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -26,9 +26,10 @@ const navigation_bottom_data = [
 
 
 export default function DashboardNavDialogLayout({
-  children,
+  children, profile
 }: {
-  children: React.ReactNode
+  children: React.ReactNode,
+  profile:  JSX.Element | null
 }){
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [navigation, setNavigation] = useState(navigation_data);
@@ -75,16 +76,20 @@ export default function DashboardNavDialogLayout({
                 </div>
               </TransitionChild>
 
-              <SideNavbar navigation={navigation} navigationBottom={navigation_bottom}/>
+              <SideNavbar navigation={navigation} navigationBottom={navigation_bottom}>
+                {profile}
+              </SideNavbar>
 
             </DialogPanel>
           </div>
         </Dialog>
 
  
-        <DashboardTopHeader navigation={navigation} navigationBottom={navigation_bottom}/>
+        <DashboardTopHeader navigation={navigation} navigationBottom={navigation_bottom}>
+          {profile}
+        </DashboardTopHeader>
 
-        <div className="sticky top-0 z-40 items-center gap-x-6 bg-white px-4 py-4 shadow-xs sm:px-6 hidden sm:flex lg:hidden">
+        <div className="sticky top-0 z-40 items-center gap-x-6 bg-white px-4 py-4 shadow-xs px-2 hidden sm:flex lg:hidden">
           <button type="button" onClick={() => setSidebarOpen(true)} className="-m-2.5 p-2.5 text-gray-700 hidden sm:block lg:hidden">
             <span className="sr-only">Open sidebar</span>
             <Bars3Icon aria-hidden="true" className="size-6" />

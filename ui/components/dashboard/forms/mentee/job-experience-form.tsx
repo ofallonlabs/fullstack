@@ -6,9 +6,10 @@ import FormButton from "@/ui/components/common/button/form-button";
 import SimpleMessage, { MessageState } from "@/ui/components/common/message-box/simple-message";
 import { useState } from 'react'
 import { Switch } from '@headlessui/react'
+import { MenteeJobExperience } from "@/lib/db/services/mentee-background-service";
 
-export default function JobExperienceForm({action}:{action:JobExperienceFormActionType}){
-    const [enabled, setEnabled] = useState(false);
+export default function JobExperienceForm({action, formData}:{action:JobExperienceFormActionType, formData: Partial<MenteeJobExperience> | undefined}){
+    const [enabled, setEnabled] = useState(formData?.employementStatus || false);
     const [state, dispatch] = useActionState(action ,undefined);  
 
     return (
@@ -23,7 +24,7 @@ export default function JobExperienceForm({action}:{action:JobExperienceFormActi
 
                         <div className="sm:col-span-4">
                             <label htmlFor="status" className="block text-sm/6 font-medium text-gray-900">
-                                Employed / Unemployed
+                                Unemployed/Employed
                             </label>
                             <div className="mt-2">
                                 <Switch
@@ -66,6 +67,7 @@ export default function JobExperienceForm({action}:{action:JobExperienceFormActi
                                             id="title"
                                             name="title"
                                             type="text"
+                                            defaultValue={formData ? formData?.title : undefined}
                                             autoComplete="title"
                                             className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-600 sm:text-sm/6"
                                             />
@@ -92,6 +94,7 @@ export default function JobExperienceForm({action}:{action:JobExperienceFormActi
                                             id="employer"
                                             name="employer"
                                             type="text"
+                                            defaultValue={formData ? formData?.employer : undefined}                                            
                                             autoComplete="employer"
                                             className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-600 sm:text-sm/6"
                                             />

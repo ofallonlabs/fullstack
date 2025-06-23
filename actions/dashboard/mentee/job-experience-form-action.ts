@@ -8,7 +8,7 @@ import { headers } from "next/headers";
 import { auth } from "@/lib/auth/auth";
 
 export default async function jobExperienceFormAction(prevState: JobExperienceFormState, formData: FormData) {
-
+ 
     const session = await auth.api.getSession({
         headers: await headers(),
     });
@@ -23,16 +23,25 @@ export default async function jobExperienceFormAction(prevState: JobExperienceFo
         return { message: {type: ErrorMessageType.FAILURE,content: "You are not allowed to perfomed this action"} };
     }  
 
+    let dataToValidate : {status: boolean | null, title?: FormDataEntryValue | null, employer?: FormDataEntryValue | null} = {
+        status: formData.get("status")?.toString() == "on"     
+    }
 
-    const {success, error, data} = JobExperienceFormSchema.safeParse({
-        status: formData.get("status"),
-        title: formData.get("title"),
-        employer: formData.get("employer"),
-    });
+    if(formData.get("status")?.toString() == "on"){
+        dataToValidate = {
+            title: formData.get("title"),
+            employer: formData.get("employer"),
+            ...dataToValidate           
+        }
+    }
 
+
+    const {success, error, data} = JobExperienceFormSchema.safeParse(dataToValidate);
+
+   
     if(!success){
         return { 
-                error:
+                errors:
                     error?.issues?.map((zerror)=>{
                         return {
                             target: zerror.path.length > 0 ? zerror?.path?.[0].toString() : 'root',
@@ -43,6 +52,7 @@ export default async function jobExperienceFormAction(prevState: JobExperienceFo
     }
  
     const { status, employer, title } = data;
+ 
 
     let dataToUpdate : MenteeJobExperience = {employementStatus: status };
     if(employer){

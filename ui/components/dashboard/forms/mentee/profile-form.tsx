@@ -1,18 +1,24 @@
 "use client";
 
-import {useActionState} from "react";
+import {useActionState, useEffect, useState} from "react";
 import { MenteeProfileFormActionType, ErrorMessageType } from "@/definition/dashboard/mentee/profile-schema";
 import FormButton from "@/ui/components/common/button/form-button";
 import SimpleMessage, { MessageState } from "@/ui/components/common/message-box/simple-message";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 export default function ProfileForm({action, data}:{action:MenteeProfileFormActionType, data : {country: string, website: string}}){
-    const [state, dispatch] = useActionState(action ,undefined);  
+    const [state, dispatch] = useActionState(action ,undefined);
+    const [selectedCountry, updateCountry] = useState(data.country);
+    
+    useEffect(()=>{
+       updateCountry(data.country);
+    },[data,updateCountry])
+ 
     return (
         <>
             <form action={dispatch}>
 
-                <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
+                <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:max-w-xl sm:grid-cols-6">
 
                     <div className="sm:col-span-6">
                         <label htmlFor="website" className="block text-sm/6 font-medium text-black">
@@ -23,7 +29,7 @@ export default function ProfileForm({action, data}:{action:MenteeProfileFormActi
                                 id="website"
                                 name="website"
                                 type="text"
-                                defaultValue={data.country}
+                                defaultValue={data.website}
                                 className="block w-full rounded-md bg-black/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-500 sm:text-sm/6"
                             />
                         </div>
@@ -42,17 +48,17 @@ export default function ProfileForm({action, data}:{action:MenteeProfileFormActi
 
                     <div className="col-span-full">
                         <label htmlFor="country" className="block text-sm/6 font-medium text-black">
-                        Country
+                        Country{" - "}<span className="py-0.5 px-3 bg-brand-50 text-brand-700 text-xs font-medium rounded ">{selectedCountry.toUpperCase()}</span>
                         </label>
                         <div className="mt-2 grid grid-cols-1">
                         <select
                             id="country"
                             name="country"
-                            defaultValue={data.country || "USA"}
+                            defaultValue={selectedCountry}
                             className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-black/5 py-1.5 pr-8 pl-3 text-base text-black outline-1 -outline-offset-1 outline-white/10 *:bg-gray-100 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-500 sm:text-sm/6"
                         >
-                            <option value="USA">USA</option>
-                            <option value="CANADA">Canada</option>
+                            <option value="usa">USA</option>
+                            <option value="canada">Canada</option>
                         </select>
                         <ChevronDownIcon
                             aria-hidden="true"
