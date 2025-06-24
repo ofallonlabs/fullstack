@@ -17,7 +17,7 @@ export default async function Home() {
 
   return (
     <div>
-      {user && user.role === "MENTOR" ?  <MentorHome userFirstName={user.firstName}/> : <MenteeHome userFirstName={user.firstName}/>}
+      {user && user.role === "MENTOR" ?  <MentorHome userFirstName={user.firstName} userId={user.id} /> : <MenteeHome userFirstName={user.firstName} userId={user.id}/>}
     </div>
   );
 }

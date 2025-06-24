@@ -25,19 +25,19 @@ export default function SkillsForm({action, formData}:{action:SkillsFormActionTy
                             <div className="mt-2">
                                 <input
                                 id="title"
-                                name="title"
+                                name="name"
                                 type="text"
                                 defaultValue={formData ? formData?.name : undefined}
-                                autoComplete="title"
-                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                autoComplete="name"
+                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-600 sm:text-sm/6"
                                 />
                             </div>
                             {state?.errors && (
                                 <div className="text-red-500 text-xs mt-0.5 w-full text-left">
                                     {
                                         state.errors?.map((err, idx)=>{
-                                            if(err.target === "title")
-                                                return <div key={`title-error-${idx}`}>{err.message}</div>
+                                            if(err.target === "name")
+                                                return <div key={`name-error-${idx}`}>{err.message}</div>
                                             else return null;    
                                         })
                                     }
@@ -58,7 +58,7 @@ export default function SkillsForm({action, formData}:{action:SkillsFormActionTy
                                     min={1}
                                     autoComplete="rating"
                                     defaultValue={formData ? formData?.rating : undefined}                                    
-                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-600 sm:text-sm/6"
                                 />
                             </div>
                             {state?.errors && (

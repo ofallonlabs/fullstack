@@ -1,27 +1,13 @@
-import { classNames } from "@/utils/Utils";
 import NavTab from '@/ui/components/dashboard/tabs/nav-tab';
-
-const stats = [
-    { name: 'Total Applications', value: '0', change: '+0%', changeType: 'positive' },
-    { name: 'Total Sessions Booked', value: '0', change: '+0%', changeType: 'positive' },
-    { name: 'Total Mentors', value: '0', change: '+0%', changeType: 'positive' }
-]
-
-const todos = [
-  { action: 'Complete Your Profile', status: 'INCOMPLETE', description: 'Complete your profile to attract mentors', subdescription: 'A detailed profile helps mentors understand your needs' , link: '#' },
-  { action: 'Setup Goals', status: 'INCOMPLETE', description: 'Connect your Stripe account to receive payments', subdescription: 'Only your mentors will be able to see your goals' , link: '#' },
-  { action: 'Apply To Mentors', status: 'INCOMPLETE', description: 'Connect your Calendly to schedule sessions', subdescription: 'Send applications to start your mentorship journey' , link: '#' },
-  { action: 'Review Mentorships', status: 'INCOMPLETE', description: 'Create your first montoring service', subdescription: 'Do not let mentees requests hand for too long' , link: '#' }
-]
+import TodoTableWrapper from "@/ui/components/dashboard/tables/mentee/wrappers/to-do-table-wrapper";
+import StatisticsWrapper from "@/ui/components/dashboard/stats/mentee/wrappers/statistics-wrapper";
 
 const tabNavs = [
   { name: 'Stats', href: '#stats', current: true },
   { name: 'To-do', href: '#todo', current: false },
 ]
 
-
-
-export default function MenteeHome({userFirstName}:{userFirstName:string}){
+export default function MenteeHome({userFirstName, userId}:{userFirstName:string, userId: string}){
 
     return (
         <div className="relative space-y-10 mb-32">
@@ -49,36 +35,7 @@ export default function MenteeHome({userFirstName}:{userFirstName:string}){
             </div>
 
             <div id='stats' className="space-y-4">
-                <div className="flex flex-col gap-1 md:gap-4 text-center px-2 md:px-4">
-                    <div className="text-gray-800  font-bold text-xl xl:text-3xl flex flex-row gap-1 items-center justify-start lg:justify-center">
-                        <div>{"Your stats"}</div> 
-                    </div>                
-                    <div className="text-gray-600 text-balance truncate font-light text-sm md:text-base lg:text-lg xl:text-xl text-left lg:text-center">
-                        {"Keep track of your progress on the platform and find ways to improve your stats"}
-                    </div>
-                </div>  
-
-                <div>
-                    <dl className="mx-auto grid grid-cols-1 gap-px bg-gray-900/5 sm:grid-cols-2 lg:grid-cols-3">
-                    {stats.map((stat) => (
-                        <div
-                        key={stat.name}
-                        className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 bg-white px-4 py-10 sm:px-6 xl:px-8"
-                        >
-                        <dt className="text-sm/6 font-medium text-gray-500">{stat.name}</dt>
-                        <dd
-                            className={classNames(
-                            stat.changeType === 'negative' ? 'text-rose-600' : 'text-gray-700',
-                            'text-xs font-medium',
-                            )}
-                        >
-                            {stat.change}
-                        </dd>
-                        <dd className="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">{stat.value}</dd>
-                        </div>
-                    ))}
-                    </dl>                    
-                </div>             
+                <StatisticsWrapper userId={userId} />            
             </div>
 
             <div id='todo' className="space-y-4"> 
@@ -91,62 +48,7 @@ export default function MenteeHome({userFirstName}:{userFirstName:string}){
                     </div>
                 </div>  
                 <div className="mt-8 mx-0 md:mx-4 lg:mx-6 xl:mx-8">
-                    <table className="min-w-full divide-y divide-gray-300 border border-slate-200">
-
-                        <thead className="">
-                            <tr>
-                            <th scope="col" className="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-4">
-                                Action Items
-                            </th>
-                            <th
-                                scope="col"
-                                className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
-                            >
-                                Status
-                            </th>
-                            <th
-                                scope="col"
-                                className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
-                            >
-                                Description
-                            </th>
-                            <th scope="col" className="relative py-3.5 pr-4 pl-3 sm:pr-0">
-                                <span className="sr-only">Edit</span>
-                            </th>
-                            </tr>
-                        </thead>
-                        
-                        <tbody className="divide-y divide-gray-200 bg-white">
-                            {todos.map((todo) => (
-                            <tr key={todo.action}>
-                                <td className="w-full max-w-0 py-4 pr-3 pl-4 text-xs lg:text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-4">
-                                {todo.action}
-                                <dl className="font-normal lg:hidden">
-                                    <dt className="sr-only">Action</dt>
-                                    <dd className="mt-1 truncate text-xs  bg-red-200 rounded text-red-600 w-fit px-2 py-0.5">{todo.status}</dd>
-                                    <dt className="sr-only sm:hidden">Description</dt>
-                                    <dd className="mt-1 truncate text-xs text-gray-500 sm:hidden">{todo.description}</dd>
-                                </dl>
-                                </td>
-                                <td className="hidden px-3 py-4 truncate text-xs lg:table-cell">
-                                    <div className="bg-red-200 text-xs rounded text-red-600 w-fit px-2 py-0.5">{todo.status}</div>
-                                </td>
-                                <td className="hidden px-3 py-4 truncate text-sm text-gray-500 sm:table-cell">
-                                    <div className="flex flex-col gap-1">
-                                        <div className="text-gray-900">{todo.description}</div>
-                                        <div className="text-gray-500 text-sm">{todo.subdescription}</div>
-                                    </div>
-                                </td>
-                                <td className="min-w-[70px] py-4 pr-4 pl-3 text-right text-xs lg:text-sm font-medium sm:pr-4">
-                                    <a href="#" className="text-brand-600 hover:text-brand-900">
-                                        Fix it<span className="sr-only">, {todo.action}</span>
-                                    </a>
-                                </td>
-                            </tr>
-                            ))}
-                        </tbody>
-
-                    </table>
+                    <TodoTableWrapper userId={userId} />
                 </div> 
 
             </div>                    

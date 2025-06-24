@@ -56,7 +56,7 @@ async function upsertEducation(menteeId: number, educationData: MenteeEducationT
 
     try{
 
-        var json = educationData as Prisma.InputJsonValue
+        const json = educationData as Prisma.InputJsonValue
 
         upsertedMenteeBackground = await prisma.menteeBackground.upsert({
             where: {
@@ -91,7 +91,7 @@ async function upsertJobExperience(menteeId: number, jobExperienceData: MenteeJo
 
     try{
 
-        var json = jobExperienceData as Prisma.InputJsonValue
+        const json = jobExperienceData as Prisma.InputJsonValue
 
         upsertedMenteeBackground = await prisma.menteeBackground.upsert({
             where: {
@@ -126,7 +126,7 @@ async function upsertSkills(menteeId: number, skillsData: MenteeSkills[]){
 
     try{
 
-        var json = skillsData as Prisma.JsonArray
+        const json = skillsData as Prisma.JsonArray
 
         upsertedMenteeSkills = await prisma.menteeBackground.upsert({
             where: {
@@ -161,7 +161,7 @@ async function upsertTools(menteeId: number, toolssData: MenteeTools[]){
 
     try{
 
-        var json = toolssData as Prisma.JsonArray
+        const json = toolssData as Prisma.JsonArray
 
         upsertedMenteeTools = await prisma.menteeBackground.upsert({
             where: {

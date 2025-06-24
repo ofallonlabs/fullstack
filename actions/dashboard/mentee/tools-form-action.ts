@@ -52,11 +52,11 @@ export default async function toolsFormAction(extras: ExtraType , prevState: Too
     let toolsArray : MenteeTools[] = [];
 
     if(menteeBackground){
-        const tools = menteeBackground.tools;
-        const stringTools = tools?.toString();
+        const tools = menteeBackground.tools as MenteeTools[] | undefined;
 
-        if(stringTools){
-            toolsArray = JSON.parse(stringTools);
+
+        if(tools && tools?.length > 0){
+            toolsArray = [...tools];
 
             if(extras.method == "ADD"){
 

@@ -7,7 +7,7 @@ const secondaryNavigation = [
   { name: 'Profile', href: '#profile', current: false },
   { name: 'Paymnet', href: '#payment', current: false },
   { name: 'Booking', href: '#booking', current: false },
-  { name: 'Security', href: '#security', current: false },
+  // { name: 'Security', href: '#security', current: false },
 ]
 
 import PersonalInformationFormWrapper from '@/ui/components/dashboard/forms/mentor/wrappers/personal-information-form-wrapper';
@@ -54,7 +54,7 @@ export default function MentorSettings({userId, mentorId} : {userId: string, men
                   <p className="mt-1 text-sm/6 text-gray-600">Update your portfolio and bio.</p>
                 </div>
 
-                <ProfileFormWrapper />
+                <ProfileFormWrapper userId={userId} />
 
               </div>
 

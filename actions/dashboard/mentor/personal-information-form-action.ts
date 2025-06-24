@@ -16,15 +16,23 @@ export default async function personalInformationFormAction(prevState: mentorPer
         return { message: {type: ErrorMessageType.FAILURE,content: "You are not allowed to perfomed this action"} };
     }       
 
-    const {success, error, data} = mentorPersonalInformationFormSchema.safeParse({
-        avatar: formData.get("avatar"),
+    let dataToValidate : {firstname: FormDataEntryValue | null, lastname: FormDataEntryValue | null, avatar?: FormDataEntryValue | null} = {
         firstname: formData.get("firstname"),
-        lastname: formData.get("lastname")
-    });
+        lastname: formData.get("lastname")        
+    }
+
+    if(formData.get("avatar")){
+        dataToValidate = {
+            avatar: formData.get("avatar"),
+            ...dataToValidate           
+        }
+    }
+
+    const {success, error, data} = mentorPersonalInformationFormSchema.safeParse(dataToValidate);
 
     if(!success){
         return { 
-                error:
+                errors:
                     error?.issues?.map((zerror)=>{
                         return {
                             target: zerror.path.length > 0 ? zerror?.path?.[0].toString() : 'root',

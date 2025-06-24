@@ -5,16 +5,25 @@ import { SkillsFormSchema } from "@/definition/dashboard/mentee/skills-schema";
 
 export default async function SkillsTableWrappers({menteeId}: {menteeId: number}){
 
-    let menteeBackground  = ((await getMenteeBackground(menteeId))?.skills) as Partial<MenteeSkills> | undefined;
+    let menteeBackground  = ((await getMenteeBackground(menteeId))?.skills) as Partial<MenteeSkills[]> | undefined;
+    let skills : MenteeSkills[] = [];
 
-    const {success} = SkillsFormSchema.safeParse({
-                name: menteeBackground?.name,
-                rating: menteeBackground?.rating,
-            });
+    if(menteeBackground != undefined && menteeBackground?.length > 0){
 
-    if(!success){
-         menteeBackground = undefined;
+        skills = menteeBackground?.filter((skill) => {
+
+                const {success} = SkillsFormSchema.safeParse({
+                    name: skill?.name,
+                    rating: skill?.rating,
+                });
+
+                return success;
+
+        }).filter((skill) => skill != undefined)
+
     }
+
+
 
     return (
         <div className="">
@@ -39,7 +48,7 @@ export default async function SkillsTableWrappers({menteeId}: {menteeId: number}
                 </thead>
                 
                 <tbody className="divide-y divide-gray-200 bg-white">
-                    <SkillTable skillsData={menteeBackground ? [menteeBackground] : []}/>
+                    <SkillTable skillsData={skills}/>
                 </tbody>
 
             </table>

@@ -19,27 +19,32 @@ export default function PersonalInformationForm({action, data}:{action:mentorPer
                         src={data.avatar}
                         className="size-24 flex-none rounded-lg bg-gray-800 object-cover"
                       />
-                      <div>
-                        <button
-                          type="button"
-                          disabled
-                          className="rounded-md bg-black/10 px-3 py-2 text-sm font-semibold text-black shadow-xs hover:bg-black/20"
-                        >
-                          Change avatar
-                        </button>
-                        <p className="mt-2 text-xs/5 text-gray-600">JPG, GIF or PNG. 1MB max.</p>
-                      </div>
-                      {state?.errors && (
-                          <div className="text-red-500 text-xs mt-0.5 w-full text-left">
-                            {
-                                state.errors?.map((err, idx)=>{
-                                    if(err.target === "avatar")
-                                        return <div key={`avatar-error-${idx}`}>{err.message}</div>
-                                    else return null;    
-                                })
-                            }
-                          </div>
-                      )}                      
+                      <div className="flex flex-col gap-1">
+
+                        <div className="flex flex-col">
+                          <button
+                            type="button"
+                            disabled
+                            className="rounded-md bg-black/10 px-3 py-2 text-sm font-semibold text-black shadow-xs hover:bg-black/20"
+                          >
+                            Change avatar
+                          </button>
+                          <p className="mt-2 text-xs/5 text-gray-600">JPG, GIF or PNG. 1MB max.</p>
+                        </div>
+
+                        {state?.errors && (
+                            <div className="text-red-500 text-xs mt-0.5 w-full text-left">
+                              {
+                                  state.errors?.map((err, idx)=>{
+                                      if(err.target === "avatar")
+                                          return <div key={`avatar-error-${idx}`}>{err.message}</div>
+                                      else return null;    
+                                  })
+                              }
+                            </div>
+                        )}  
+
+                      </div>                      
                     </div>
 
                     <div className="sm:col-span-3">
@@ -113,8 +118,8 @@ export default function PersonalInformationForm({action, data}:{action:mentorPer
                     <FormButton 
                       title = {{ idle:"Save", pending:"Saving..." }} 
                       style = {{ 
-                        idle: "flex w-full justify-center rounded-md bg-brand-500 px-3 py-1.5 text-sm/6 font-semibold hover:cursor-pointer text-white shadow-xs hover:bg-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600", 
-                        pending: "flex w-full justify-center rounded-md bg-brand-100 border border-brand-500 px-3 py-1.5 text-sm/6 font-semibold hover:cursor-not-allowed text-brand-500 animate-pulse duration-300" 
+                        idle: "flex w-full md:w-fit justify-center rounded-md bg-brand-500 px-3 py-1.5 text-sm/6 font-semibold hover:cursor-pointer text-white shadow-xs hover:bg-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600", 
+                        pending: "flex w-full md:w-fit justify-center rounded-md bg-brand-100 border border-brand-500 px-3 py-1.5 text-sm/6 font-semibold hover:cursor-not-allowed text-brand-500 animate-pulse duration-300" 
                       }}
                     />
                 </div>

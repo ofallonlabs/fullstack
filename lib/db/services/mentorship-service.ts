@@ -62,6 +62,30 @@ async function getMentorshipForAnApplication(applicationId: number){
 
 }
 
+async function getMentorshipForApplications(applicationIds: number[]){
+
+    let targetMentorships = null;    
+
+    try{
+
+        targetMentorships =  await prisma.mentorship.findMany({
+            where: {
+                applicationId : {
+                    in: applicationIds
+                }
+            }
+        });
+
+    }catch(e: unknown){
+
+        printError("MentorshipsService - getMentorshipForAnApplications",e);
+
+    }
+
+    return targetMentorships;
+
+}
+
 async function createMentorship(applicationId: number, mentorshipStatus: MentorshipStatus, mentorshipType: string){
     let newMentorship = null;    
 
@@ -109,6 +133,7 @@ async function updateMentorship(applicationId: number, data: MentorshipUpdateTyp
 export { 
     getMentorshipForMentee,
     getMentorshipForAnApplication,
+    getMentorshipForApplications,
     createMentorship,
     updateMentorship
  }

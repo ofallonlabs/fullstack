@@ -18,36 +18,7 @@ const secondaryNavigation = [
   { name: 'Job Experience', href: '#jobexperience', current: false },
   { name: 'Skills', href: '#skills', current: false },
   { name: 'Goals', href: '#goals', current: false },  
-  { name: 'Security', href: '#security', current: false },   
-]
-
-const educations = [
-  { HDL: 'Bsc', FOS: 'Information of Technology', GRADYEAR: '2015', GRADInstitute: 'Shiraz State University'},
-]
-
-const jobExperience = [
-  { status: 'Employed', title: 'Software developer', employer: 'OMentors'},
-]
-
-const skills = [
-  { title: 'Skill #1', rating: '5'},
-]
-
-const tools = [
-  { title: 'Tool #1', rating: '5'},
-]
-
-const goals = [
-  {
-    title:  'GTitle',
-    description: 'GDescription',
-    exr: 'GExptected Result',
-    details:{
-      extl: 'GExpected Timeline',
-      exmwmpm: '12',
-      mattwot: '2'
-    }
-  }
+  // { name: 'Security', href: '#security', current: false },   
 ]
 
 
@@ -144,8 +115,9 @@ export default async function MenteeSettings({userId, menteeId} : {userId: strin
                         <h2 className="text-base/7 font-semibold text-black">Skills and Tools</h2>
                         <p className="mt-1 text-sm/6 text-gray-600">Update your skills and tools.</p>                        
                       </div>
-                      <div>
-                        <Link href="/dashboard/settings/information/skill" className="rounded-md bg-brand-500 px-3 py-2 text-sm font-semibold text-black shadow-xs hover:bg-brand-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500">Add</Link>
+                      <div className="flex flex-row gap-2">
+                        <Link href="/dashboard/settings/information/skill" className="rounded-md bg-brand-500 px-3 py-2 text-sm font-semibold text-black shadow-xs hover:bg-brand-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500">Add Skills</Link>
+                        <Link href="/dashboard/settings/information/tool" className="rounded-md bg-brand-500 px-3 py-2 text-sm font-semibold text-black shadow-xs hover:bg-brand-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500">Add Tools</Link>
                       </div>
                   </div>
 

@@ -30,6 +30,7 @@ export default async function skillsFormAction(extras: ExtraType , prevState: Sk
         name: formData.get("name"),
         rating: Number(formData.get("rating"))
     });
+ 
 
     if(!success){
         return { 
@@ -52,11 +53,10 @@ export default async function skillsFormAction(extras: ExtraType , prevState: Sk
     let skillsArray : MenteeSkills[] = [];
 
     if(menteeBackground){
-        const skills = menteeBackground.skills;
-        const stringSkills = skills?.toString();
+        const skills = menteeBackground.skills as MenteeSkills[] | undefined;
 
-        if(stringSkills){
-            skillsArray = JSON.parse(stringSkills);
+        if(skills && skills?.length > 0){
+            skillsArray = [...skills];
 
             if(extras.method == "ADD"){
 

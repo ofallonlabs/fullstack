@@ -7,6 +7,14 @@ import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth/auth";
 
+type ProfileFormActionDataType = {
+    country: FormDataEntryValue | null, 
+    website?: FormDataEntryValue | null,
+    tagline?: FormDataEntryValue | null,
+    currentjob?: FormDataEntryValue | null,
+    bio?: FormDataEntryValue | null
+}
+
 export default async function profileFormAction(prevState: mentorProfileFormState, formData: FormData) {
 
     const session = await auth.api.getSession({
@@ -22,19 +30,44 @@ export default async function profileFormAction(prevState: mentorProfileFormStat
     if (!mentor) {
         return { message: {type: ErrorMessageType.FAILURE, content: "You are not allowed to perfomed this action"} };
     }      
-    
+  
+    let dataToValidate : ProfileFormActionDataType = {
+        country: formData.get("country")        
+    }
 
-    const {success, error, data} = mentorProfileFormSchema.safeParse({
-        website: formData.get("website"),
-        tagline: formData.get("tagline"),
-        currentjob: formData.get("currentjob"),
-        bio: formData.get("bio"),
-        country: formData.get("country")
-    });
+    if(formData.get("website")){
+        dataToValidate = {
+            website: formData.get("website"),
+            ...dataToValidate           
+        }
+    }    
+
+    if(formData.get("tagline")){
+        dataToValidate = {
+            tagline: formData.get("tagline"),
+            ...dataToValidate           
+        }
+    }     
+
+    if(formData.get("currentjob")){
+        dataToValidate = {
+            currentjob: formData.get("currentjob"),
+            ...dataToValidate           
+        }
+    }  
+
+    if(formData.get("bio")){
+        dataToValidate = {
+            bio: formData.get("bio"),
+            ...dataToValidate           
+        }
+    } 
+
+    const {success, error, data} = mentorProfileFormSchema.safeParse(dataToValidate);
 
     if(!success){
         return { 
-                error:
+                errors:
                     error?.issues?.map((zerror)=>{
                         return {
                             target: zerror.path.length > 0 ? zerror?.path?.[0].toString() : 'root',

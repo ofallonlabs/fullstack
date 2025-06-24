@@ -18,7 +18,7 @@ export default async function EditSkillsPage({ params }: { params: Promise<{ id:
     const user = session.user;
     if(!user || user.role == "MENTOR") return null;
 
-    let targetId : number | undefined = (await getMentee(user.id))?.id;
+    const targetId : number | undefined = (await getMentee(user.id))?.id;
 
     if(!targetId) return null;
 

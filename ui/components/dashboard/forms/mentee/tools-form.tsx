@@ -13,8 +13,8 @@ export default function ToolssForm({action, formData}:{action:ToolsFormActionTyp
             <form action={dispatch}>
 
                 <div className="pb-12">
-                    <h2 className="text-base/7 font-semibold text-gray-900">Skills</h2>
-                    <p className="mt-1 text-sm/6 text-gray-600">Update your skills</p>
+                    <h2 className="text-base/7 font-semibold text-gray-900">Tools</h2>
+                    <p className="mt-1 text-sm/6 text-gray-600">Update your tools</p>
 
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
@@ -25,19 +25,19 @@ export default function ToolssForm({action, formData}:{action:ToolsFormActionTyp
                             <div className="mt-2">
                                 <input
                                 id="title"
-                                name="title"
+                                name="name"
                                 type="text"
-                                autoComplete="title"
+                                autoComplete="name"
                                 defaultValue={formData ? formData?.name : undefined}                                
-                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-600 sm:text-sm/6"
                                 />
                             </div>
                             {state?.errors && (
                                 <div className="text-red-500 text-xs mt-0.5 w-full text-left">
                                     {
                                         state.errors?.map((err, idx)=>{
-                                            if(err.target === "title")
-                                                return <div key={`title-error-${idx}`}>{err.message}</div>
+                                            if(err.target === "name")
+                                                return <div key={`name-error-${idx}`}>{err.message}</div>
                                             else return null;    
                                         })
                                     }
@@ -58,7 +58,7 @@ export default function ToolssForm({action, formData}:{action:ToolsFormActionTyp
                                     min={1}
                                     autoComplete="rating"
                                     defaultValue={formData ? formData?.rating : undefined}                                      
-                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-600 sm:text-sm/6"
                                 />
                             </div>
                             {state?.errors && (

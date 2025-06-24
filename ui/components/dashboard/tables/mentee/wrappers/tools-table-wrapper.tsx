@@ -5,16 +5,24 @@ import { ToolsFormSchema } from "@/definition/dashboard/mentee/tools-schema";
 
 export default async function ToolsTableWrappers({menteeId}: {menteeId: number}){
 
-    let menteeBackground  = ((await getMenteeBackground(menteeId))?.tools) as Partial<MenteeTools> | undefined;
+    let menteeBackground  = ((await getMenteeBackground(menteeId))?.tools) as Partial<MenteeTools[]> | undefined;
+    let tools : MenteeTools[] = [];
 
-    const {success} = ToolsFormSchema.safeParse({
-                name: menteeBackground?.name,
-                rating: menteeBackground?.rating,
-            });
+    if(menteeBackground != undefined && menteeBackground?.length > 0){
+        
+        tools = menteeBackground && (menteeBackground?.filter((tool) => {
 
-    if(!success){
-         menteeBackground = undefined;
+                const {success} = ToolsFormSchema.safeParse({
+                    name: tool?.name,
+                    rating: tool?.rating,
+                });
+
+                return success;
+
+        }).filter((tool) => tool != undefined))
+
     }
+
 
     return (
         <div className="">
@@ -39,7 +47,7 @@ export default async function ToolsTableWrappers({menteeId}: {menteeId: number})
                 </thead>
                 
                 <tbody className="divide-y divide-gray-200 bg-white">
-                    <ToolTable toolsData={menteeBackground ? [menteeBackground] : []}/>
+                    <ToolTable toolsData={tools}/>
                 </tbody>
 
             </table>

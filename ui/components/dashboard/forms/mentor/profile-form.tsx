@@ -1,13 +1,20 @@
 "use client";
 
-import {useActionState} from "react";
+import {useActionState, useState, useEffect} from "react";
 import { mentorProfileFormActionType, ErrorMessageType } from "@/definition/dashboard/mentor/profile-schema";
 import FormButton from "@/ui/components/common/button/form-button";
 import SimpleMessage, { MessageState } from "@/ui/components/common/message-box/simple-message";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { ProfileFormDataType } from "@/definition/dashboard/mentor/profile-schema";
 
-export default function ProfileForm({action}:{action:mentorProfileFormActionType}){
-    const [state, dispatch] = useActionState(action ,undefined);  
+export default function ProfileForm({action, data}:{action:mentorProfileFormActionType, data: ProfileFormDataType}){
+    const [state, dispatch] = useActionState(action ,undefined);
+    const [selectedCountry, updateCountry] = useState(data.country);  
+    
+    useEffect(()=>{
+       updateCountry(data.country);
+    },[data,updateCountry])    
+
     return (
         <>
             <form action={dispatch}>
@@ -23,6 +30,7 @@ export default function ProfileForm({action}:{action:mentorProfileFormActionType
                                 id="website"
                                 name="website"
                                 type="text"
+                                defaultValue={data?.website || undefined}
                                 className="block w-full rounded-md bg-black/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-500 sm:text-sm/6"
                             />
                         </div>
@@ -48,6 +56,7 @@ export default function ProfileForm({action}:{action:mentorProfileFormActionType
                                 id="tagline"
                                 name="tagline"
                                 type="text"
+                                defaultValue={data?.tagline || undefined}
                                 className="block w-full rounded-md bg-black/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-500 sm:text-sm/6"
                             />
                         </div>
@@ -73,6 +82,7 @@ export default function ProfileForm({action}:{action:mentorProfileFormActionType
                                 id="currentjob"
                                 name="currentjob"
                                 type="text"
+                                defaultValue={data?.currentjob || undefined}
                                 className="block w-full rounded-md bg-black/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-500 sm:text-sm/6"
                             />
                         </div>
@@ -98,6 +108,7 @@ export default function ProfileForm({action}:{action:mentorProfileFormActionType
                             <textarea
                                 id="bio"
                                 name="bio"
+                                defaultValue={data?.bio || undefined}
                                 rows={4}
                                 className="block w-full rounded-md bg-black/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-500 sm:text-sm/6"
                             />
@@ -118,16 +129,17 @@ export default function ProfileForm({action}:{action:mentorProfileFormActionType
 
                     <div className="col-span-full">
                         <label htmlFor="country" className="block text-sm/6 font-medium text-black">
-                        Country
+                        Country{" - "}<span className="py-0.5 px-3 bg-brand-50 text-brand-700 text-xs font-medium rounded ">{data?.country.toUpperCase()}</span>
                         </label>
                         <div className="mt-2 grid grid-cols-1">
                         <select
                             id="country"
                             name="country"
+                            defaultValue={selectedCountry}                            
                             className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-black/5 py-1.5 pr-8 pl-3 text-base text-black outline-1 -outline-offset-1 outline-white/10 *:bg-gray-100 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-500 sm:text-sm/6"
                         >
-                            <option>USA</option>
-                            <option>Canada</option>
+                            <option value="usa">USA</option>
+                            <option value="canada">Canada</option>
                         </select>
                         <ChevronDownIcon
                             aria-hidden="true"

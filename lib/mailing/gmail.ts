@@ -18,6 +18,8 @@ export async function sendEmail({
 }: {to:string, subject: string, text:string}){
 
 
+    console.log("EMAIL: ", text);
+
     await transporter.sendMail({
         from: process.env.EMAIL_USER,
         to,
