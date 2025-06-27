@@ -1,13 +1,13 @@
 "use server";
 
-import { createMenteeGoal, updateMenteeGoal } from "@/lib/db/services/mentee-goal-service"; 
+import { createMenteeGoal, updateMenteeGoal, deleteMenteeGoal } from "@/lib/db/services/mentee-goal-service"; 
 import { getMentee } from "@/lib/db/services/mentee-service";
 import { ErrorMessageType, MenteeGoalFormState, MenteeGoalFormSchema } from "@/definition/dashboard/mentee/goal-schema";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth/auth";
 
-export type ExtraType = { method: "ADD" } | { method: "EDIT", id: string }
+export type ExtraType = { method: "ADD" } | { method: "EDIT", id: string } | { method: "DELETE", id: string };
 
 export default async function goalFormAction(extras: ExtraType , prevState: MenteeGoalFormState, formData: FormData) {
     const session = await auth.api.getSession({
@@ -54,6 +54,10 @@ export default async function goalFormAction(extras: ExtraType , prevState: Ment
     }else if(extras.method == "EDIT" && extras.id.length > 0){
         
         await updateMenteeGoal(+extras.id, mentee.id, { title, description, expectations:exr, expectedTimeline: ext, focusHpw: mattwot, meetingFrequency: exmwmpm  });
+   
+    }else if(extras.method == "DELETE" && extras.id.length > 0){
+        
+        await deleteMenteeGoal(mentee.id, +extras.id);
     }
 
  

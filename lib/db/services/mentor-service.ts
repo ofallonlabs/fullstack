@@ -1,6 +1,7 @@
 import "server-only";
-import prisma from "@/lib/db/prisma";
+import prisma, { Prisma }  from "@/lib/db/prisma";
 import { printError } from "@/utils/Utils";
+import { CalendlyAuthTokenType } from "@/definition/CalendlyDefinition";
 
 type UpdateMentorInformation = {
     tagline?:string,
@@ -8,6 +9,29 @@ type UpdateMentorInformation = {
     aboutMe?:string
 }
 
+async function getAllMentors(){
+    let allMentors = null;    
+
+    try{
+
+        allMentors =  await prisma.mentor.findMany({
+                where: {
+                    verifiedCalendly:true,
+                    verifiedStrip: true
+                },
+                include: {
+                    user: true
+                }
+        });
+
+    }catch(e: unknown){
+
+        printError("MentorService - getAllMentors",e);
+
+    }
+
+    return allMentors;
+}
 
 async function getMentor(userId: string){
     let targetMentor = null;    
@@ -23,6 +47,26 @@ async function getMentor(userId: string){
     }catch(e: unknown){
 
         printError("MentorService - getMentor",e);
+
+    }
+
+    return targetMentor;
+}
+
+async function getMentorbyId(id: number){
+    let targetMentor = null;    
+
+    try{
+
+        targetMentor =  await prisma.mentor.findUnique({
+                where: {
+                    id: id
+                }
+        });
+
+    }catch(e: unknown){
+
+        printError("MentorService - getMentorbyId",e);
 
     }
 
@@ -53,7 +97,40 @@ async function updateMentorInformation(mentorId: number, data: UpdateMentorInfor
 }
 
 
+async function updateMentorCalendlyCred(userId: string, calendlyCode: string,  calendlyData: CalendlyAuthTokenType){
+
+    let upsertCalendlyCred = null;    
+
+    try{
+
+        const json = calendlyData as Prisma.InputJsonValue
+
+        upsertCalendlyCred = await prisma.mentor.update({
+            where: {
+                userId: userId
+            },
+            data: {
+                calendlyCode: calendlyCode,
+                calendlyCred: json
+            }
+        });
+
+    }catch(e: unknown){
+
+        printError("MentorSerice - updateMentorCalendlyCred",e);
+
+    }
+
+    return upsertCalendlyCred;
+
+
+}
+
+
 export {
+    getAllMentors,
     getMentor,
-    updateMentorInformation
+    getMentorbyId,
+    updateMentorInformation,
+    updateMentorCalendlyCred
 }

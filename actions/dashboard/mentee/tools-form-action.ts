@@ -8,7 +8,7 @@ import { headers } from "next/headers";
 import { auth } from "@/lib/auth/auth";
 
 
-export type ExtraType = { method: "ADD" } | { method: "EDIT", id: string }
+export type ExtraType = { method: "ADD" } | { method: "EDIT", id: string } | { method: "DELETE", id: string };
 
 export default async function toolsFormAction(extras: ExtraType , prevState: ToolsFormState, formData: FormData) {
 
@@ -79,6 +79,16 @@ export default async function toolsFormAction(extras: ExtraType , prevState: Too
 
                 toolsArray = updatedtoolsArray; 
 
+            }else if(extras.method == "DELETE"){
+            
+                const updatedtoolsArray :  MenteeTools[] = toolsArray.filter((tool) => {
+            
+                    return tool.id != +extras.id;
+                             
+                });
+            
+                toolsArray = updatedtoolsArray; 
+            
             }
         }
 

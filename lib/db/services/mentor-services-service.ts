@@ -21,6 +21,36 @@ type AddMentorService = {
 }
 
 
+async function getAllServices(){
+
+    let allServices = null;    
+
+    try{
+
+        allServices =  await prisma.mentorService.findMany({
+                where: {
+                    isArchived: false,
+                },
+                include:{
+                    mentor : {
+                        include: {
+                            user: true
+                        }
+                    }
+                }
+        });
+
+    }catch(e: unknown){
+
+        printError("MentorServices - getAllServices",e);
+
+    }
+
+    return allServices;  
+
+}
+
+
 async function getMentorServices(mentorId: number){
 
     let targetMentorServices = null;    
@@ -29,8 +59,9 @@ async function getMentorServices(mentorId: number){
 
         targetMentorServices =  await prisma.mentorService.findMany({
                 where: {
-                    mentorId: mentorId
-                }
+                    mentorId: mentorId,
+                    isArchived: false,
+                },
         });
 
     }catch(e: unknown){
@@ -52,7 +83,8 @@ async function getMentorService(mentorId: number, serviceId: number){
         targetMentorService =  await prisma.mentorService.findUnique({
                 where: {
                     mentorId: mentorId,
-                    id: serviceId
+                    id: serviceId,
+                    isArchived: false,                    
                 }
         });
 
@@ -110,6 +142,7 @@ async function updateMentorService(mentorId: number, serviceId: number, data: Om
 
 
 export {
+    getAllServices,
     getMentorServices,
     getMentorService,
     createMentorService,

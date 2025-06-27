@@ -60,6 +60,7 @@ async function updateUserInformation(id: string, data: Partial<CraeteUserInforma
 }
 
 
+
 export {
     getUserInformation,
     updateUserInformation

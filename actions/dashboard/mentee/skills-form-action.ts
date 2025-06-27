@@ -8,7 +8,7 @@ import { headers } from "next/headers";
 import { auth } from "@/lib/auth/auth";
 
 
-export type ExtraType = { method: "ADD" } | { method: "EDIT", id: string }
+export type ExtraType = { method: "ADD" } | { method: "EDIT", id: string } | { method: "DELETE", id: string };
 
 export default async function skillsFormAction(extras: ExtraType , prevState: SkillsFormState, formData: FormData) {
     
@@ -75,6 +75,16 @@ export default async function skillsFormAction(extras: ExtraType , prevState: Sk
                         return skill;
 
                     }
+                });
+
+                skillsArray = updatedSkillsArray; 
+
+            }else if(extras.method == "DELETE"){
+
+                const updatedSkillsArray :  MenteeSkills[] = skillsArray.filter((skill) => {
+
+                    return skill.id != +extras.id;
+                 
                 });
 
                 skillsArray = updatedSkillsArray; 

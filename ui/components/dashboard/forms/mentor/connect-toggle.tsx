@@ -10,9 +10,9 @@ export default function ConnectToggleInput({isConnected, title, desc, connectTyp
 
     const handleCallback = () => {
 
-      // transition(async () =>{
-      //     await toggleConnectAction({type: connectType});
-      // });
+      transition(async () =>{
+          await toggleConnectAction({type: connectType});
+      });
 
     }
     

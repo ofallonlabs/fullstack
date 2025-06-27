@@ -2,6 +2,7 @@
 
 import { MenteeTools } from "@/lib/db/services/mentee-background-service";
 import Link from "next/link";
+import toolsFormAction from "@/actions/dashboard/mentee/tools-form-action";
 
 export default function ToolTable({toolsData}: {toolsData: Partial<MenteeTools>[]}){
 
@@ -21,9 +22,17 @@ export default function ToolTable({toolsData}: {toolsData: Partial<MenteeTools>[
                     <div className=" text-sm text-gray-900 w-fit px-2 py-0.5">{tool.rating}</div>
                 </td>
                 <td className="min-w-[70px] py-4 pr-4 pl-3 text-right text-xs lg:text-sm font-medium sm:pr-4">
-                    <Link href={`/dashboard/settings/information/tool/edit/${tool.id}`} className="text-brand-600 hover:text-brand-900">
-                        Update<span className="sr-only"> tool, {tool.name}</span>
-                    </Link>
+
+                    <div className="flex flex-row gap-2">
+                        <Link href={`/dashboard/settings/information/tool/edit/${tool.id}`} className="text-brand-600 hover:text-brand-900">
+                            Update<span className="sr-only"> tool, {tool.name}</span>
+                        </Link>    
+
+                        <button onClick={()=> toolsFormAction.bind(null,{method: "DELETE", id: `${tool.id}`})} className="text-red-600 hover:text-red-900">Delete</button>
+
+
+                    </div>
+
                 </td>   
 
             </tr>
