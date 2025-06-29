@@ -27,7 +27,7 @@ export default function MenteeTodoTable({todos}: {todos: TodoType[]}){
                     </div>
                 </td>
                 <td className="min-w-[70px] py-4 pr-4 pl-3 text-right text-xs lg:text-sm font-medium sm:pr-4">
-                    <Link href="#" className="text-brand-600 hover:text-brand-900">
+                    <Link href={todo.link} className="text-brand-600 hover:text-brand-900">
                         Fix it<span className="sr-only">, {todo.action}</span>
                     </Link>
                 </td>

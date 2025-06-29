@@ -1,6 +1,21 @@
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth/auth";
 import ServiceFormWrapper from "@/ui/components/dashboard/forms/mentor/wrappers/service-form-wrapper";
 
-export default function NewServicePage(){
+export default async function NewServicePage(){
+
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
+    if (!session) {
+        return <div>Not authenticated</div>;
+    }
+
+    const user = session.user;
+    if(!user) return null;
+
+
+
     return (
 
         <div className="relative mb-32 divide-y-4 divide-brand-100">
@@ -15,7 +30,7 @@ export default function NewServicePage(){
             </div>
             <div className="bg-white">
                 <div className="py-8 px-2 md:px-4 md:w-9/12 lg:w-8/12 xl:w-7/12">
-                    <ServiceFormWrapper method="ADD" />
+                    <ServiceFormWrapper formType={{method:"ADD"}} userId={user.id} />
                 </div>
 
             </div>

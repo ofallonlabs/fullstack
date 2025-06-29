@@ -2,8 +2,6 @@ import "server-only";
 
 import { stripe } from "@/lib/stripe/Stripe";
 
-
-
 async function createAccount(userName: string, email: string) {
   try {
     return await stripe.accounts.create({

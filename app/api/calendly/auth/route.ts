@@ -1,6 +1,6 @@
 import {auth} from "@/lib/auth/auth";
 import { NextRequest } from 'next/server';
-import { getAccessTokenFromCode, getUserData } from '@/lib/calendly/Calendly';
+import { getAccessTokenFromCode } from '@/lib/calendly/Calendly';
 import { updateMentorCalendlyCred } from "@/lib/db/services/mentor-service";
 import { revalidatePath } from "next/cache";
 import { redirect, RedirectType } from "next/navigation";
@@ -22,12 +22,10 @@ export async function GET(request: NextRequest) {
   try {
   
     const tokens = await getAccessTokenFromCode(code);
-    const userInfo = await getUserData(tokens.access_token);
+    // const userInfo = await getUserData(tokens.access_token);
 
     await updateMentorCalendlyCred(session.user.id, code, tokens);
 
-    revalidatePath("/dashboard");
-    redirect("/dashboard/settings", RedirectType.replace);
 
 
     // return new Response(
@@ -47,5 +45,8 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Error during Calendly auth:', error);
     return new Response('Authentication failed', { status: 500 });
+  }finally{
+    revalidatePath("/dashboard");
+    redirect("/dashboard/settings", RedirectType.replace);
   }
 }

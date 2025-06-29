@@ -14,7 +14,7 @@ import PersonalInformationFormWrapper from '@/ui/components/dashboard/forms/ment
 import ProfileFormWrapper from '@/ui/components/dashboard/forms/mentor/wrappers/profile-form-wrapper';
 
 
-export default function MentorSettings({userId, mentorId} : {userId: string, mentorId: number}) {
+export default function MentorSettings({userId, mentorId, isCalendlyConnected, isStripeConnected} : {userId: string, mentorId: number, isCalendlyConnected: boolean, isStripeConnected: boolean}) {
 
   return (
     <>
@@ -67,7 +67,7 @@ export default function MentorSettings({userId, mentorId} : {userId: string, men
 
                 <div className="md:col-span-2 bg-slate-100 px-2 py-4 rounded">
                   
-                  <ConnectToggleInput title={"Connect to Stripe"} desc={"Connect your account to Stripe for easy payment"} isConnected={false} connectType={ConnectType.STRIPE} />
+                  <ConnectToggleInput title={"Connect to Stripe"} desc={"Connect your account to Stripe for easy payment"} isConnected={isStripeConnected} connectType={ConnectType.STRIPE} />
                
                 </div>
 
@@ -81,7 +81,7 @@ export default function MentorSettings({userId, mentorId} : {userId: string, men
                 </div>
 
                 <div className="md:col-span-2 bg-slate-100 px-2 py-4 rounded">
-                  <ConnectToggleInput title={"Connect to Calendly"} desc={"Connect your account to Calendly for easy scheduing"} isConnected={false} connectType={ConnectType.STRIPE} />
+                  <ConnectToggleInput title={"Connect to Calendly"} desc={"Connect your account to Calendly for easy scheduing"} isConnected={isCalendlyConnected} connectType={ConnectType.CALENDLY} />
                 </div>
 
               </div>

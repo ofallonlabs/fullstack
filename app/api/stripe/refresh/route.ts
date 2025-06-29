@@ -1,5 +1,6 @@
 import { NextRequest } from 'next/server';
 import { getAccount, createAccountOnboardingLink } from '@/lib/stripe/stripe-services';
+import { printError } from '@/utils/Utils';
  
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -17,18 +18,21 @@ export async function GET(request: NextRequest) {
             return new Response('No Account found', { status: 400 });
         }
 
+
+
         if (account.details_submitted) {
     
-        const returnURL = `${process.env.NEXT_PUBLIC_APP_URL}/api/stripe/return?account_id=${accountId}`;
-        return new Response(null, {
-            status: 302,
-            headers: {
-            Location: returnURL,
-            },
-        });
+            const returnURL = `${process.env.NEXT_PUBLIC_APP_URL}/api/stripe/return?account_id=${accountId}`;
+            return new Response(null, {
+                status: 302,
+                headers: {
+                Location: returnURL,
+                },
+            });
+
         }
 
-        const accountLink = await createAccountOnboardingLink(accountId, `${process.env.NEXT_PUBLIC_APP_URL}/api/stripe/refresh`, `${process.env.NEXT_PUBLIC_APP_URL}/api/stripe/return`);
+        const accountLink = await createAccountOnboardingLink(accountId, `${process.env.NEXT_PUBLIC_APP_URL}/api/stripe/refresh`, `${process.env.NEXT_PUBLIC_APP_URL}/api/stripe/return?account_id=${accountId}`);
 
         if (!accountLink) {
             return new Response('No Account link found', { status: 400 });
@@ -42,7 +46,7 @@ export async function GET(request: NextRequest) {
         });
 
     } catch (error) {
-        console.error('Error handling refresh:', error);
+        printError('Error handling refresh:', error);
         return new Response('Something went wrong. Please try again.', {
         status: 500,
         });

@@ -9,6 +9,12 @@ type UpdateMentorInformation = {
     aboutMe?:string
 }
 
+type updateMentorStripeDetails = {
+    stripeAccountId?:string,
+    verifiedStrip?:boolean
+}
+
+
 async function getAllMentors(){
     let allMentors = null;    
 
@@ -75,11 +81,11 @@ async function getMentorbyId(id: number){
 
 async function updateMentorInformation(mentorId: number, data: UpdateMentorInformation){
 
-    let updatedUser = null;    
+    let updatedMentor = null;    
 
     try{
 
-        updatedUser =  await prisma.mentor.update({
+        updatedMentor =  await prisma.mentor.update({
             data,
             where: {
                 id: mentorId
@@ -92,12 +98,12 @@ async function updateMentorInformation(mentorId: number, data: UpdateMentorInfor
 
     }
 
-    return updatedUser;
+    return updatedMentor;
 
 }
 
 
-async function updateMentorCalendlyCred(userId: string, calendlyCode: string,  calendlyData: CalendlyAuthTokenType){
+async function updateMentorCalendlyCred(userId: string, calendlyCode: string, calendlyData: CalendlyAuthTokenType){
 
     let upsertCalendlyCred = null;    
 
@@ -111,7 +117,8 @@ async function updateMentorCalendlyCred(userId: string, calendlyCode: string,  c
             },
             data: {
                 calendlyCode: calendlyCode,
-                calendlyCred: json
+                calendlyCred: json,
+                verifiedCalendly: true
             }
         });
 
@@ -126,11 +133,36 @@ async function updateMentorCalendlyCred(userId: string, calendlyCode: string,  c
 
 }
 
+async function updateMentorStripeDetails(userId: string, data: updateMentorStripeDetails){
+
+    let updatedMentor = null;    
+
+    try{
+
+        updatedMentor =  await prisma.mentor.update({
+            data,
+            where: {
+                userId: userId
+            }           
+        });
+
+    }catch(e: unknown){
+
+        printError("MentorService - updateMentorStripeDetails",e);
+
+    }
+
+    return updatedMentor;
+
+}
+
+
 
 export {
     getAllMentors,
     getMentor,
     getMentorbyId,
     updateMentorInformation,
-    updateMentorCalendlyCred
+    updateMentorCalendlyCred,
+    updateMentorStripeDetails
 }

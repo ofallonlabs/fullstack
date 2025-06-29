@@ -17,9 +17,15 @@ export default async function Settings() {
   if(!user) return null;
 
   let targetId : number | undefined = undefined;
+  let isCalendlyConnected : boolean = false;
+  let isStripeConnected : boolean = false;
 
   if(user.role == "MENTOR"){
-    targetId = (await getMentor(user.id))?.id;
+    const targetMentor = await getMentor(user.id);
+    targetId = targetMentor?.id;
+    isCalendlyConnected = targetMentor?.verifiedCalendly || false;
+    isStripeConnected = targetMentor?.verifiedStrip || false;
+
   }else if(user.role == "MENTEE"){
     targetId = (await getMentee(user.id))?.id;
   }
@@ -29,7 +35,7 @@ export default async function Settings() {
 
   return (
     <div>
-      {user && user.role === "MENTOR" ?  <MentorSettings mentorId={targetId} userId={user.id} /> : <MenteeSettings menteeId={targetId} userId={user.id} />}
+      {user && user.role === "MENTOR" ?  <MentorSettings mentorId={targetId} userId={user.id} isCalendlyConnected={isCalendlyConnected} isStripeConnected={isStripeConnected} /> : <MenteeSettings menteeId={targetId} userId={user.id} />}
     </div>
   );
 }

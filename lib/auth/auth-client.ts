@@ -1,7 +1,7 @@
 import { createAuthClient } from "better-auth/react"
 import { inferAdditionalFields } from "better-auth/client/plugins";
 export const { signIn, signUp, signOut, useSession } = createAuthClient({
-    baseURL: "http://localhost:3000",
+    baseURL: "https://fullstackdev-nine.vercel.app",
     plugins: [inferAdditionalFields({
       user: {
         role: {

@@ -1,9 +1,22 @@
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth/auth";
 import ServiceFormWrapper from "@/ui/components/dashboard/forms/mentor/wrappers/service-form-wrapper";
 
 export default async function EditServicePage({ params }: { params: Promise<{ id: string }> }){
     const { id } = await params;
-
     if(!id) return null;
+
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
+    if (!session) {
+        return <div>Not authenticated</div>;
+    }
+
+    const user = session.user;
+    if(!user) return null;
+
+
 
 
     return (
@@ -20,7 +33,7 @@ export default async function EditServicePage({ params }: { params: Promise<{ id
             </div>
             <div className="bg-white">
                 <div className="py-8 px-2 md:px-4 md:w-9/12 lg:w-8/12 xl:w-7/12">
-                    <ServiceFormWrapper method="EDIT" id={id} />
+                    <ServiceFormWrapper  formType={{method:"EDIT", id:id}} userId={user.id} />
                 </div>
 
             </div>

@@ -11,7 +11,7 @@ export default function ConnectToggleInput({isConnected, title, desc, connectTyp
     const handleCallback = () => {
 
       transition(async () =>{
-          await toggleConnectAction({type: connectType});
+        await toggleConnectAction({type: connectType});
       });
 
     }
@@ -27,10 +27,10 @@ export default function ConnectToggleInput({isConnected, title, desc, connectTyp
               </Description>
             </span>
             <Switch
-              disabled={pending}
+              disabled={isConnected || pending}
               checked={isConnected}
               onChange={handleCallback}
-              className="group relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:outline-hidden data-checked:bg-indigo-600"
+              className="group relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-brand-600 focus:ring-offset-2 focus:outline-hidden data-checked:bg-brand-600"
             >
               <span
                 aria-hidden="true"
