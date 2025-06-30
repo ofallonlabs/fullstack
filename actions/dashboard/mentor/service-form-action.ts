@@ -34,7 +34,7 @@ export default async function serviceFormAction(extras: ExtraType , prevState: a
         category: formData.get("category"),
         price: formData.get("price"),
         link: formData.get("link"),
-        needApproval: formData.get("needApproval")    
+        needApproval: formData.get("needApproval")?.toString() == "on"    
     });
 
     if(!success){

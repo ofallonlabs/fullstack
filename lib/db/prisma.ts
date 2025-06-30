@@ -10,8 +10,8 @@ const globalForPrisma = globalThis as unknown as { prisma: PrismaClient | undefi
 const neonPool = new Pool({
   connectionString: process.env.DIRECT_URL,
   max: 10,
-  idleTimeoutMillis: 5000,
-  connectionTimeoutMillis: 2000,
+  idleTimeoutMillis: 60000,
+  connectionTimeoutMillis: 60000,
 });
 
 neonPool.on('error', (err: { message: string | string[]; }) => {
