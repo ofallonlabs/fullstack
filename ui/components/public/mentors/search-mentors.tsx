@@ -16,8 +16,8 @@ export default function SearchMentors({mentors} : { mentors: MentorCardData[]}) 
 
         if(searchValue && searchValue.trim().length > 0){
 
-            filterMentorsData((cur)=>{
-                return cur.filter((mentor)=>{
+            filterMentorsData(()=>{
+                return mentors.filter((mentor)=>{
                     return mentor.mentorname.includes(searchValue);
                 })
             })
@@ -25,7 +25,7 @@ export default function SearchMentors({mentors} : { mentors: MentorCardData[]}) 
         }
 
 
-    },[searchValue, filterMentorsData]);
+    },[mentors, searchValue, filterMentorsData]);
     
     
     return (

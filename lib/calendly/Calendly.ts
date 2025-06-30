@@ -1,5 +1,6 @@
 import { CalendlyAuthTokenType, CalendlyEventTypeResponse, CalendlyBookingUrlResponse } from "@/definition/CalendlyDefinition";
 import { printError } from "@/utils/Utils";
+import { updateMentorCalendlyToken } from "@/lib/db/services/mentor-service";
 
 
 function base64StringConvert(clientId: string, clientSecret: string): string {
@@ -104,7 +105,7 @@ async function introspectAccessToken(accessToken: string, refreshToken: string) 
   
 }
 
-async function getEventTypes(accessToken: string, refreshToken: string, ownerUrl: string): Promise<{ data: CalendlyEventTypeResponse; newToken?: CalendlyAuthTokenType } | null> {
+async function getEventTypes(accessToken: string, refreshToken: string, ownerUrl: string, userId?:string): Promise<{ data: CalendlyEventTypeResponse; newToken?: CalendlyAuthTokenType } | null> {
   const buildUrl = (base: string, params: Record<string, string>) => {
     const query = new URLSearchParams(params).toString();
     return `${base}?${query}`;
@@ -122,13 +123,15 @@ async function getEventTypes(accessToken: string, refreshToken: string, ownerUrl
     return res;
   };
 
-  const url = buildUrl(`https://api.calendly.com/event_types`, { user: ownerUrl });
-
   let response = await fetchEventTypes(accessToken);
 
-  if (response.status === 401) {
+  if (response.status != 200) {
     const newToken = await refreshAccessToken(refreshToken);
-    if(newToken && newToken.access_token){
+
+    if(newToken && newToken.access_token && userId){
+
+      await updateMentorCalendlyToken(userId,newToken);
+
       response = await fetchEventTypes(newToken?.access_token);
       const data = await response.json() as CalendlyEventTypeResponse;
       return { data, newToken };

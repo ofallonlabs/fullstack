@@ -80,8 +80,14 @@ type CalendlyBookingUrlResponse = {
 };
 
 
+type CalendlyEventListType = {
+  name: string;
+  booking_url: string;
+}
+
 export type {
     CalendlyAuthTokenType,
     CalendlyEventTypeResponse,
-    CalendlyBookingUrlResponse
+    CalendlyBookingUrlResponse,
+    CalendlyEventListType
 }

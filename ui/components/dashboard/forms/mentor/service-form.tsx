@@ -7,8 +7,9 @@ import SimpleMessage, { MessageState } from "@/ui/components/common/message-box/
 import { useState } from 'react';
 import { Switch } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/16/solid';
+import { CalendlyEventListType } from "@/definition/CalendlyDefinition";
 
-export default function ServiceForm({action}:{action:addServiceFormActionType}){
+export default function ServiceForm({events, action}:{events:CalendlyEventListType[], action:addServiceFormActionType}){
     const [enabled, setEnabled] = useState(false);
     const [state, dispatch] = useActionState(action ,undefined);  
 
@@ -32,7 +33,7 @@ export default function ServiceForm({action}:{action:addServiceFormActionType}){
                                 name="title"
                                 type="text"
                                 autoComplete="title"
-                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-600 sm:text-sm/6"
                                 />
                             </div>
                             {state?.errors && (
@@ -58,7 +59,7 @@ export default function ServiceForm({action}:{action:addServiceFormActionType}){
                                 name="description"
                                 type="text"
                                 autoComplete="description"
-                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-600 sm:text-sm/6"
                                 />
                             </div>
                             {state?.errors && (
@@ -84,7 +85,7 @@ export default function ServiceForm({action}:{action:addServiceFormActionType}){
                                 name="qualifications"
                                 type="text"
                                 autoComplete="qualifications"
-                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-600 sm:text-sm/6"
                                 />
                             </div>
                             {state?.errors && (
@@ -109,7 +110,7 @@ export default function ServiceForm({action}:{action:addServiceFormActionType}){
                                 id="Type"
                                 name="Type"
                                 defaultValue="Not Selected"
-                                className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-600 sm:text-sm/6"
                                 >
                                 <option value="Not Selected">Select a type</option>
                                 <option value="SESSION">Session</option>
@@ -142,11 +143,11 @@ export default function ServiceForm({action}:{action:addServiceFormActionType}){
                                 id="category"
                                 name="category"
                                 defaultValue="Not Selected"
-                                className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-600 sm:text-sm/6"
                                 >
                                     <option value="Not Selected">Select a category</option>
                                     <option value="PortfolioReview">PortfolioReview</option>
-                                    <option value="ProjectReview">ProjectReview</option>
+                                    <option value="ProjectReview">ProjectReview</option>Add commentMore actions
                                     <option value="InterviewPreparation">InterviewPreparation</option>
                                     <option value="MockInterview">MockInterview</option>
                                     <option value="ResumeReview">ResumeReview</option>
@@ -184,7 +185,7 @@ export default function ServiceForm({action}:{action:addServiceFormActionType}){
                                 min={0}
                                 max={1000}
                                 autoComplete="price"
-                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-600 sm:text-sm/6"
                                 />
                             </div>
                             {state?.errors && (
@@ -209,9 +210,14 @@ export default function ServiceForm({action}:{action:addServiceFormActionType}){
                                 id="link"
                                 name="link"
                                 defaultValue="Not Selected"
-                                className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-brand-600 sm:text-sm/6"
                                 >
-                                    <option value="https://test.com">Select an event</option>
+                                    <option value="Not Selected">Select an event</option>
+                                    {
+                                        events.map((event)=>{
+                                            return <option value={event.booking_url}>{event.name}</option>;
+                                        })
+                                    }                                    
 
                                 </select>
                                 <ChevronDownIcon
@@ -242,7 +248,7 @@ export default function ServiceForm({action}:{action:addServiceFormActionType}){
                                     onChange={setEnabled}
                                     name="needApproval"
                                     id="needApproval"
-                                    className="group relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:outline-hidden data-checked:bg-indigo-600"
+                                    className="group relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-brand-600 focus:ring-offset-2 focus:outline-hidden data-checked:bg-brand-600"
                                     >
                                     <span className="sr-only">Need approval</span>
                                     <span

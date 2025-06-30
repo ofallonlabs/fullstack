@@ -13,8 +13,8 @@ export default function MentorProfileCard({mentor}: {mentor: MentorCardData}){
             <div className="relative flex-none w-4/12 aspect-square md:flex-1 md:w-full md:aspect-[10/6]">
                 <Image alt="" src={mentor.avatar || "#"} className="absolute inset-0 bg-gray-50"/>
                 <Image alt="" src={"/assets/images/countries/united-states.svg"} width={512} height={512} className="absolute object-cover top-2 left-2 md:top-4 md:left-4 w-[35px] h-[35px] md:w-[50px] md:h-[50px] rounded-full bg-brand-100/60" />                
-                <Image alt="" src={"/assets/images/countries/united-kingdom.svg"} width={512} height={512} className="absolute object-cover bottom-2 left-2 md:bottom-4 md:left-4 w-[20px] h-[20px] rounded bg-brand-100/60" />                
-                <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 w-[30px] h-[30px] md:w-[30px] md:h-[30px] rounded-full bg-brand-100/60"></div>
+                <Image alt="" src={"/assets/images/countries/united-kingdom.svg"} width={512} height={512} className="absolute bottom-2 right-2 object-cover md:bottom-4 md:right-4 w-[30px] h-[30px] md:w-[30px] md:h-[30px] rounded-full bg-brand-100/60" />                
+                <div className="absolute object-cover bottom-2 left-2 md:bottom-4 md:left-4 w-[20px] h-[20px] rounded bg-brand-100/60"></div>
             </div>
             <div className="flex-1 flex flex-col py-2 md:py-0">                                  
                 <div className="order-2 md:order-1 flex flex-row justify-start items-center gap-2 py-1 md:py-4 px-2">

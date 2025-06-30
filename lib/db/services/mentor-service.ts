@@ -133,6 +133,36 @@ async function updateMentorCalendlyCred(userId: string, calendlyCode: string, ca
 
 }
 
+async function updateMentorCalendlyToken(userId: string, calendlyData: CalendlyAuthTokenType){
+
+    let upsertCalendlyCred = null;    
+
+    try{
+
+        const json = calendlyData as Prisma.InputJsonValue
+
+        upsertCalendlyCred = await prisma.mentor.update({
+            where: {
+                userId: userId
+            },
+            data: {
+                calendlyCred: json,
+                verifiedCalendly: true
+            }
+        });
+
+    }catch(e: unknown){
+
+        printError("MentorSerice - updateMentorCalendlyCred",e);
+
+    }
+
+    return upsertCalendlyCred;
+
+
+}
+
+
 async function updateMentorStripeDetails(userId: string, data: updateMentorStripeDetails){
 
     let updatedMentor = null;    
@@ -164,5 +194,6 @@ export {
     getMentorbyId,
     updateMentorInformation,
     updateMentorCalendlyCred,
-    updateMentorStripeDetails
+    updateMentorStripeDetails,
+    updateMentorCalendlyToken
 }

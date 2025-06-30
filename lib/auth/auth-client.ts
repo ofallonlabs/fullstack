@@ -28,5 +28,5 @@ export const { signIn, signUp, signOut, useSession } = createAuthClient({
 
 // import { createAuthClient } from "better-auth/react"
 // export const { signIn, signUp, signOut, useSession } = createAuthClient({
-//     baseURL: "https://fullstackdev-xi.vercel.app"
+//     baseURL: "https://fullstackdev-nine.vercel.app"
 // });

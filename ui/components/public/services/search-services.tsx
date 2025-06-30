@@ -17,7 +17,7 @@ export default function SearchServices({services} : {services:ServiceCardData[]}
         if(searchValue && searchValue.trim().length > 0){
 
             filterServicesData((cur)=>{
-                return cur.filter((service)=>{
+                return services.filter((service)=>{
                     return service.title.includes(searchValue);
                 })
             })
@@ -25,7 +25,7 @@ export default function SearchServices({services} : {services:ServiceCardData[]}
         }
 
 
-    },[searchValue, filterServicesData]);
+    },[services, searchValue, filterServicesData]);
 
 
     return (
