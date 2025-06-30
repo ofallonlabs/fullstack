@@ -79,9 +79,9 @@ export default async function AllMentors(){
 
               <div className="min-h-[500px]">
 
-                      <div className="mx-auto 2xl:w-11/12 lg:px-8 md:px-6 px-2">
+                      <div className="mx-auto lg:px-8 md:px-6 px-2">
 
-                          <div className="w-full md:w-11/12 xl:w-10/12 text-center mx-auto">
+                          <div className="w-full text-center mx-auto">
 
                               <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-8 lg:gap-4 xl:gap-6 2xl:gap-8">
                                 {

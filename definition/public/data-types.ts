@@ -21,6 +21,18 @@ export type ServiceCardData = {
     price: string,
 }
 
+export type ServiceDetailsCardData = {
+    id:number,
+    title: string,
+    mentorname: string,
+    mentorid: number,
+    description: string,
+    price: string,
+    qualifications:string,
+    category:string,
+    type:string,
+}
+
 export type MentorCardData = {
     avatar: string,
     link: string,

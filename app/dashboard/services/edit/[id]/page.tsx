@@ -17,8 +17,6 @@ export default async function EditServicePage({ params }: { params: Promise<{ id
     if(!user) return null;
 
 
-
-
     return (
 
         <div className="relative mb-32 divide-y-4 divide-brand-100">

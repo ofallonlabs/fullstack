@@ -1,6 +1,6 @@
 "use server";
 
-import { createMentorService, updateMentorService } from "@/lib/db/services/mentor-services-service"; 
+import { createMentorService, updateMentorService, archiveMentorService } from "@/lib/db/services/mentor-services-service"; 
 import { getMentor } from "@/lib/db/services/mentor-service"; 
 import { ErrorMessageType, addServiceFormState, addServiceFormSchema } from "@/definition/dashboard/mentor/service-schema";
 import { revalidatePath } from "next/cache";
@@ -8,7 +8,7 @@ import { headers } from "next/headers";
 import { auth } from "@/lib/auth/auth";
 import { createPrice, createProduct } from "@/lib/stripe/stripe-services";
 
-export type ExtraType = { method: "ADD" } | { method: "EDIT", id: string }
+export type ExtraType = { method: "ADD" } | { method: "EDIT", id: string };
 
 export default async function serviceFormAction(extras: ExtraType , prevState: addServiceFormState, formData: FormData) {
 
@@ -26,8 +26,7 @@ export default async function serviceFormAction(extras: ExtraType , prevState: a
         return { message: {type: ErrorMessageType.FAILURE, content: "You are not allowed to perfomed this action"} };
     }      
     
-    console.error("SESSION TYPE", formData.get("type"));
-
+ 
     const {success, error, data} = addServiceFormSchema.safeParse({
         title: formData.get("title"),
         description: formData.get("description"),
@@ -78,8 +77,11 @@ export default async function serviceFormAction(extras: ExtraType , prevState: a
     }else if(extras.method == "EDIT"){
 
         await updateMentorService(mentor.id, +extras.id, serviceData); 
+
     }
 
     revalidatePath(`/dashboard`);
     return { message: {type: ErrorMessageType.SUCCESS, content: `${extras.method === "ADD" ? "Added" : "Updated"} Successfully` } };
+
+
 }
