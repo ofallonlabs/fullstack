@@ -15,7 +15,23 @@ async function getApplicationsForMentee(menteeId: number){
         targetApplications =  await prisma.application.findMany({
             where: {
                 menteeId : menteeId
-            }
+            },
+            include: {
+                mentee: {
+                    include: {
+                        user: true
+                    }
+                },
+                mentorService: {
+                    include: {
+                        mentor: {
+                            include: {
+                                user: true
+                            }
+                        }
+                    }
+                }
+            }            
         });
 
     }catch(e: unknown){
@@ -48,6 +64,22 @@ async function getApplicationsForMentor(mentorId: number){
                 where: {
                     serviceId : {
                         in: services.map((service) => service.id)
+                    }
+                },
+                include: {
+                    mentee: {
+                        include: {
+                            user: true
+                        }
+                    },
+                    mentorService: {
+                        include: {
+                            mentor: {
+                                include: {
+                                    user: true
+                                }
+                            }
+                        }
                     }
                 }
             });

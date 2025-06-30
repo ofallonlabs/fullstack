@@ -47,3 +47,20 @@ export type MentorCardData = {
     servicescount: string,
     serviceminprice: string,
 }
+
+export type ApplicationReviewType = {
+    id: number;
+    createdAt: Date;
+    updatedAt: Date;
+    status: string;
+    archivedAt: Date | null;
+    menteeId: number;
+    menteeName: string;
+    serviceId: number;
+    serviceTitle: string;
+    mentorName: string;    
+    requestNote: string | null;
+    responseMessage: string | null;
+    archived: boolean;
+    approvedAt: Date | null;
+}

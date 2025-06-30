@@ -1,3 +1,3 @@
 export default function Notifications(){
-    return <div>hi</div>
+    return <div>NOTIFICATIONS</div>
 }
