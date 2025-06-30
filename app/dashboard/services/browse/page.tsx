@@ -1,6 +1,9 @@
 import { auth } from '@/lib/auth/auth';
 import { headers } from 'next/headers';
 import LinkTab from '@/ui/components/dashboard/tabs/link-tab';
+import type { ServiceCardData } from "@/definition/public/data-types";
+import ServiceCard from "@/ui/components/common/cards/service-card";
+import { getAllServices } from "@/lib/db/services/mentor-services-service";
 
 export default async function AllServices(){
   const session = await auth.api.getSession({
@@ -23,6 +26,23 @@ export default async function AllServices(){
   }
 
 
+  const allServices : ServiceCardData[] = (await getAllServices() || []).map((service)=>{
+
+        return {
+            title: service.title,
+            description: service.description || '',
+            country: service.mentor.user.country || 'USA',
+            language: 'English',
+            link: `/dashboard/services/details/${service.id}`,
+            avgratings: 4,
+            reviews: 10,
+            mentorid: service.mentor.id,
+            mentorname: service.mentor.user.name,
+            price: `${service.price}`
+        }
+
+  });
+
     return (
         <div className="relative space-y-10 mb-32">
 
@@ -38,7 +58,28 @@ export default async function AllServices(){
 
               </div> 
 
-              <div></div>        
+              <div className="min-h-[500px]">
+
+                      <div className="mx-auto 2xl:w-11/12 lg:px-8 md:px-6 px-2">
+
+                          <div className="w-full md:w-11/12 xl:w-10/12 text-center mx-auto">
+
+                              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-8 lg:gap-4 xl:gap-6 2xl:gap-8">
+
+                                      {
+                                          allServices.map((serviceItem, idx)=>{
+                                              return(    
+                                                  <ServiceCard key={`serviceItem-${idx}-card`} service={serviceItem} />                              
+                                              );
+                                          })
+                                      }
+                              </div>
+
+                          </div>
+                    
+                      </div>        
+
+              </div>        
         </div>
     );
 }

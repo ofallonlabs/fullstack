@@ -6,6 +6,7 @@ import { ErrorMessageType, addServiceFormState, addServiceFormSchema } from "@/d
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth/auth";
+import { createPrice, createProduct } from "@/lib/stripe/stripe-services";
 
 export type ExtraType = { method: "ADD" } | { method: "EDIT", id: string }
 
@@ -25,6 +26,7 @@ export default async function serviceFormAction(extras: ExtraType , prevState: a
         return { message: {type: ErrorMessageType.FAILURE, content: "You are not allowed to perfomed this action"} };
     }      
     
+    console.error("SESSION TYPE", formData.get("type"));
 
     const {success, error, data} = addServiceFormSchema.safeParse({
         title: formData.get("title"),
@@ -32,14 +34,14 @@ export default async function serviceFormAction(extras: ExtraType , prevState: a
         qualifications: formData.get("qualifications"),
         type: formData.get("type"),     
         category: formData.get("category"),
-        price: formData.get("price"),
+        price: Number(formData.get("price")),
         link: formData.get("link"),
         needApproval: formData.get("needApproval")?.toString() == "on"    
     });
 
     if(!success){
         return { 
-                error:
+                errors:
                     error?.issues?.map((zerror)=>{
                         return {
                             target: zerror.path.length > 0 ? zerror?.path?.[0].toString() : 'root',
@@ -53,7 +55,25 @@ export default async function serviceFormAction(extras: ExtraType , prevState: a
     const serviceData = { title, description, category, type, needApproval, qualifications, calendlyEvent: link };
     if(extras.method == "ADD"){
 
-        await createMentorService({ mentorId: mentor.id, price, ...serviceData});
+        const stripeAccount = mentor.stripeAccountId;
+        
+        if(!stripeAccount){
+            return { message: {type: ErrorMessageType.FAILURE, content: "You are not connected to your stripe account"} };            
+        }
+
+        const stripeProduct = await createProduct(title, stripeAccount);
+
+        if(!stripeProduct){
+            return { message: {type: ErrorMessageType.FAILURE, content: "Something went wrong creating session product"} };             
+        }
+
+        const stripePrice = await createPrice(stripeProduct.id, price * 1000, stripeAccount);
+
+        if(!stripePrice){
+            return { message: {type: ErrorMessageType.FAILURE, content: "Something went wrong creating session price"} };                   
+        }
+
+        await createMentorService({ mentorId: mentor.id, price: price * 1000, priceId: stripePrice.id, productId: stripeProduct.id, ...serviceData});
 
     }else if(extras.method == "EDIT"){
 

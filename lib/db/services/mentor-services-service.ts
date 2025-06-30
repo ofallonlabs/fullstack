@@ -50,7 +50,6 @@ async function getAllServices(){
 
 }
 
-
 async function getMentorServices(mentorId: number){
 
     let targetMentorServices = null;    
@@ -62,6 +61,13 @@ async function getMentorServices(mentorId: number){
                     mentorId: mentorId,
                     isArchived: false,
                 },
+                include:{
+                    mentor : {
+                        include: {
+                            user: true
+                        }
+                    }
+                }                 
         });
 
     }catch(e: unknown){
