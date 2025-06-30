@@ -31,7 +31,8 @@ export default async function ServiceDetailsPage({ params }: { params: Promise<{
         type: targetService.type,
         price: `${Number(targetService.price) / 1000}`,
         mentorid: targetService.mentorId,
-        mentorname: targetService.mentor.user.name
+        mentorname: targetService.mentor.user.name,
+        needapproval: targetService.needApproval
     }
 
     return (

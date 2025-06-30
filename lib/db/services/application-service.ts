@@ -65,7 +65,7 @@ async function getApplicationsForMentor(mentorId: number){
 
 }
 
-async function getApplicationForSerive(serviceId: number){
+async function getApplicationForService(serviceId: number){
     let targetApplications = null;    
 
     try{
@@ -78,7 +78,7 @@ async function getApplicationForSerive(serviceId: number){
 
     }catch(e: unknown){
 
-        printError("ApplicationService - getApplications",e);
+        printError("ApplicationService - getApplicationForService",e);
 
     }
 
@@ -132,7 +132,7 @@ async function updateApplication(serviceId: number, data: ApplicationUpdateType)
 export {
     getApplicationsForMentee,
     getApplicationsForMentor,
-    getApplicationForSerive,
+    getApplicationForService,
     createApplication,
     updateApplication
 }

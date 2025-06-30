@@ -31,6 +31,7 @@ export type ServiceDetailsCardData = {
     qualifications:string,
     category:string,
     type:string,
+    needapproval:boolean,
 }
 
 export type MentorCardData = {
