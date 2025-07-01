@@ -10,10 +10,10 @@ import type { ServiceCardData } from "@/definition/public/data-types";
 
 export default function ServiceCard({ service } : {service: ServiceCardData}){
     return (
-        <Link href={service.link} className="w-full border border-slate-200 rounded flex flex-row md:flex-col hover:cursor-pointer">
+        <Link prefetch={false} href={service.link} className="w-full border border-slate-200 rounded flex flex-row md:flex-col hover:cursor-pointer">
 
                <div className="relative flex-none w-4/12 aspect-square md:flex-1 md:w-full md:aspect-[10/6]">
-                   <div className="absolute inset-0 bg-gray-50"></div>
+                   <div className="absolute inset-0 bg-gray-200"></div>
                    <Image alt="" src={"/assets/images/countries/united-states.svg"} width={512} height={512} className="absolute top-2 left-2 md:top-4 md:left-4 object-cover w-[40px] h-[40px] md:w-[70px] md:h-[70px] rounded-full bg-brand-100/60" />
                    <Image alt="" src={"/assets/images/countries/united-kingdom.svg"} width={512} height={512} className="absolute bottom-2 left-2 md:bottom-4 md:left-4 object-cover w-[20px] h-[20px] rounded bg-brand-100/60" />
                </div>

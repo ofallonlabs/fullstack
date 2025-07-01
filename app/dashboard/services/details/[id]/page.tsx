@@ -52,11 +52,6 @@ export default async function ServiceDetailsPage({ params }: { params: Promise<{
 
                     <ServiceDetailsCard serviceData={serviceData} actionsEnabled={user.role == "MENTOR"}/>
 
-                    <div className="flex flex-row gap-1">
-                        <div className="text-base font-semibold text-slate-800">{"Mentor"}</div>
-                        <div className="text-sm font-medium text-slate-600">{targetService.mentor.user.name}</div>
-                    </div>
-
                 </div>
 
             </div>

@@ -23,7 +23,6 @@ export default async function AllServices(){
 
   if(user.role == "MENTOR"){
     tabNavs.unshift({ name: 'My Services', href: '/dashboard/services', current: false });
-    tabNavs.unshift({ name: 'Create new service', href: '/dashboard/services/new', current: false });
   }
 
   const allServices : ServiceCardData[] = (await getAllServices() || []).map((service)=>{

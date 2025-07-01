@@ -3,6 +3,7 @@ import { auth } from "@/lib/auth/auth";
 import Image from "next/image";
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import SignoutButton from "@/ui/elements/signout-button";
+import LinkWithState from '@/ui/components/common/link/new-service-link';
 
 const userNavigation = [
   { name: 'Settings', href: '/dashboard/settings', wrapped:false },
@@ -36,7 +37,16 @@ export default async function AvatarFlayout() {
                         ?
                         <SignoutButton><span className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden">{item.name}</span></SignoutButton>
                         :
-                        <a href={item.href}  className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden">{item.name}</a>
+                        <LinkWithState href={item.href} state={
+                          {
+                            title: { idle: item.name, pending: "Redirecting" },
+                            style: {
+                              idle:"w-fit flex flex-row items-center justify-center gap-1.5 px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden",
+                              pending:"w-fit flex flex-row items-center justify-center gap-1.5 px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+                            }
+                          }
+                        }/>
+ 
                     }                    
                 </MenuItem>
             ))}

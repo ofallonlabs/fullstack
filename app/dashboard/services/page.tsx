@@ -5,6 +5,7 @@ import type { ServiceCardData } from "@/definition/public/data-types";
 import ServiceCard from "@/ui/components/common/cards/service-card";
 import { getMentorServices } from "@/lib/db/services/mentor-services-service";
 import { getMentor } from '@/lib/db/services/mentor-service';
+import LinkWithState from '@/ui/components/common/link/new-service-link';
 
 export default async function Services(){
   const session = await auth.api.getSession({
@@ -52,8 +53,17 @@ export default async function Services(){
               <div className="pt-4 sticky top-[65px] sm:top-[60px] lg:top-0 inset-x-0 bg-white overflow-x-auto -z-0">
 
                 <div className="text-left px-2 md:px-4 mb-4">
-                    <div className="text-gray-800  font-bold text-xl xl:text-3xl flex flex-row gap-1 items-center justify-start">
+                    <div className="text-gray-800  font-bold text-xl xl:text-3xl flex flex-row gap-2 items-center justify-start">
                         <div>{"Services"}</div>
+                        <LinkWithState href={"/dashboard/services/new"} state={
+                          {
+                            title: { idle: "New Service", pending: "Redirecting" },
+                            style: {
+                              idle:"w-fit flex flex-row items-center justify-center gap-1.5 bg-brand-100 text-brand-600 text-base font-medium px-4 py-1 rounded",
+                              pending:"w-fit flex flex-row items-center justify-center gap-1.5 bg-brand-100 text-brand-600 text-base font-medium px-4 py-1 rounded cursor-forbidden"
+                            }
+                          }
+                        }/>
                     </div> 
                 </div>
 
@@ -65,7 +75,7 @@ export default async function Services(){
 
                       <div className="mx-auto 2xl:w-11/12 lg:px-8 md:px-6 px-2">
 
-                          <div className="w-full md:w-11/12 xl:w-10/12 text-center mx-auto">
+                          <div className="w-full text-center ">
 
                               <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-8 lg:gap-4 xl:gap-6 2xl:gap-8">
 
