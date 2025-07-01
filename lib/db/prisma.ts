@@ -1,3 +1,31 @@
+import { PrismaClient, Prisma, ServiceType, ServiceCategory, Application, ApplicationStatus, MentorshipStatus, MentorshipProgress, Mentorship, Notification, NotificationStatus, NotificationType } from '@/generated/prisma/client';
+
+// import { PrismaClient, Prisma, ServiceType, ServiceCategory, Application, ApplicationStatus, MentorshipStatus, MentorshipProgress, Mentorship, Notification, NotificationStatus, NotificationType } from '@prisma/client/edge';
+
+export { Prisma };
+export type { Application, ApplicationStatus, MentorshipStatus, MentorshipProgress, Mentorship, Notification, NotificationStatus, NotificationType };
+export {ServiceType, ServiceCategory}
+
+import { withAccelerate } from '@prisma/extension-accelerate';
+
+const globalForPrisma = global as unknown as { 
+    prisma: PrismaClient
+}
+
+const prisma = globalForPrisma.prisma || new PrismaClient().$extends(withAccelerate())
+
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+
+export default prisma;
+
+
+
+
+
+
+
+
+
 // import { PrismaClient, Prisma, ServiceType, ServiceCategory, Application, ApplicationStatus, MentorshipStatus, MentorshipProgress, Mentorship, Notification, NotificationStatus, NotificationType } from '@prisma/client';
 // import { Pool } from '@neondatabase/serverless';
 
@@ -46,20 +74,20 @@
 
 //CORRECT ONE
 
-import { PrismaClient, Prisma, ServiceType, ServiceCategory, Application, ApplicationStatus, MentorshipStatus, MentorshipProgress, Mentorship, Notification, NotificationStatus, NotificationType } from '@/generated/prisma/client';
+// import { PrismaClient, Prisma, ServiceType, ServiceCategory, Application, ApplicationStatus, MentorshipStatus, MentorshipProgress, Mentorship, Notification, NotificationStatus, NotificationType } from '@/generated/prisma/client';
 
-export { Prisma };
-export type { Application, ApplicationStatus, MentorshipStatus, MentorshipProgress, Mentorship, Notification, NotificationStatus, NotificationType };
-export {ServiceType, ServiceCategory}
+// export { Prisma };
+// export type { Application, ApplicationStatus, MentorshipStatus, MentorshipProgress, Mentorship, Notification, NotificationStatus, NotificationType };
+// export {ServiceType, ServiceCategory}
 
-const globalForPrisma = globalThis as unknown as { prisma: PrismaClient }
+// const globalForPrisma = globalThis as unknown as { prisma: PrismaClient }
 
-const prisma =
-  globalForPrisma.prisma || new PrismaClient()
+// const prisma =
+//   globalForPrisma.prisma || new PrismaClient()
 
-export default prisma;
+// export default prisma;
 
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+// if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
 
 
 

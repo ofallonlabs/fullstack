@@ -9,17 +9,17 @@
 //   output   = "../generated/prisma"
 // }
 
-generator client {
-  provider = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
-}
+// generator client {
+//   provider = "prisma-client-js"
+//   previewFeatures = ["driverAdapters"]
+// }
 
 
-datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
-}
+// datasource db {
+//   provider  = "postgresql"
+//   url       = env("DATABASE_URL")
+//   directUrl = env("DIRECT_URL")
+// }
 
 
 // datasource db {
@@ -27,6 +27,20 @@ datasource db {
 //   url      = env("DATABASE_URL")
 // }
 
+
+// generator client {
+//   provider = "prisma-client-js"
+//   output   = "../generated/prisma"
+// }
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "prisma+postgres://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiMDFKWjFaNTYyODhHQjQ4N1FSRzRWNUhLMFIiLCJ0ZW5hbnRfaWQiOiJkNGU0N2YwMzE1NTg0Mzk5NTQwM2JhZDYzYTMwNzA3MGQxNWRjOTI0MjY3MjU0ZTlkZTM4Y2E3ZWMzMzE2ZmMwIiwiaW50ZXJuYWxfc2VjcmV0IjoiMDMwYWE1N2UtN2E5NC00NTc5LWE5MjYtNjQ5NTg5NDgzYjczIn0.2zQSQ_qAe4QTWYRKFQXFrSdusqJ-bzZHGH8mbaROS3c"
+}
 
 
 model User {

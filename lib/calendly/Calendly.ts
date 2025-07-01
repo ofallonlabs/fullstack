@@ -1,3 +1,4 @@
+import "server-only";
 import { CalendlyAuthTokenType, CalendlyEventTypeResponse, CalendlyBookingUrlResponse } from "@/definition/CalendlyDefinition";
 import { printError } from "@/utils/Utils";
 import { updateMentorCalendlyToken } from "@/lib/db/services/mentor-service";

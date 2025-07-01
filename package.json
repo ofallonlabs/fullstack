@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "postinstall": "prisma generate",
+    "dev": "next dev --turbopack",
+    "postinstall": "prisma generate --no-engine",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -16,6 +16,7 @@
     "@neondatabase/serverless": "^1.0.0",
     "@prisma/adapter-neon": "^6.8.2",
     "@prisma/client": "6.7.0",
+    "@prisma/extension-accelerate": "^2.0.1",
     "better-auth": "^1.2.8",
     "motion": "^12.12.1",
     "next": "15.3.2",
