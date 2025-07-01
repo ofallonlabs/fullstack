@@ -7,16 +7,30 @@ import { printError } from "@/utils/Utils";
 type AddMentorService = {
 
   mentorId: number
-  title: string
-  description?: string  
-  qualifications?: string  
-  productId?: string  
-  priceId?: string  
-  price: number
+  title: string,
+  description?: string,  
+  qualifications?: string, 
+  productId?: string,  
+  priceId?: string,  
+  price: number,
   type: ServiceType,
-  category: ServiceCategory   
-  calendlyEvent?: string  
-  needApproval: boolean
+  category: ServiceCategory,   
+  calendlyEvent?: string,  
+  needApproval: boolean,
+
+}
+
+ 
+export type UpdateMentorService = {
+
+  title: string,
+  description?: string,  
+  qualifications?: string,   
+  price: number,
+  type: ServiceType,
+  category: ServiceCategory,   
+  calendlyEvent?: string,  
+  needApproval: boolean,
 
 }
 
@@ -152,7 +166,7 @@ async function createMentorService(data: AddMentorService){
 
 }
 
-async function updateMentorService(mentorId: number, serviceId: number, data: Omit<Partial<AddMentorService>, "mentorId">){
+async function updateMentorService(mentorId: number, serviceId: number, data: Partial<UpdateMentorService>){
 
     let updatedMentorService = null;    
 
