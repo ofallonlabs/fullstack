@@ -1,7 +1,7 @@
 'use client';
 
-import Link from "next/link";
 import { useState } from "react";
+import LinkWithState from '@/ui/components/common/link/new-service-link';
 
 type NavTabItemType = {
     name: string;
@@ -21,10 +21,17 @@ export default function LinkTab({ navItems } : { navItems: NavTabItemType[] }) {
         >
           {tabs.map((item) => (
             <li key={item.name}>
-              <Link href={item.href}
-                className={item.current ? 'text-brand-400' : ''}>
-                {item.name}
-              </Link>
+
+              <LinkWithState href={item.href} state={
+                  {
+                      title: { idle: item.name, pending: item.name },
+                      style: {
+                        idle: item.current ? 'text-brand-400' : '',
+                        pending: item.current ? 'text-brand-400' : ''
+                      }
+                  }
+              }/>
+
             </li>
           ))}
         </ul>

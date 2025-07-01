@@ -1,7 +1,7 @@
 "use client";
 
 import type {TodoType} from "@/definition/dashboard/common/common-types";
-import Link from "next/link";
+import LinkWithState from '@/ui/components/common/link/new-service-link';
 
 export default function MentorTodoTable({todos}: {todos: TodoType[]}){
 
@@ -27,9 +27,17 @@ export default function MentorTodoTable({todos}: {todos: TodoType[]}){
                     </div>
                 </td>
                 <td className="min-w-[70px] py-4 pr-4 pl-3 text-right text-xs lg:text-sm font-medium sm:pr-4">
-                    <Link href={todo.link} className="text-brand-600 hover:text-brand-900">
-                        Fix it<span className="sr-only">, {todo.action}</span>
-                    </Link>
+
+                    <LinkWithState href={todo.link} state={
+                        {
+                            title: { idle: "Fix it", pending: "Redirecting" },
+                            style: {
+                              idle:"w-fit flex flex-row items-center justify-center gap-1.5 text-brand-600 hover:text-brand-900",
+                              pending:"w-fit flex flex-row items-center justify-center gap-1.5 text-brand-900 cursor-forbidden"
+                            }
+                        }
+                    }/>
+
                 </td>
             </tr>
         ))        

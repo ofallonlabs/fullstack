@@ -2,6 +2,7 @@ import { JSX } from "react";
 import { classNames } from "@/utils/Utils";
 import Image from "next/image";
 import Link from "next/link";
+import TabLinkLoadingIndicator from "@/ui/components/common/link/tab-link-loading-indicator";
 
 export type SideBarNavigationType = {
     name: string;
@@ -25,12 +26,13 @@ export default function SideNavbar({children, navigation, navigationBottom}: {ch
                         {navigation.map((item) => (
                           <li key={item.name}>
                             <Link
+                              prefetch={false}
                               href={item.href}
                               className={classNames(
                                 item.current
                                   ? 'bg-gray-50 text-brand-600'
                                   : 'text-gray-700 hover:bg-gray-50 hover:text-brand-600',
-                                'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
+                                'group flex flex-row items-center gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                               )}
                             >
                               <item.icon
@@ -40,6 +42,7 @@ export default function SideNavbar({children, navigation, navigationBottom}: {ch
                                 )}
                               />
                               {item.name}
+                              <TabLinkLoadingIndicator/>                              
                             </Link>
                           </li>
                         ))}
@@ -56,7 +59,7 @@ export default function SideNavbar({children, navigation, navigationBottom}: {ch
                             item.current
                               ? 'bg-gray-50 text-brand-600'
                               : 'text-gray-700 hover:bg-gray-50 hover:text-brand-600',
-                            'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
+                            'group flex flex-row items-center gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                           )}
                         >
                           <item.icon style={classNames(
@@ -65,6 +68,7 @@ export default function SideNavbar({children, navigation, navigationBottom}: {ch
                             )}/>
                           
                           {item.name}
+                          <TabLinkLoadingIndicator/>
                         </Link>
                       </li>
                     ))}

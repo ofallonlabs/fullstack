@@ -96,7 +96,7 @@ export default function DashboardNavDialogLayout({
           </button>
           <div className="flex-1 text-sm/6 font-semibold text-gray-900">Menu</div>
           <div className="lg:hidden flex flex-row items-center gap-6">
-            <Link href={"/contact"}>
+            <Link href={"/contact"} prefetch={false}>
                 <SupportIcon/>
             </Link>
             {children}

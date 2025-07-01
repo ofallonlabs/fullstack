@@ -36,11 +36,11 @@ export default function BottomSheet(){
                           {
                             navigation.map((navItem, idx) => {
                                 return (
-                                    <Link key={`bottomSheetNavitem-${navItem.name}-${idx}`} href={navItem.href} 
+                                    <Link key={`bottomSheetNavitem-${navItem.name}-${idx}`} href={navItem.href} prefetch={false}
                                         className={classNames(navItem.current  ? 'border-t-[2px] border-t-brand-500' : '', 'col-span-1 py-2  mx-2')}>
                                         <div className="flex flex-col gap-1.5 items-center justify-between">
                                             <navItem.icon style="text-brand-600"/>
-                                            <div className={classNames(navItem.current  ? 'text-brand-600' : 'text-gray-800', 'text-center text-xs font-bold')}>{navItem.name}</div>
+                                            <div className={classNames(navItem.current  ? 'text-brand-600' : 'text-gray-800', 'text-center text-[10px] font-bold')}>{navItem.name}</div>
                                         </div>
                                     </Link>
                                 );
